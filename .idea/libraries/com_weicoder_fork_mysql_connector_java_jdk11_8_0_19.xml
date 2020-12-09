@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.weicoder.fork:mysql-connector-java-jdk11:8.0.19" type="repository">
+    <properties maven-id="com.weicoder.fork:mysql-connector-java-jdk11:8.0.19" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-jdk11-8.0.19.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

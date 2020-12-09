@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Learning_System:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Learning_System</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Learning_System-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Learning_System:war exploded" />
+    </root>
+  </artifact>
+</component>
