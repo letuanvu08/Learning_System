@@ -6,6 +6,9 @@ public class subclass {
             private String ClassId;
             private String SubClassId;
             private String Lecture;
+            private int NoCreadits;
+            private int Year;
+            private int Semester;
     public subclass(){};
     public subclass(String SubJectName,String ClassId,String SubClassId,String Lecture){
             this.SubJectName=SubJectName;
@@ -44,5 +47,29 @@ public class subclass {
 
     public void setLecture(String lecture) {
         Lecture = lecture;
+    }
+
+    public int getNoCreadits() {
+        return NoCreadits;
+    }
+
+    public void setNoCreadits(int noCreadits) {
+        NoCreadits = noCreadits;
+    }
+
+    public int getSemester() {
+        return Semester;
+    }
+
+    public void setSemester(int semester) {
+        Semester = semester;
+    }
+
+    public int getYear() {
+        return Year;
+    }
+
+    public void setYear(int year) {
+        Year = year;
     }
 }

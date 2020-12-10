@@ -33,23 +33,116 @@
 
 <!-- Page Preloder -->
 
-<jsp:include page="/template.jsp"></jsp:include>
+<c:import url="/pages/student/template.jsp">
+    <c:param name="navbar_opt" value="1"/>
+</c:import>
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>ĐĂNG KÍ MÔN HỌC</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Breadcrumb Section End -->
-
+<%--<div class="row">--%>
+<%--    <div class="col-md-5"></div>--%>
+<%--    <div class="col-md-4 ">--%>
+<%--        <h3 class="header__logo"></h3>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <!-- Profile Section Begin -->
-<div class="container-fluid ">
+<div class="row" id="notifice" >
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6" >
+        <c:choose>
+            <c:when test="${statusAttend == \"-1\"}">
+            </c:when>
+            <c:when test="${statusAttend==\"\"}">
+                <h5 class="alert alert-info" role="alert">Đăng ký thành công</h5>
+            </c:when>
+            <c:when test="${statusAttend.contains(\"Duplicate\")}">
+                <h5 class="alert alert-warning" role="alert">Đã đăng ký môn học này.</h5>
+            </c:when>
 
-    <c:forEach items="${listSubclass}" var="subclass" >
-
-
-        <p> <c:out value="${subclass.getSubJectName()}"/> </p>
-
-        <p><c:out value="${subclass.getClassId()}"/></p>
-        <p><c:out value="${subclass.getSubClassId()}"/></p>
-        <p><c:out value="${subclass.getLecture()}"/></p>
-    </c:forEach>
-
+            <c:otherwise>
+                <h5  class="alert alert-warning" role="alert"> <c:out value="${statusAttend}"/></h5>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </div>
+<section class="spad">
+    <div class="account__manangement col-lg-12">
+
+        <script>
+        setTimeout(() => {
+        var elem = document.getElementById("notifice");
+            elem.remove();
+        }, 5000);
+            </script>
+        <div class="col-lg-12">
+
+
+            <form action="attend" method="post">
+                <div class="shoping__cart__table">
+                    <table id="user_list">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Mã Môn học </th>
+                            <th>Tên Môn học</th>
+                            <th>Số tín chỉ</th>
+                            <th>Subclass</th>
+                            <th>Giảng Viên</th>
+<%--                            class="hidden_column"--%>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${listSubclass}" var="subclass" >
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="userlist" value="23243">
+                                </td>
+                                <td class="hidden_column">
+                                    <c:out value="${subclass.getClassId()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${subclass.getSubJectName()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${subclass.getNoCreadits()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${subclass.getSubClassId()}"/>
+                                </td>
+                                <td >
+                                    <c:out value="${subclass.getLecture()}"/>
+                                </td>
+                                <td>
+                                    <button type="submit" id="btn_dk" name="btn_dk"  class="site-btn" value = "${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">Đăng ký</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
 
 
 <!-- Profile Section End -->

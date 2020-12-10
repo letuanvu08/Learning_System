@@ -5,6 +5,7 @@ public class Student {
     private String  status;
     private int yearofadmission;
     private String FSName;
+    private int Semester;
     public Student(){}
 
     public String getStudentID() {
@@ -37,5 +38,13 @@ public class Student {
 
     public void setFSName(String FSName) {
         this.FSName = FSName;
+    }
+
+    public int getSemester() {
+        return Semester;
+    }
+
+    public void setSemester(int semester) {
+        Semester = semester;
     }
 }

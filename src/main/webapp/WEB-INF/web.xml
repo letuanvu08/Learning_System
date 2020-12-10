@@ -12,6 +12,34 @@
         <url-pattern>/student/attend</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>subjectattend</servlet-name>
+        <servlet-class>com.Learning.Student.SubjectAttendController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>subjectattend</servlet-name>
+        <url-pattern>/student/subjectattend</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ListSubclassAttendedControler</servlet-name>
+        <servlet-class>com.Learning.Student.ListSubclassAttendedControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListSubclassAttendedControler</servlet-name>
+        <url-pattern>/student/ListSubclassAttended</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>NoCreditStudent</servlet-name>
+        <servlet-class>com.Learning.Student.NoCreditStudentControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NoCreditStudent</servlet-name>
+        <url-pattern>/student/NoCreditStudent</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>com.Learning.profile.Logout</servlet-class>
     </servlet>

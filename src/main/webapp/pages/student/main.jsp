@@ -33,41 +33,41 @@
 
 <!-- Page Preloder -->
 
-<jsp:include page="/template.jsp"></jsp:include>
+<c:import url="/pages/student/template.jsp">
+    <c:param name="navbar_opt" value="1"/>
+</c:import>
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Trang chủ </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Breadcrumb Section End -->
 
 <!-- Profile Section Begin -->
 <div class="container-fluid ">
     <div class="row px-5 ">
-        <div class="col-lg-4 p-4 border rounded btn">
+        <div class="col-lg-3 p-4 border rounded btn">
             <a href="attend">Đăng ký môn học</a>
         </div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="">xem các môn hoc mở trong kỳ</a>
-        </div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="">Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.</a>
+        <div class="col-lg-3 p-4 border rounded btn">
+            <a href="subjectattend">Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.</a>
         </div>
         <div class="clearfix"></div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="">Xem danh sách lớp học của mỗi môn học mà mình đăng ký ở một học kỳ.</a>
+        <div class="col-lg-3 p-4 border rounded btn">
+            <a href="ListSubclassAttended">Xem danh sách lớp học của mỗi môn học mà mình đăng ký ở một học kỳ.</a>
         </div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="">Xem danh sách lớp học của mỗi môn học mà mình đăng ký có nhiều hơn 1 giảng viên phụ trách ở một học kỳ.</a>
-        </div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="">Xem tổng số tín chỉ đã đăng ký được ở một học kỳ.</a>
+        <div class="col-lg-3 p-4 border rounded btn">
+            <a href="NoCreditStudent">Xem tổng số tín chỉ đã đăng ký được ở mỗi học kỳ.</a>
         </div>
         <div class="clearfix"></div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="">Xem tổng số môn học đã đăng ký được ở một học kỳ.</a>
-        </div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="">Xem 3 học kỳ có số tổng số tín chỉ cao nhất mà mình đã từng đăng ký.</a>
-        </div>
-
-
-
 
     </div>
 
@@ -77,8 +77,8 @@
 <!-- Profile Section End -->
 
 <!-- Profile Function Section Begin -->
-<c:import url="/footer.jsp" />
 
+<c:import url="/footer.jsp" />
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

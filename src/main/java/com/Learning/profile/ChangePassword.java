@@ -55,7 +55,7 @@ public class ChangePassword extends HttpServlet {
 			}
 
 			UserDao.changePasswordFromUsername(user.getAccountName(),newpassword);
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("/"+user.getUserType().toString()+"/main");
 			rd.forward(request, response);
 			return;

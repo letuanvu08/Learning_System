@@ -23,14 +23,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/customer/main.js"></script>
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo/favicon.ico">
 </head>
 
 <body>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/customer/main.js"></script>
 <!-- Page Preloder -->
 
 <c:import url="/pages/student/template.jsp">
@@ -43,42 +43,73 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>Trang chủ </h2>
+                    <h2>DANH SÁCH CÁC LỚP HỌC CỦA NHỮNG MÔN ĐÃ ĐĂNG KÝ</h2>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Breadcrumb Section End -->
-
+<%--<div class="row">--%>
+<%--    <div class="col-md-5"></div>--%>
+<%--    <div class="col-md-4 ">--%>
+<%--        <h3 class="header__logo">DANH SÁCH CÁC LỚP HỌC CỦA NHỮNG MÔN ĐÃ ĐĂNG KÝ</h3>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <!-- Profile Section Begin -->
 <div class="container-fluid ">
-    <div class="row px-5 ">
-        <div class="col-lg-3 p-4 border rounded btn">
-            <a href="attend">Đăng ký môn học</a>
-        </div>
-        <div class="col-lg-3 p-4 border rounded btn">
-            <a href="subjectattend">Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.</a>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-lg-3 p-4 border rounded btn">
-            <a href="ListSubclassAttended">Xem danh sách lớp học của mỗi môn học mà mình đăng ký ở một học kỳ.</a>
-        </div>
-        <div class="col-lg-3 p-4 border rounded btn">
-            <a href="NoCreditStudent">Xem tổng số tín chỉ đã đăng ký được ở mỗi học kỳ.</a>
-        </div>
-        <div class="clearfix"></div>
+    <section class="section bg-light">
 
-    </div>
+        <div class="card mb-4">
+            <!--<div class="card-header">
+              <i class="fas fa-table mr-1"></i>
+              DataTable Example
+            </div>-->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table
+                            class="table table-bordered"
+                            id="dataTable"
+                            width="100%"
+                            cellspacing="0"
+                    >
+                        <thead>
+                        <tr>
+                            <th>Mã môn học </th>
+                            <th>Tên Môn học</th>
+                            <th>Mã lớp học</th>
+                            <th>Giảng viên</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <c:forEach items="${listsubclass}" var="sublass">
+
+                            <tr>
+                                <td><c:out value="${sublass.getClassId()}"/></td>
+                                <td><c:out value="${sublass.getSubJectName()}"/></td>
+                                <td><c:out value="${sublass.getSubClassId()}"/></td>
+                                <td><c:out value="${sublass.getLecture()}"/></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-    </div>
 </div>
+
+
 <!-- Profile Section End -->
 
 <!-- Profile Function Section Begin -->
 
-<c:import url="/footer.jsp" />
+<c:import url="/footer.jsp"/>
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
