@@ -208,7 +208,7 @@
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li class="${opt_active_0}"><a href="${pageContext.request.contextPath}/student/main">Trang chủ</a></li>
-            <li class="${opt_active_1}"><a href="profile">Tài khoản</a></li>
+            <li class="${opt_active_1}"><a href="profileservlet">Tài khoản</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -269,7 +269,7 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="${opt_active_0}"><a href="${pageContext.request.contextPath}/student/main">Trang chủ</a></li>
-                        <li class="${opt_active_1}"><a href="profile">Tài khoản</a></li>
+                        <li class="${opt_active_1}"><a href="profileservlet">Tài khoản</a></li>
 
                     </ul>
                 </nav>

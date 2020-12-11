@@ -1,0 +1,106 @@
+<section class="section bg-light">
+          <!--<img
+            class="d-block"
+            src="images/gt1.jpg"
+            style="width: 100px; height: 100"
+          />
+          <img
+            class="d-block"
+            src="images/gt2.jpg"
+            style="width: 100px; height: 100"
+            align="middle"
+          />
+          <img
+            class="d-block"
+            src="images/harry.jpg"
+            style="width: 100px; height: 100"
+            align="middle"
+          />-->
+          <div class="card mb-4">
+              <!--<div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                DataTable Example
+              </div>-->
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered"
+                    id="dataTable"
+                    width="100%"
+                    cellspacing="0"
+                  >
+                    <thead>
+                      <tr>
+                        <th>ISBN</th>
+                        <th>Name</th>
+                        <th>Field</th>
+                        <th>Cost</th>
+                        <th>Summary</th>
+                        <th>Image</th>
+                      </tr>
+                    </thead>
+                    <!--<tfoot>
+                      <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                      </tr>
+                    </tfoot>-->
+                    <tbody>
+                      <tr>
+                        <td>001</td>
+                        <td>Gi?i tích 1</td>
+                        <td>Giáo trình</td>
+                        <td>40.000d</td>
+                        <td>Môn h?c d?i cuong GT1</td>
+                        <td>
+                          <img
+                            src="images/gt1.jpg"
+                            style="width: 100px; height: 120px"
+                            class="imageCell"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>002</td>
+                        <td>Gi?i tích 1</td>
+                        <td>Giáo trình</td>
+                        <td>50.000d</td>
+                        <td>Môn h?c d?i cuong GT2</td>
+                        <td>
+                          <img
+                            src="images/gt2.jpg"
+                            style="width: 100px; height: 120px"
+                            class="imageCell"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>003</td>
+                        <td>Harry Potter</td>
+                        <td>Truy?n</td>
+                        <td>100.000d</td>
+                        <td>Truy?n Harry Potter</td>
+                        <td>
+                          <img
+                            src="images/harry.jpg"
+                            style="width: 100px; height: 120px"
+                            class="imageCell"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img
+            class="d-block"
+            src="images/jpg5f02ab979521a.jpg"
+            style="width: 1700px; height: 10000"
+          />
+        </section>

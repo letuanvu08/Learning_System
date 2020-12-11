@@ -32,7 +32,7 @@
 
 <body>
 
-<c:import url="/template.jsp">
+<c:import url="/pages/Account/template.jsp">
     <c:param name="navbar_opt" value="1"/>
 </c:import>
 
@@ -43,10 +43,7 @@
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
                     <h2>Tài khoản</h2>
-                    <div class="breadcrumb__option">
-                        <a href="${pageContext.request.contextPath}/student/main">Trang chủ</a>
-                        <span>Tài khoản</span>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -62,13 +62,13 @@
     <div class="col-lg-6"></div>
     <div class="col-lg-6" >
         <c:choose>
-            <c:when test="${statusAttend == \"-1\"}">
-            </c:when>
-            <c:when test="${statusAttend==\"\"}">
-                <h5 class="alert alert-info" role="alert">Đăng ký thành công</h5>
+            <c:when test="${statusAttend==null}">
             </c:when>
             <c:when test="${statusAttend.contains(\"Duplicate\")}">
-                <h5 class="alert alert-warning" role="alert">Đã đăng ký môn học này.</h5>
+                <h5 class="alert alert-warning" role="alert">Môn học này đã được bạn đăng ký</h5>
+            </c:when>
+            <c:when test="${statusAttend.equals(\"Đăng ký thành công\")}">
+                <h5 class="alert alert-info" role="alert">Đăng ký thành công</h5>
             </c:when>
 
             <c:otherwise>
@@ -126,7 +126,7 @@
                                     <c:out value="${subclass.getLecture()}"/>
                                 </td>
                                 <td>
-                                    <button type="submit" id="btn_dk" name="btn_dk"  class="site-btn" value = "${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">Đăng ký</button>
+                                    <button type="submit"    name="btn_dk"  class="site-btn" value = "${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">Đăng ký</button>
                                 </td>
                             </tr>
                         </c:forEach>

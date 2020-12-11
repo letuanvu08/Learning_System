@@ -18,7 +18,7 @@ import com.Learning.common.model.student.Student;
 import com.Learning.common.dao.student.studentDao;
 import com.Learning.common.model.User;
 
-@WebServlet("/profile")
+//@WebServlet("profileservlet")
 public class ProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +34,9 @@ public class ProfileController extends HttpServlet {
 		Student student =studentDao.getProfile(user.getUserID());
 		request.setAttribute("user", user);
 		request.setAttribute("student", student);
-		RequestDispatcher rd = request.getRequestDispatcher("/pages/Account/view_profile.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/"+user.getUserType().toString()+"/profile");
 		rd.forward(request, response);
+
 	}
 
 	/**

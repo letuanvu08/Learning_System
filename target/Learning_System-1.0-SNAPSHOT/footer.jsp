@@ -8,13 +8,9 @@
               <div class="col-lg-3 col-md-6 col-sm-6">
                   <div class="footer__about">
                       <div class="footer__about__logo">
-                          <a href="${pageContext.request.contextPath}/customer/main"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
+                          <a href="${pageContext.request.contextPath}/customer/main"><img src="${pageContext.request.contextPath}/img/logobk.png" style="width: 100px" alt=""></a>
                       </div>
-                      <ul>
-                          <li>Địa chỉ: 60-49 Road 11378 New York</li>
-                          <li>Điện thoại: +65 11.188.888</li>
-                          <li>Email: support@sfcs.com</li>
-                      </ul>
+
                   </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
@@ -23,14 +19,13 @@
                       <ul>
                           <li><a href="#">Về chúng tôi</a></li>
                           <li><a href="#">Về trang web</a></li>
-                          <li><a href="#">Mua sắm bảo mật</a></li>
-                          <li><a href="#">Thông tin giao hàng</a></li>
-                          <li><a href="#">Chính sách bảo mật</a></li>
+
+
                       </ul>
                       <ul>
-                          <li><a href="#">Chúng tôi là ai</a></li>
+
                           <li><a href="#">Dịch vụ của chúng tôi</a></li>
-                          <li><a href="#">Các dự án khác</a></li>
+
                           <li><a href="#">Thông tin liên lạc</a></li>
                       </ul>
                   </div>

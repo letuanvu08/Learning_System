@@ -26,7 +26,7 @@ public class Attend extends HttpServlet {
         String[] subid=subclass_class.split(" ");
         System.out.println(Integer.parseInt(subid[2]));
         String check=studentDao.attend(student,subid[0],subid[1],Integer.parseInt(subid[2]));
-
+        if (check.equals(""))check="Đăng ký thành công";
         RequestDispatcher req=request.getRequestDispatcher("/pages/student/attend.jsp");
         List<subclass> list=studentDao.getListSubclassInSemester(student.getSemester());
         request.setAttribute("listSubclass",list);
@@ -41,7 +41,7 @@ public class Attend extends HttpServlet {
         Student student=studentDao.getProfile(userID);
         List<subclass> list=studentDao.getListSubclassInSemester(student.getSemester());
         request.setAttribute("listSubclass",list);
-        request.setAttribute("statusAttend","-1");
+
 
         RequestDispatcher req=request.getRequestDispatcher("/pages/student/attend.jsp");
         req.forward(request,response);

@@ -32,16 +32,18 @@ public class MainPage extends HttpServlet {
                         response.sendRedirect("student/main");
                         break;
                     case AAOEMPLOYEE:
-                        response.sendRedirect("cook/main");
+                        response.sendRedirect("aaoemployee/main");
                         break;
                     case LECTURER:
-                        response.sendRedirect("it/main");
+                        response.sendRedirect("lecturer/main");
                         break;
+                    case FACULTY:
+                        response.sendRedirect("faculty/main");
                 }
 
             } else {
                 request.setAttribute("test",userID);
-                RequestDispatcher req=request.getRequestDispatcher("/index.jsp");
+                RequestDispatcher req=request.getRequestDispatcher("/welcom.jsp");
                 req.forward(request,response);
             }
         }

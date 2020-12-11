@@ -56,18 +56,79 @@
         <url-pattern>/student/changepassword</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>profile</servlet-name>
+        <servlet-name>profileservlet</servlet-name>
         <servlet-class>com.Learning.profile.ProfileController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>profile</servlet-name>
-        <url-pattern>/student/profile</url-pattern>
-        <url-pattern>/lecturer/profile</url-pattern>
+        <servlet-name>profileservlet</servlet-name>
+        <url-pattern>/lecturer/profileservlet</url-pattern>
+        <url-pattern>/student/profileservlet</url-pattern>
+        <url-pattern>/faculty/profileservlet</url-pattern>
+        <url-pattern>/aaoemployee/profileservlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>updateclassservlet</servlet-name>
+        <servlet-class>com.Learning.aaoemployee.updateclassController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateclassservlet</servlet-name>
+        <url-pattern>/aaoemployee/updateclassController</url-pattern>
+    </servlet-mapping>
+<!--    ################################################ -->
+    <servlet>
+        <servlet-name>updateclass</servlet-name>
+        <jsp-file>/pages/aaoemployee/updateclass.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateclass</servlet-name>
+        <url-pattern>/aaoemployee/updateclass</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>subclassdetail</servlet-name>
+        <jsp-file>/pages/aaoemployee/subclassdetail.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>subclassdetail</servlet-name>
+        <url-pattern>/aaoemployee/subclassdetail</url-pattern>
     </servlet-mapping>
 
-<!--    ################################################ -->
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <jsp-file>/pages/Account/view_profile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/aaoemployee/profile</url-pattern>
+        <url-pattern>/faculty/profile</url-pattern>
+        <url-pattern>/lecturer/profile</url-pattern>
+        <url-pattern>/student/profile</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>mainlecturer</servlet-name>
+        <jsp-file>/pages/lecturer/main.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mainlecturer</servlet-name>
+        <url-pattern>/lecturer/main</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>mainfaculty</servlet-name>
+        <jsp-file>/pages/faculty/main.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mainfaculty</servlet-name>
+        <url-pattern>/faculty/main</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>maintraining</servlet-name>
+        <jsp-file>/pages/aaoemployee/main.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maintraining</servlet-name>
+        <url-pattern>/aaoemployee/main</url-pattern>
+    </servlet-mapping>
     <servlet>
        <servlet-name>login</servlet-name>
        <jsp-file>/pages/login.jsp</jsp-file>
@@ -118,6 +179,9 @@
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <url-pattern>/student/*</url-pattern>
+        <url-pattern>/aaoemployee/*</url-pattern>
+        <url-pattern>/lecturer/*</url-pattern>
+        <url-pattern>/faculty/*</url-pattern>
     </filter-mapping>
 
 </web-app>

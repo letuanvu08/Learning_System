@@ -2,6 +2,7 @@ package com.Learning.common.model.student;
 
 public class Student {
     private String studentID;
+    private String Name;
     private String  status;
     private int yearofadmission;
     private String FSName;
@@ -46,5 +47,13 @@ public class Student {
 
     public void setSemester(int semester) {
         Semester = semester;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 }
