@@ -1,7 +1,7 @@
 package com.Learning.common.dao.aaoemployee;
 
 import com.Learning.common.model.lecturer.Lecturer;
-import com.Learning.common.model.student.Student;
+import com.Learning.common.model.student.*;
 import com.Learning.common.model.aaoemployee.*;
 
 import java.sql.*;
@@ -18,7 +18,9 @@ public class aaoemployeeDao {
     private static final String PROCEDURE_XEM_DANH_SACH_GV="call xem_ds_gv_cua_1_lop(?,?,?,?)";
     private static final String PROCEDURE_THEM_LOP="call them_lop(?,?,?,?,?)";
     private static final String PROCEDURE_XOA_LOP="call xoa_lop(?,?,?,?)";
-    private static final String PROCEDURE_cap_nhat_lop="call cap_nhat_lop(?,?,?,?,?,?,?,?,?,?)";
+    private static final String PROCEDURE_cap_nhat_lop="call cap_nhat_lop(?,?,?,?,?,?,?,?,?)";
+    private static final String PROCEDURE_xem_ds_lop_cua_1_sv="call xem_ds_lop_cua_1_sv(?,?,?)";
+    private static final String PROCEDURE_xem_ds_lop_cua_1_gv="call xem_ds_lop_cua_1_gv(?,?)";
 
     private static Connection getConnection() {
         Connection conn=null;
@@ -34,6 +36,50 @@ public class aaoemployeeDao {
             e.printStackTrace();
         }
         return conn;
+    }
+    public static List<subclass> getlistclassofStudent(String studentid,int year,int semester){
+        Connection conn=getConnection();
+        List<subclass> list=new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_xem_ds_lop_cua_1_sv);
+            preparedStatement.setString(1,studentid);
+            preparedStatement.setInt(2,year);
+            preparedStatement.setInt(3,semester);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()){
+                subclass subclass =new subclass();
+                subclass.setSubJectName(res.getString("CNAME"));
+                subclass.setClassId(res.getString("SCID"));
+                subclass.setSubClassId(res.getString("SID"));
+                subclass.setLecture(res.getString("Fname")+" "+res.getString("LNAME"));
+                list.add(subclass);
+            }
+        } catch (SQLException throwables) {
+           throwables.printStackTrace();
+        }
+        return list;
+    }
+    public static List<subclass> getlistclassofLecturer(String lecturertid,int semester){
+        Connection conn=getConnection();
+        List<subclass> list=new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_xem_ds_lop_cua_1_gv);
+            preparedStatement.setString(1,lecturertid);
+            preparedStatement.setInt(2,semester);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()){
+                subclass subclass =new subclass();
+                subclass.setSubJectName(res.getString("CNAME"));
+                subclass.setClassId(res.getString("SCID"));
+                subclass.setSubClassId(res.getString("SID"));
+                list.add(subclass);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
     }
     public static String  addClass(String SubjectID, int year, int semester, String subclassID,String lecturerID){
         Connection conn=getConnection();
@@ -68,7 +114,7 @@ public class aaoemployeeDao {
         }
         return mess;
     }
-    public static String  updateClass(String SubjectID, int year, int semester, String subclassID,String lecturerID,String newSubjectID, int newyear, int newsemester, String newsubclassID,String newlecturerID){
+    public static String  updateClass(String SubjectID, int year, int semester, String subclassID,String newSubjectID, int newyear, int newsemester, String newsubclassID,String newlecturerID){
         Connection conn=getConnection();
         String mess="";
         try {
@@ -77,12 +123,11 @@ public class aaoemployeeDao {
             preparedStatement.setInt(2,year);
             preparedStatement.setInt(3,semester);
             preparedStatement.setString(4,subclassID);
-            preparedStatement.setString(5,lecturerID);
-            preparedStatement.setString(6,newSubjectID);
-            preparedStatement.setInt(7,newyear);
-            preparedStatement.setInt(8,newsemester);
-            preparedStatement.setString(9,newsubclassID);
-            preparedStatement.setString(10,newlecturerID);
+            preparedStatement.setString(5,newSubjectID);
+            preparedStatement.setInt(6,newyear);
+            preparedStatement.setInt(7,newsemester);
+            preparedStatement.setString(8,newsubclassID);
+            preparedStatement.setString(9,newlecturerID);
             //This line is for debug purpose only
             preparedStatement.execute();
         } catch (SQLException throwables) {

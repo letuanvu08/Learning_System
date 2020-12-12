@@ -6,6 +6,7 @@ public class subclass {
             private String ClassId;
             private String SubClassId;
             private String Lecture;
+            private String LecturerId;
             private int NoCreadits;
             private int Year;
             private int Semester;
@@ -71,5 +72,13 @@ public class subclass {
 
     public void setYear(int year) {
         Year = year;
+    }
+
+    public String getLecturerId() {
+        return LecturerId;
+    }
+
+    public void setLecturerId(String lecturerId) {
+        LecturerId = lecturerId;
     }
 }

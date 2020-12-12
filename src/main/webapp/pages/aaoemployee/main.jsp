@@ -58,16 +58,13 @@
             <a href="updateclassController">Cập nhật đăng ký môn học</a>
         </div>
         <div class="col-lg-4 p-4 border rounded btn">
-            <a href="detailClassmember">Xem danh sách lớp của một Sinh viên hoặc học sinh.</a>
+            <a href="subclassofmember">Xem danh sách lớp của một Sinh viên hoặc Giảng Viên.</a>
         </div>
 
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="detailsubject">xem thông tin mỗi môn học được mở </a>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-lg-4 p-4 border rounded btn">
-            <a href="detailclass"> xem thông tin của một lớp học </a>
-        </div>
+<%--        <div class="col-lg-4 p-4 border rounded btn">--%>
+<%--            <a href="detailsubject">xem thông tin mỗi môn học được mở </a>--%>
+<%--        </div>--%>
+<%--        <div class="clearfix"></div>--%>
         <div class="col-lg-4 p-4 border rounded btn">
             <a href="detailfaculty"> Xem thống kê của mỗi khoa</a>
         </div>
@@ -92,6 +89,6 @@
 <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/foodcourtmanager/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/aaoemployee/main.js"></script>
 </body>
 </html>

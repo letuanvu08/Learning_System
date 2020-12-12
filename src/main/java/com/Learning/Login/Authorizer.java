@@ -42,4 +42,7 @@ public class Authorizer extends HttpServlet {
         response.sendRedirect(request.getContextPath());
     }
 
+    protected void DoGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    }
 }

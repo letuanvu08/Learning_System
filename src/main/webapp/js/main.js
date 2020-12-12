@@ -33,15 +33,22 @@
 	/*------------------
         Profile Function filter
     --------------------*/
-	if ($('.profile__options__filter').length > 0) {
+	if ($('.lecturer_featured').length > 0) {
         var containerEl = document.querySelector('.profile__options__filter');
         var mixer = mixitup(containerEl, {
 			load: {
-				filter: '.general'
+				filter: '.lecturer'
 			}
 		});
     }
-	
+    else if ($('.profile__options__filter').length >0) {
+        var containerEl = document.querySelector('.profile__options__filter');
+        var mixer = mixitup(containerEl, {
+            load: {
+                filter: '.general'
+            }
+        });
+    }
 	/*------------------
         Background Set
     --------------------*/

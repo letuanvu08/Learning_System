@@ -156,6 +156,7 @@ public class studentDao {
                 subclass.setNoCreadits(res.getInt("NoCredits"));
                 subclass.setYear(res.getInt("CYear"));
                 subclass.setSemester(res.getInt("CSemester"));
+                subclass.setLecturerId(res.getString("LID"));
                 list.add(subclass);
             }
         } catch (SQLException throwables) {

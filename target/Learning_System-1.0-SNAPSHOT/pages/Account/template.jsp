@@ -197,7 +197,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="${pageContext.request.contextPath}/customer/main"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
+        <a href="${pageContext.request.contextPath}/${param.user}/main"><img src="${pageContext.request.contextPath}/img/logobk.png" alt=""></a>
     </div>
 
     <div class="humberger__menu__widget">
@@ -207,8 +207,8 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="${opt_active_0}"><a href="${pageContext.request.contextPath}/student/main">Trang chủ</a></li>
-            <li class="${opt_active_1}"><a href="${pageContext.request.contextPath}/student/profile">Tài khoản</a></li>
+            <li class="${opt_active_0}"><a href="${pageContext.request.contextPath}/${param.user}/main">Trang chủ</a></li>
+            <li class="${opt_active_1}"><a href="profileservlet">Tài khoản</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col-lg-1 border-top ">
                 <div class="header__logo">
-                    <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logobk.png" alt="" style="width:50px;height:50px;"></a>
+                    <a href="${pageContext.request.contextPath}/${param.user}/main"><img src="${pageContext.request.contextPath}/img/logobk.png" alt="" style="width:50px;height:50px;"></a>
                 </div>
             </div>
             <div class="col-lg-10">
@@ -268,8 +268,8 @@
             <div class="col-lg-6 ">
                 <nav class="header__menu">
                     <ul>
-                        <li class="${opt_active_0}"><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
-                        <li class="${opt_active_1}"><a href="#">Tài khoản</a></li>
+                        <li class="${opt_active_0}"><a href="${pageContext.request.contextPath}/${param.user}/main">Trang chủ</a></li>
+                        <li class="${opt_active_1}"><a href="profileservlet">Tài khoản</a></li>
 
                     </ul>
                 </nav>

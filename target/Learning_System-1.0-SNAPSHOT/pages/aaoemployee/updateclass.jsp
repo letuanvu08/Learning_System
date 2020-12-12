@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/customer/main.js"></script>
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo/favicon.ico">
@@ -32,120 +32,11 @@
 <body>
 
 <!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
 
-<!-- Humberger Begin -->
-<div class="humberger__menu__overlay"></div>
-<div class="humberger__menu__wrapper">
-    <div class="humberger__menu__logo">
-        <a href="#"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
-    </div>
-    <!--
-    <div class="humberger__menu__cart">
-        <ul>
-            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-        </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
-    </div>
-    -->
-    <div class="humberger__menu__widget">
-        <div class="header__top__right__auth">
-            <a href="./logout"><i class="fa fa-user"></i> Đăng xuất</a>
-        </div>
-    </div>
-    <nav class="humberger__menu__nav mobile-menu">
-        <ul>
-            <li class="active"><a href="">Trang chủ</a></li>
-            <li><a href="${pageContext.request.contextPath}/fcmanager/manage_accounts" class="primary-btn">Quản lý tài
-                khoản</a></li>
-            <li><a href="${pageContext.request.contextPath}/changepassword" class="primary-btn">Đổi mật khẩu</a></li>
-        </ul>
-    </nav>
-    <div id="mobile-menu-wrap"></div>
-    <div class="header__top__right__social">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-    </div>
-    <div class="humberger__menu__contact">
-        <ul>
-            <li><i class="fa fa-envelope"></i> support@sfcs.com</li>
-        </ul>
-    </div>
-</div>
-<!-- Humberger End -->
-
-<!-- Header Section Begin -->
-<header class="header">
-    <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="header__top__left">
-                        <ul>
-                            <li><i class="fa fa-envelope"></i> support@sfcs.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="${pageContext.request.contextPath}/Logout"><i class="fa fa-user"></i> Đăng xuất</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="header__logo">
-                    <a href=""><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <nav class="header__menu">
-                    <ul>
-                        <li class="active"><a href="">Trang chủ</a></li>
-                        <li><a href="${pageContext.request.contextPath}/fcmanager/manage_accounts">Quản lý tài khoản</a>
-                        </li>
-                        <li><a href="${pageContext.request.contextPath}/changepassword">Đổi mật khẩu</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div class="humberger__open">
-            <i class="fa fa-bars"></i>
-        </div>
-    </div>
-</header>
-<!-- Header Section End -->
-
-<!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Trang chủ</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Breadcrumb Section End -->
-
+<c:import url="/pages/aaoemployee/template.jsp">
+    <c:param name="navbar_opt" value="1"/>
+</c:import>
 <!-- Profile Section Begin -->
 
 <!-- Profile Section End -->
@@ -153,9 +44,7 @@
 <!-- Profile Function Section Begin -->
 <section class="profile">
     <div class="container">
-        <div class="profile__title">
-            <h4>Tài khoản</h4>
-        </div>
+
 
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-9 profile__name">
@@ -173,17 +62,17 @@
         </div>
     </div>
 </section>
-<div class="row" id="notifice" >
+<div class="row" id="notifice">
     <div class="col-lg-6"></div>
-    <div class="col-lg-6" >
+    <div class="col-lg-6">
         <c:choose>
             <c:when test="${status==null}">
             </c:when>
-            <c:when test="${status.equals(\"Thêm Lớp học thành công!\")}">
-                <h5 class="alert alert-info" role="alert">Đăng ký thành công</h5>
+            <c:when test="${status.contains(\"thành công\")}">
+                <h5 class="alert alert-info" role="alert"><c:out value="${status}"/></h5>
             </c:when>
             <c:otherwise>
-                <h5  class="alert alert-warning" role="alert"> <c:out value="${status}"/></h5>
+                <h5 class="alert alert-warning" role="alert"><c:out value="${status}"/></h5>
             </c:otherwise>
         </c:choose>
     </div>
@@ -192,7 +81,7 @@
     setTimeout(() => {
         var elem = document.getElementById("notifice");
         elem.remove();
-    }, 5000);
+    }, 6000);
 </script>
 <section class="profile__featured">
     <div class="container">
@@ -216,8 +105,8 @@
             <div class="profile__featured__general col-lg-12 mix general">
                 <div class="col-lg-12">
                     <p id="account_prompt" style="display:none">Remove these users?</p>
-                    <p id="account_add_prompt" style="display:none">Create a new user</p>
-                    <p id="account_edit_prompt" style="display:none">Edit this user</p>
+                    <p id="account_add_prompt" style="display:none">Tạo lớp học mới</p>
+                    <p id="account_edit_prompt" style="display:none">Chỉnh sửa lớp học</p>
                     <form action="updateclassController" method="post">
                         <div class="shoping__cart__table">
                             <table id="user_list">
@@ -236,7 +125,8 @@
                                 <c:forEach items="${listclass}" var="entry" varStatus="loop">
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="userlist" value="${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
+                                            <input type="checkbox" name="userlist"
+                                                   value="${entry.getClassId()}${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getSubClassId()}">
                                         </td>
 
                                         <td>
@@ -250,20 +140,26 @@
                                             <c:out value="${entry.getClassId()}"/>
                                         </td>
                                         <td>
-                                        <c:out value="${entry.getSubClassId()}"/>
+                                            <c:out value="${entry.getSubClassId()}"/>
                                         </td>
                                         <td>
-                                        <c:out value="${entry.getSubJectName()}"/>
+                                            <c:out value="${entry.getSubJectName()}"/>
                                         </td>
                                         <td>
-                                        <c:out value="${entry.getLecture()}"/>
+                                            <c:out value="${entry.getLecture()}"/>
                                         </td>
                                         <td>
-                                            <input style="display:none" name="valuedetail" value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
-                                            <button type="submit"  name="btn-form"
+                                            <input style="display:none" name="valuedetail"
+                                                   value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
+                                            <button type="submit" name="btn-form"
                                                     class="site-btn" value="detail">Detail
                                             </button>
 
+                                            <button type="button" id="btn_edit" onclick="accountEditForm(this.value)"
+                                                    class="site-btn"
+                                                    value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}${" "}${entry.getLecturerId()}">
+                                                Sửa
+                                            </button>
                                         </td>
 
                                     </tr>
@@ -296,61 +192,72 @@
                                 <td><input type="text" name="lecturerid" size="20" style="color:black">
                                 </td>
                             </tr>
-
                         </table>
+
                         <table id="account_edit_form" style="display:none">
                             <tr>
-
-                                <td><input type="hidden" name="account_id_edit" id="account_id_edit"
-                                           class="site-btn" ></input></td>
+                                <td><input type="hidden" name="oldedit" id="oldedit"
+                                           style="color:black"></input></td>
+                            </tr>
+                            <tr><td><input type="hidden" name="account_id_edit" id ="account_id_edit" style="color:black"></input></td></tr>
+                            <tr>
+                                <td>Năm học:</td>
+                                <td><input type="text" id="yearedit" name="yearedit" style="color:black"></td>
                             </tr>
                             <tr>
-                                <td>Name:</td>
-                                <td><input type="text" name="account_name_edit" style="color:black"></td>
+                                <td>Học kỳ:</td>
+                                <td><input type="text" id="semesteredit" name="semesteredit" style="color:black"></td>
                             </tr>
                             <tr>
-                                <td>Username:</td>
-                                <td><input type="text" name="account_username_edit" style="color:black"></td>
+                                <td>Mã môn học:</td>
+                                <td><input type="text" id="subjectedit" name="subjectedit" style="color:black"></td>
                             </tr>
                             <tr>
-                                <td>Email:</td>
-                                <td><input type="text" name="account_email_edit" style="color:black"></td>
-                            </tr>
-                            <tr>
-                                <td>Password:</td>
-                                <td><input type="password" name="account_password_edit" size="20" style="color:black">
+                                <td>Mã lớp học:</td>
+                                <td><input type="text" id="subclassidedit" name="subclassidedit" size="20"
+                                           style="color:black">
                                 </td>
                             </tr>
                             <tr>
-                                <td>User type:</td>
-                                <td><select name="account_type_edit" style="color:black">
-                                    <option value="NO_CHANGE" style="color:black">No change</option>
-                                    <option value="CUSTOMER" style="color:black">Customer</option>
-                                    <option value="COOK" style="color:black">Cook</option>
-                                    <option value="IT" style="color:black">IT</option>
-                                    <option value="VD_OWNER" style="color:black">Vendor owner</option>
-                                </select>
+                                <td>ID Giảng viên:</td>
+                                <td><input type="text" id="lectureridedit" name="lectureridedit" size="20"
+                                           style="color:black">
                                 </td>
                             </tr>
                         </table>
+
                         <div id="account_main_buttons" class="account__management__btns">
                             <button type="button" id="account_btn_remove" onclick="accountConfirmationForm()"
                                     class="site-btn">Xóa
                             </button>
-                            <button type="button" id="account_btn_new" onclick="newAccountForm()" class="site-btn">Tài
-                                khoản mới
+                            <button type="button" id="account_btn_new" onclick="newAccountForm()" class="site-btn">Tạo
+                                thêm lớp mới
                             </button>
                         </div>
                         <table id="account_remove_buttons" style="display:none">
                             <tr>
                                 <td>
-                                    <button type="submit" name="btn" id="account_btn_yes" value="account_remove"
+                                    <button type="submit" name="btn-form" id="account_btn_yes" value="remove"
                                             style="color:black">Yes
                                     </button>
                                 </td>
                                 <td>
                                     <button type="button" name="btn" id="account_btn_no" style="color:black"
                                             onclick="accountConfirmationForm()">No
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                        <table id="account_edit_buttons" style="display:none">
+                            <tr>
+                                <td>
+                                    <button type="submit" name="btn-form" id="btn-form" value="edit"
+                                            style="color:black">Apply
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" name="btn_cancel" id="btn_canceledit" style="color:black"
+                                            onclick="accountEditForm(null)">Cancel
                                     </button>
                                 </td>
                             </tr>
@@ -369,30 +276,15 @@
                                 </td>
                             </tr>
                         </table>
-                        <table id="account_edit_buttons" style="display:none">
-                            <tr>
-                                <td>
-                                    <button type="submit" name="btn" id="btn_apply" value="account_edit"
-                                            style="color:black">Apply
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" name="btn_cancel" id="btn_canceledit" style="color:black"
-                                            onclick="accountEditForm()">Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
-            <!-- End View users -->
+<!-- End View users -->
 
-            <!-- View vendors -->
+<!-- View vendors -->
 
 <!-- Profile Function Section End -->
 
@@ -407,6 +299,7 @@
 <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/foodcourtmanager/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/aaoemployee/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/customer/main.js"></script>
 </body>
 </html>

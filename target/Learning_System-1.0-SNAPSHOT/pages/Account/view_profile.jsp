@@ -34,6 +34,7 @@
 
 <c:import url="/pages/Account/template.jsp">
     <c:param name="navbar_opt" value="1"/>
+    <c:param name="user" value="${user.getUserType().toString()}"/>
 </c:import>
 
 <!-- Breadcrumb Section Begin -->

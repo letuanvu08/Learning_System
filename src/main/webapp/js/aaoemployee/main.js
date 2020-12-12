@@ -38,13 +38,20 @@ function newAccountForm() {
 }
 
 function accountEditForm(displayid) {
+
 	if (document.getElementById("account_edit_form").style.display === "none") {
+		var listvalues=displayid.split(" ");
 		document.getElementById("account_edit_form").style.display = "";
 		document.getElementById("account_edit_prompt").style.display = "";
 		document.getElementById("user_list").style.display = "none";
-		document.getElementById("account_id_edit").value = displayid;
 		document.getElementById("account_main_buttons").style.display = "none";
 		document.getElementById("account_edit_buttons").style.display = "";
+		document.getElementById("oldedit").value = displayid;
+			document.getElementById("yearedit").defaultValue=listvalues[0];
+		document.getElementById("semesteredit").defaultValue=listvalues[1];
+		document.getElementById("subjectedit").defaultValue=listvalues[2];
+		document.getElementById("subclassidedit").defaultValue=listvalues[3];
+		document.getElementById("lectureridedit").defaultValue=listvalues[4];
 	}
 	else {
 		document.getElementById("account_edit_form").style.display = "none";

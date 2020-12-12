@@ -277,6 +277,6 @@
 <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/foodcourtmanager/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/aaoemployee/main.js"></script>
 </body>
 </html>

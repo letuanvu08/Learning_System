@@ -21,7 +21,7 @@ public class MainPage extends HttpServlet {
         HttpSession session = request.getSession();
         Object object = session.getAttribute("userID");
         if (object == null) {
-            response.sendRedirect("welcome");
+            response.sendRedirect("login");
         } else {
             String  userID = (String)object ;
 
