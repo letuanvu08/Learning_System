@@ -184,11 +184,11 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>index</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
+        <jsp-file>/NewBiz/index.html</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/student/index</url-pattern>
     </servlet-mapping>
 
     <servlet>

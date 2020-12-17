@@ -33,23 +33,14 @@
 
 <!-- Page Preloder -->
 
-<c:import url="/pages/student/template.jsp">
+<c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
+    <c:param name="user" value="student"/>
+    <c:param name="title" value="ĐĂNG KÝ MÔN HỌC"/>
+    <%--    <c:param name="description" value="Đăng ký môn học"/>--%>
 </c:import>
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>ĐĂNG KÍ MÔN HỌC</h2>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Breadcrumb Section End -->
 <%--<div class="row">--%>
 <%--    <div class="col-md-5"></div>--%>
@@ -58,9 +49,9 @@
 <%--    </div>--%>
 <%--</div>--%>
 <!-- Profile Section Begin -->
-<div class="row" id="notifice" >
+<div class="row" id="notifice">
     <div class="col-lg-6"></div>
-    <div class="col-lg-6" >
+    <div class="col-lg-6">
         <c:choose>
             <c:when test="${statusAttend==null}">
             </c:when>
@@ -72,7 +63,7 @@
             </c:when>
 
             <c:otherwise>
-                <h5  class="alert alert-warning" role="alert"> <c:out value="${statusAttend}"/></h5>
+                <h5 class="alert alert-warning" role="alert"><c:out value="${statusAttend}"/></h5>
             </c:otherwise>
         </c:choose>
     </div>
@@ -81,75 +72,143 @@
     <div class="account__manangement col-lg-12">
 
         <script>
-        setTimeout(() => {
-        var elem = document.getElementById("notifice");
-            elem.remove();
-        }, 5000);
-            </script>
-        <div class="col-lg-12">
+            setTimeout(() => {
+                var elem = document.getElementById("notifice");
+                elem.remove();
+            }, 5000);
+        </script>
 
+        <section class="profile__featured">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="featured__controls">
+                            <ul>
 
-            <form action="attend" method="post">
-                <div class="shoping__cart__table">
-                    <table id="user_list">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>Mã Môn học </th>
-                            <th>Tên Môn học</th>
-                            <th>Số tín chỉ</th>
-                            <th>Subclass</th>
-                            <th>Giảng Viên</th>
-<%--                            class="hidden_column"--%>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${listSubclass}" var="subclass" >
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="userlist" value="23243">
-                                </td>
-                                <td class="hidden_column">
-                                    <c:out value="${subclass.getClassId()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${subclass.getSubJectName()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${subclass.getNoCreadits()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${subclass.getSubClassId()}"/>
-                                </td>
-                                <td >
-                                    <c:out value="${subclass.getLecture()}"/>
-                                </td>
-                                <td>
-                                    <button type="submit"    name="btn_dk"  class="site-btn" value = "${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">Đăng ký</button>
-                                </td>
-                            </tr>
-                        </c:forEach>
+                                <li class="active" data-filter=".general">Đăng ký môn học</li>
+                                <li class="" data-filter=".lecturer">Các môn học đã đăng ký</li>
 
-                        </tbody>
-                    </table>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <div class="row justify-content-center profile__options__filter">
+                    <div class="col-lg-12">
 
-            </form>
-        </div>
+                        <div class="profile__featured__general  col-lg-12 mix general">
+                            <form action="attend" method="post">
+                                <div class="shoping__cart__table">
+                                    <table id="user_list">
+                                        <thead>
+                                        <tr>
+
+                                            <th>Mã Môn học</th>
+                                            <th>Tên Môn học</th>
+                                            <th>Số tín chỉ</th>
+                                            <th>Subclass</th>
+                                            <th>Giảng Viên</th>
+                                            <%--                            class="hidden_column"--%>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${listSubclass}" var="subclass">
+                                            <tr>
+
+                                                <td>
+                                                    <c:out value="${subclass.getClassId()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${subclass.getSubJectName()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${subclass.getNoCreadits()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${subclass.getSubClassId()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${subclass.getLecture()}"/>
+                                                </td>
+                                                <td>
+                                                    <button type="submit" name="btn_dk" class="site-btn"
+                                                            value="${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
+                                                        Đăng ký
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
+                        <form action="attend" method="post">
+                            <div class="shoping__cart__table">
+                                <table id="user_list">
+                                    <thead>
+                                    <tr>
+                                        <th>Mã Môn học</th>
+                                        <th>Tên Môn học</th>
+                                        <th>Số tín chỉ</th>
+                                        <th>Subclass</th>
+                                        <th>Giảng Viên</th>
+                                        <%--                            class="hidden_column"--%>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${listattended}" var="subclass">
+                                        <tr>
+
+                                            <td>
+                                                <c:out value="${subclass.getClassId()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subclass.getSubJectName()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subclass.getNoCreadits()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subclass.getSubClassId()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subclass.getLecture()}"/>
+                                            </td>
+                                            <td>
+                                                <button type="submit" name="btn_dk" class="site-btn"
+                                                        value="xoa ${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
+                                                    Xóa Môn
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </section>
-
-
-
-
 
 
 <!-- Profile Section End -->
 
 <!-- Profile Function Section Begin -->
 
-<c:import url="/footer.jsp" />
+<c:import url="/footer.jsp"/>
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

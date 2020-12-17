@@ -21,6 +21,9 @@ public class aaoemployeeDao {
     private static final String PROCEDURE_cap_nhat_lop="call cap_nhat_lop(?,?,?,?,?,?,?,?,?)";
     private static final String PROCEDURE_xem_ds_lop_cua_1_sv="call xem_ds_lop_cua_1_sv(?,?,?)";
     private static final String PROCEDURE_xem_ds_lop_cua_1_gv="call xem_ds_lop_cua_1_gv(?,?)";
+    private static final String PROCEDURE_xem_tong_mon_hoc="call xem_tong_mon_hoc(?)";
+    private static final String PROCEDURE_xem_tong_lop ="call xem_tong_lop(?)";
+    private static final String PROCEDURE_xem_tong_sv_dk ="call xem_tong_sv_dk (?)";
 
     private static Connection getConnection() {
         Connection conn=null;
@@ -37,6 +40,109 @@ public class aaoemployeeDao {
         }
         return conn;
     }
+    public static List<Facultydetail> getDetailFaculty(int semeter){
+        List<Facultydetail> list =getSumSubject(semeter);
+        for (Facultydetail faculty:getSumClass(semeter)
+             ) {
+
+            boolean flag=false;
+            for (Facultydetail i :list
+                 ) {
+                if(faculty.getFacultyName().equals(i.getFacultyName())){
+
+
+                    list.get(list.indexOf(i)).setSumClass(faculty.getSumClass());
+
+                flag=true;
+                }
+            }
+            if(!flag){
+                list.add(faculty);
+            }
+        }
+        for (Facultydetail faculty:getSumStudentAttend(semeter)
+        ) {
+            boolean flag=false;
+
+            for (Facultydetail i :list
+            ) {
+                if(faculty.getFacultyName().equals(i.getFacultyName())){
+                    list.get(list.indexOf(i)).setSumSutdentAttend(faculty.getSumSutdentAttend());
+                    flag=true;
+                }
+            }
+            if(!flag){
+                list.add(faculty);
+            }
+        }
+        return list;
+    }
+    private static List<Facultydetail> getSumSubject(int semester){
+        Connection conn=getConnection();
+        List<Facultydetail> list=new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_xem_tong_mon_hoc);
+            preparedStatement.setInt(1,semester);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()){
+                Facultydetail facultydetail=new Facultydetail();
+                facultydetail.setFacultyName(res.getString("FName"));
+                facultydetail.setSumSubject(res.getInt("sum"));
+                list.add(facultydetail);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+    private static List<Facultydetail> getSumClass(int semester){
+        Connection conn=getConnection();
+        List<Facultydetail> list=new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_xem_tong_lop);
+            preparedStatement.setInt(1,semester);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()){
+                Facultydetail facultydetail=new Facultydetail();
+                facultydetail.setFacultyName(res.getString("FName"));
+                facultydetail.setSumClass(res.getInt("sum"));
+
+                list.add(facultydetail);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+    private static List<Facultydetail> getSumStudentAttend(int semester){
+        Connection conn=getConnection();
+        List<Facultydetail> list=new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_xem_tong_sv_dk);
+            preparedStatement.setInt(1,semester);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()){
+                Facultydetail facultydetail=new Facultydetail();
+                facultydetail.setFacultyName(res.getString("FName"));
+                facultydetail.setSumSutdentAttend(res.getInt("NO_StudentS"));
+                list.add(facultydetail);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+
+
+
+
+
+
+
     public static List<subclass> getlistclassofStudent(String studentid,int year,int semester){
         Connection conn=getConnection();
         List<subclass> list=new ArrayList<>();

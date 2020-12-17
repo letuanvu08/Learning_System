@@ -33,23 +33,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/customer/main.js"></script>
 <!-- Page Preloder -->
 
-<c:import url="/pages/student/template.jsp">
+<c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
+    <c:param name="user" value="aaoemployee"/>
+    <c:param name="title" value="THÔNG TIN CÁC KHOA"/>
 </c:import>
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>TEXT BOOK DÙNG CHO MÔN HỌC ĐÃ ĐĂNG KÝ</h2>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Breadcrumb Section End -->
 <%--<div class="row">--%>
 <%--    <div class="d-flex justify-content-center">--%>
@@ -75,27 +65,22 @@
                     >
                         <thead>
                         <tr>
-                            <th>Mã môn học </th>
-                            <th>Tên Môn học </th>
-                            <th>Số tín chỉ </th>
-                            <th>Texboook</th>
+                            <th>KHOA</th>
+                            <th>SỐ MÔN HỌC ĐƯỢC MỞ</th>
+                            <th>SỐ LỚP ĐƯỢC MỞ</th>
+                            <th>SỐ SINH VIÊN ĐĂNG KÝ</th>
 
                         </tr>
                         </thead>
 
                         <tbody>
-                        <c:forEach items="${listsubject}" var="subcject">
+                        <c:forEach items="${listFacutly}" var="faculty">
 
                             <tr>
-                                <td><c:out value="${subcject.getSubjectID()}"/></td>
-                                <td><c:out value="${subcject.getSubjectName()}"/></td>
-                                <td><c:out value="${subcject.getNoCreadits()}"/></td>
-
-                                <td>
-                                    <c:forEach items="${subcject.getListTexbook()}" var="textBook">
-                                        <p><c:out value="${textBook}"/></p>
-                                    </c:forEach>
-                                </td>
+                                <td><c:out value="${faculty.getFacultyName()}"/></td>
+                                <td><c:out value="${faculty.getSumSubject()}"/></td>
+                                <td><c:out value="${faculty.getSumClass()}"/></td>
+                                <td><c:out value="${faculty.getSumSutdentAttend()}"/></td>
 
                             </tr>
                         </c:forEach>

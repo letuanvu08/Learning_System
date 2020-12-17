@@ -33,23 +33,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/customer/main.js"></script>
 <!-- Page Preloder -->
 
-<c:import url="/pages/student/template.jsp">
+<c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
+    <c:param name="user" value="student"/>
+    <c:param name="title" value="TEXT BOOK MÔN HỌC"/>
 </c:import>
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>TEXT BOOK DÙNG CHO MÔN HỌC ĐÃ ĐĂNG KÝ</h2>
 
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Breadcrumb Section End -->
 <%--<div class="row">--%>
 <%--    <div class="d-flex justify-content-center">--%>

@@ -32,24 +32,14 @@
 
 <body>
 
-<c:import url="/pages/Account/template.jsp">
+<c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
     <c:param name="user" value="${user.getUserType().toString()}"/>
+    <c:param name="title" value="TÀI KHOẢN"/>
+
 </c:import>
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="${pageContext.request.contextPath}/img/breadcrumb.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>Tài khoản</h2>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Breadcrumb Section End -->
 
 <!-- Profile Section Begin -->

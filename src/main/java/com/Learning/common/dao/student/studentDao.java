@@ -17,6 +17,7 @@ public class studentDao {
     private static final String PRODCEDURE_SUM_No_Registered_Credits_ALL_SEMESTER ="Call SUM_No_Registered_Credits_ALL_SEMESTER(?)";
     private static final String PRODCEDURE_DANGKY="Call DANGKY(?,?,?,?,?)";
     private static final String PROFILE ="call GET_STUDENT(?)";
+    private static final String DELETE_ATTEND ="delete from Attend where  AYear=? AND ASemester=? and ACID=? and ASID=?  AND AStudentID=?";
     private static Connection getConnection() {
         Connection conn=null;
         try {
@@ -31,6 +32,24 @@ public class studentDao {
             e.printStackTrace();
         }
         return conn;
+    }
+    public static String DeleteAttend(Student student,String subclassId,String classID,int year){
+        Connection conn=getConnection();
+        String  check="";
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(DELETE_ATTEND);
+            preparedStatement.setInt(1,year);
+            preparedStatement.setInt(2,student.getSemester());
+            preparedStatement.setString(3,classID);
+            preparedStatement.setString(4,subclassId);
+            preparedStatement.setString(5,student.getStudentID());
+            //This line is for debug purpose only
+            preparedStatement.execute();
+
+        } catch (SQLException throwables) {
+            check= throwables.getMessage();
+        }
+        return check;
     }
     public static String  attend(Student student,String subclassId,String classID,int year){
         Connection conn=getConnection();

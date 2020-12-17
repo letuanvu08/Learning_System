@@ -34,8 +34,10 @@
 <!-- Page Preloder -->
 
 <!-- Breadcrumb Section End -->
-<c:import url="/pages/aaoemployee/template.jsp">
+<c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
+    <c:param name="user" value="aaoemployee"/>
+    <c:param name="title" value="DANH SÁCH LỚP CỦA SINH VIÊN/GIẢNG VIÊN"/>
 </c:import>
 <!-- Profile Section Begin -->
 
@@ -89,6 +91,7 @@
             <!-- End General info -->
 
             <!-- View users -->
+
             <div class="profile__featured__general  col-lg-12 mix general">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 profile__name">
@@ -115,6 +118,10 @@
                         </form>
                     </div>
                 </div>
+                <c:choose>
+                    <c:when test="${listclasss==null}">
+                    </c:when>
+                    <c:otherwise>
                 <div class="col-lg-12">
                     <p id="account_prompt" style="display:none">Danh sách lớp học của sinh viên</p>
                     <form action="updateclassController" method="post">
@@ -167,6 +174,10 @@
                         </div>
                     </form>
                 </div>
+                    </c:otherwise>
+                </c:choose>
+
+
             </div>
             <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
 
@@ -198,6 +209,10 @@
 
                     </div>
                 </div>
+                <c:choose>
+                    <c:when test="${listclasss==null}">
+                    </c:when>
+                    <c:otherwise>
                 <div class="col-lg-12">
                     <p id="account_prompt" style="display:none">Danh sách lớp học của Giảng viên</p>
                     <form action="updateclassController" method="post">
@@ -234,7 +249,8 @@
                         </div>
                     </form>
                 </div>
-
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>

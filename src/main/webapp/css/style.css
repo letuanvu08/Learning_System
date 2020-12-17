@@ -451,14 +451,14 @@ ol {
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
-	margin-right: 50px;
+	margin-right: 20px;
 	position: relative;
 }
 
 .header__menu ul li .header__menu__dropdown {
 	position: absolute;
 	left: 0;
-	top: 50px;
+	top: 20px;
 	background: #222222;
 	width: 180px;
 	z-index: 9;
@@ -484,7 +484,7 @@ ol {
 .header__menu ul li .header__menu__dropdown li a {
 	text-transform: capitalize;
 	color: #ffffff;
-	font-weight: 400;
+	font-weight: 100;
 	padding: 5px 15px;
 }
 
@@ -510,7 +510,7 @@ ol {
 	font-size: 14px;
 	color: #252525;
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 300;
 	letter-spacing: 2px;
 	-webkit-transition: all, 0.3s;
 	-moz-transition: all, 0.3s;

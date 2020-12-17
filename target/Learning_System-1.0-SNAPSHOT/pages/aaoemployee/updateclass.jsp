@@ -34,8 +34,10 @@
 <!-- Page Preloder -->
 
 <!-- Breadcrumb Section End -->
-<c:import url="/pages/aaoemployee/template.jsp">
+<c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
+    <c:param name="user" value="aaoemployee"/>
+    <c:param name="title" value="CẬP NHÂT ĐĂNG KÝ MÔN HỌC"/>
 </c:import>
 <!-- Profile Section Begin -->
 
