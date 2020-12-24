@@ -5,9 +5,12 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learning System</title>
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo/favicon.ico">
@@ -82,7 +85,7 @@
                 <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
-                        <h4 class="title"><a href="detailfaculty"> Xem thống kê của mỗi khoa</a></h4>
+                        <h4 class="title"><a href="detailfaculty">Thống kê của mỗi khoa</a></h4>
                         <p class="description">Xem danh sách tất cả các lớp học của nhưng môn mà đã đăng ký ở học kỳ hiện tại</p>
                     </div>
                 </div>
@@ -112,7 +115,7 @@
 <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/aaoemployee/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/aaoemployeejs/main.js"></script>
 
 
 

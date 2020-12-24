@@ -1,22 +1,20 @@
 package com.Learning.profile;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-import com.Learning.common.dao.UserDao;
+import com.Learning.common.dao.User.UserDao;
 
 import com.Learning.common.model.student.Student;
 import com.Learning.common.dao.student.studentDao;
-import com.Learning.common.model.User;
+import com.Learning.common.model.user.User;
 
 //@WebServlet("profileservlet")
 public class ProfileController extends HttpServlet {

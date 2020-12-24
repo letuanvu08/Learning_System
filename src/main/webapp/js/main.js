@@ -26,6 +26,14 @@
         $('.featured__controls li').removeClass('active');
         $(this).addClass('active');
     });
+    $('.account_btn_new').on('click',function (){
+        var containerEl = document.querySelector('.profile__options__filter');
+        var mixer = mixitup(containerEl, {
+            load: {
+                filter: '.lecturer'
+            }
+        });
+    })
     if ($('.featured__filter').length > 0) {
         var containerEl = document.querySelector('.featured__filter');
         var mixer = mixitup(containerEl);
@@ -249,17 +257,7 @@
 	/*-------------------
 		Initialize price
 	--------------------- */
-	$(function () {
-		var topItemNode = document.querySelectorAll(".shoping__cart__list");
-		if (topItemNode === null || topItemNode.length <= 0) {
-			document.getElementById("cart-total-price").innerText = 0;
-			return;
-		}
-		for (var i = 0; i < topItemNode[0].parentNode.childElementCount; i++){
-			updateItemPrice(topItemNode[i]);
-		}
-		updateCartPrice(topItemNode[0].parentNode);
-	});
+
 	
 	/*-------------------
 		Remove cart item
@@ -328,26 +326,27 @@ function updateShoppingCart(URI) {
 }
 
 function openPaymentModal() {
-	let payment_methods = document.getElementsByName("payment-method");
-	let payment_method_value = null;
-	for (var i = 0; i < payment_methods.length; i++){
-		if (payment_methods[i].checked){
-			payment_method_value = payment_methods[i].value;
-			break;
-		}
-	}
-	switch (payment_method_value) {
-		case "momo":
-			break;
-		case "zalo-pay":
-			break;
-		case "credit-card":
-			$("#checkoutModal").modal();
-			break;
-		case null:
-			$("#errorMsgModal").modal()
-			break;
-	}
+    $("#checkoutModal").modal();
+	// let payment_methods = document.getElementsByName("payment-method");
+	// let payment_method_value = null;
+	// for (var i = 0; i < payment_methods.length; i++){
+	// 	if (payment_methods[i].checked){
+	// 		payment_method_value = payment_methods[i].value;
+	// 		break;
+	// 	}
+	// }
+	// switch (payment_method_value) {
+	// 	case "momo":
+	// 		break;
+	// 	case "zalo-pay":
+	// 		break;
+	// 	case "credit-card":
+	// 		$("#checkoutModal").modal();
+	// 		break;
+	// 	case null:
+	// 		$("#errorMsgModal").modal()
+	// 		break;
+	// }
 }
 
 

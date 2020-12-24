@@ -16,9 +16,9 @@ public class aaoemployeeDao {
 
     private static final String PROCEDURE_XEM_DANH_SACH_SV="call xem_ds_sv_dk_1_lop(?,?,?,?)";
     private static final String PROCEDURE_XEM_DANH_SACH_GV="call xem_ds_gv_cua_1_lop(?,?,?,?)";
-    private static final String PROCEDURE_THEM_LOP="call them_lop(?,?,?,?,?)";
+    private static final String PROCEDURE_THEM_LOP="call them_lop(?,?,?,?)";
     private static final String PROCEDURE_XOA_LOP="call xoa_lop(?,?,?,?)";
-    private static final String PROCEDURE_cap_nhat_lop="call cap_nhat_lop(?,?,?,?,?,?,?,?,?)";
+    private static final String PROCEDURE_cap_nhat_lop="call cap_nhat_lop(?,?,?,?,?,?,?,?)";
     private static final String PROCEDURE_xem_ds_lop_cua_1_sv="call xem_ds_lop_cua_1_sv(?,?,?)";
     private static final String PROCEDURE_xem_ds_lop_cua_1_gv="call xem_ds_lop_cua_1_gv(?,?)";
     private static final String PROCEDURE_xem_tong_mon_hoc="call xem_tong_mon_hoc(?)";
@@ -187,7 +187,7 @@ public class aaoemployeeDao {
         }
         return list;
     }
-    public static String  addClass(String SubjectID, int year, int semester, String subclassID,String lecturerID){
+    public static String  addClass(String SubjectID, int year, int semester, String subclassID){
         Connection conn=getConnection();
         String mess="";
         try {
@@ -196,7 +196,6 @@ public class aaoemployeeDao {
             preparedStatement.setInt(2,year);
             preparedStatement.setInt(3,semester);
             preparedStatement.setString(4,subclassID);
-            preparedStatement.setString(5,lecturerID);
             //This line is for debug purpose only
             preparedStatement.execute();
         } catch (SQLException throwables) {
@@ -220,7 +219,7 @@ public class aaoemployeeDao {
         }
         return mess;
     }
-    public static String  updateClass(String SubjectID, int year, int semester, String subclassID,String newSubjectID, int newyear, int newsemester, String newsubclassID,String newlecturerID){
+    public static String  updateClass(String SubjectID, int year, int semester, String subclassID,String newSubjectID, int newyear, int newsemester, String newsubclassID){
         Connection conn=getConnection();
         String mess="";
         try {
@@ -233,7 +232,6 @@ public class aaoemployeeDao {
             preparedStatement.setInt(6,newyear);
             preparedStatement.setInt(7,newsemester);
             preparedStatement.setString(8,newsubclassID);
-            preparedStatement.setString(9,newlecturerID);
             //This line is for debug purpose only
             preparedStatement.execute();
         } catch (SQLException throwables) {

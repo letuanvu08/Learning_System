@@ -3,8 +3,7 @@ package com.Learning.common.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Learning.common.UserType;
-import com.Learning.common.model.User;
+import com.Learning.common.model.user.User;
 
 public class UserData {
 	List<User> users;

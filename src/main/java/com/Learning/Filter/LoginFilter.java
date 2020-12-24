@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.Learning.common.dao.UserDao;
-import com.Learning.common.model.User;
+import com.Learning.common.dao.User.UserDao;
+import com.Learning.common.model.user.User;
 
 public class LoginFilter implements Filter {
 
@@ -50,7 +50,6 @@ public class LoginFilter implements Filter {
 			String path = req.getRequestURI().substring(req.getContextPath().length());
 
 			String root = "/" + user.getUserType().toString();
-
 			if (!root.equals(path.substring(0, root.length()))) {
 				res.sendRedirect(req.getContextPath()+ "/login");
 				return;

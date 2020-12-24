@@ -55,11 +55,11 @@
         <c:choose>
             <c:when test="${statusAttend==null}">
             </c:when>
-            <c:when test="${statusAttend.contains(\"Duplicate\")}">
+            <c:when test="${statusAttend.equals(\"Môn học này đã được bàn đăng ký\")}">
                 <h5 class="alert alert-warning" role="alert">Môn học này đã được bạn đăng ký</h5>
             </c:when>
-            <c:when test="${statusAttend.equals(\"Đăng ký thành công\")}">
-                <h5 class="alert alert-info" role="alert">Đăng ký thành công</h5>
+            <c:when test="${statusAttend.contains(\"thành công\")}">
+                <h5 class="alert alert-info" role="alert"><c:out value="${statusAttend}"/></h5>
             </c:when>
 
             <c:otherwise>
@@ -106,7 +106,7 @@
                                             <th>Tên Môn học</th>
                                             <th>Số tín chỉ</th>
                                             <th>Subclass</th>
-                                            <th>Giảng Viên</th>
+                                            <th></th>
                                             <%--                            class="hidden_column"--%>
                                             <th></th>
                                         </tr>
@@ -127,9 +127,7 @@
                                                 <td>
                                                     <c:out value="${subclass.getSubClassId()}"/>
                                                 </td>
-                                                <td>
-                                                    <c:out value="${subclass.getLecture()}"/>
-                                                </td>
+
                                                 <td>
                                                     <button type="submit" name="btn_dk" class="site-btn"
                                                             value="${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
@@ -158,7 +156,7 @@
                                         <th>Tên Môn học</th>
                                         <th>Số tín chỉ</th>
                                         <th>Subclass</th>
-                                        <th>Giảng Viên</th>
+                                        <th></th>
                                         <%--                            class="hidden_column"--%>
                                         <th></th>
                                     </tr>
@@ -179,11 +177,9 @@
                                             <td>
                                                 <c:out value="${subclass.getSubClassId()}"/>
                                             </td>
+
                                             <td>
-                                                <c:out value="${subclass.getLecture()}"/>
-                                            </td>
-                                            <td>
-                                                <button type="submit" name="btn_dk" class="site-btn"
+                                                <button type="submit" name="btn_dk" class="site-btn btn-danger"
                                                         value="xoa ${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
                                                     Xóa Môn
                                                 </button>
@@ -209,6 +205,8 @@
 <!-- Profile Function Section Begin -->
 
 <c:import url="/footer.jsp"/>
+
+
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -218,6 +216,6 @@
 <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/aaoemployee/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/aaoemployee/main1.js"></script>
 </body>
 </html>

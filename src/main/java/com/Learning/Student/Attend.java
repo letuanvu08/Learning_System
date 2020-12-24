@@ -8,26 +8,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.Learning.common.dao.student.studentDao;
-import com.Learning.common.dao.UserDao;
+import com.Learning.common.dao.User.UserDao;
 import com.Learning.common.model.student.*;
-import com.Learning.common.model.*;
+import com.Learning.common.model.user.User;
+
 @WebServlet(name = "attend")
 public class Attend extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session =request.getSession();
         String userID=(String)session.getAttribute("userID");
-        User user=UserDao.getUserFromUserID(userID);
-        Student student=studentDao.getProfile(user.getUserID());
+        Student student=studentDao.getProfile(userID);
         String  subclass_class=request.getParameter("btn_dk");
         String[] subid=subclass_class.split(" ");
         String check;
         if (subid[0].equals("xoa")){
             check=studentDao.DeleteAttend(student,subid[1],subid[2],Integer.parseInt(subid[3]));
+            System.out.println(student.getStudentID()+subid[1]+subid[2]+subid[3]);
             if (check.equals(""))check="Xóa môn học thành công";
             subid[0]=subid[1];
             request.setAttribute("lecturer_featured","lecturer_featured");

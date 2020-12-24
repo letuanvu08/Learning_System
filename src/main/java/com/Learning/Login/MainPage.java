@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.Learning.common.dao.UserDao;
-import com.Learning.common.model.User;
+import com.Learning.common.dao.User.UserDao;
+import com.Learning.common.model.user.User;
 
 
 public class MainPage extends HttpServlet {

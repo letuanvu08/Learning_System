@@ -1,9 +1,7 @@
 package com.Learning.Student;
 
-import com.Learning.common.dao.UserDao;
 import com.Learning.common.dao.student.studentDao;
 
-import com.Learning.common.model.User;
 import com.Learning.common.model.student.*;
 
 import javax.servlet.RequestDispatcher;

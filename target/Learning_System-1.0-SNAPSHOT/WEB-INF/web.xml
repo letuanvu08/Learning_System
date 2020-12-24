@@ -12,6 +12,22 @@
         <url-pattern>/student/attend</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>updateSubject</servlet-name>
+        <servlet-class>com.Learning.faculty.UpdateSubject</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateSubject</servlet-name>
+        <url-pattern>/faculty/updateSubject</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>updateLecturerClass</servlet-name>
+        <servlet-class>com.Learning.faculty.updateLecturerClassControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateLecturerClass</servlet-name>
+        <url-pattern>/faculty/updateLecturerClass</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>subjectattend</servlet-name>
         <servlet-class>com.Learning.Student.SubjectAttendController</servlet-class>
     </servlet>

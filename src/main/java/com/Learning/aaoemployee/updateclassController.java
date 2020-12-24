@@ -3,17 +3,14 @@ package com.Learning.aaoemployee;
 import com.Learning.common.dao.student.studentDao;
 import com.Learning.common.dao.aaoemployee.aaoemployeeDao;
 import com.Learning.common.model.aaoemployee.SubclassDetail;
-import com.Learning.common.model.student.Student;
 import com.Learning.common.model.student.subclass;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.List;
 
 
@@ -51,11 +48,10 @@ public class updateclassController extends HttpServlet {
                 int semesteridedit=Integer.parseInt(request.getParameter("semesteredit"));
                 String subjectidedit=(String) request.getParameter("subjectidedit");
                 String subclassidedit=(String) request.getParameter("subclassidedit");
-                String lectureridedit=(String) request.getParameter("lectureridedit");
                 String oldvalue=(String) request.getParameter("oldedit");
                 System.out.println(oldvalue);
                 String [] listOld=oldvalue.split(" ");
-                mess =aaoemployeeDao.updateClass(listOld[2],Integer.parseInt(listOld[0]),Integer.parseInt(listOld[1]),listOld[3],subjectidedit,yearedit,semesteridedit,subclassidedit,lectureridedit);
+                mess =aaoemployeeDao.updateClass(listOld[2],Integer.parseInt(listOld[0]),Integer.parseInt(listOld[1]),listOld[3],subjectidedit,yearedit,semesteridedit,subclassidedit);
                 if (mess.equals(""))mess="Chỉnh sửa Lớp học thành công!";
                 request.setAttribute("status",mess);
                 list = studentDao.getListSubclassInSemester(semester);
@@ -68,9 +64,8 @@ public class updateclassController extends HttpServlet {
                         int semesterid=Integer.parseInt(request.getParameter("semesteradd"));
                         String subjectid=(String) request.getParameter("subjectid");
                         String subclassid=(String) request.getParameter("subclassid");
-                        String lecturerid=(String) request.getParameter("lecturerid");
 
-                         mess =aaoemployeeDao.addClass(subjectid,yearadd,semesterid,subclassid,lecturerid);
+                         mess =aaoemployeeDao.addClass(subjectid,yearadd,semesterid,subclassid);
                         if (mess.equals(""))mess="Thêm Lớp học thành công!";
                         request.setAttribute("status",mess);
                         list = studentDao.getListSubclassInSemester(semester);

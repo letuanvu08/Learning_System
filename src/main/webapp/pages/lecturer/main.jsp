@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learning System</title>
     <!-- Favicons -->
     <link href="${pageContext.request.contextPath}/NewBiz/img/favicon.png" rel="icon">
     <link href="${pageContext.request.contextPath}/NewBiz/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -36,7 +38,7 @@
 
 <c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
-    <c:param name="user" value="student"/>
+    <c:param name="user" value="lecturer"/>
     <c:param name="home" value="1"/>
 </c:import>
 

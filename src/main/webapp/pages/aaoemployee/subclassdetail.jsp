@@ -83,7 +83,7 @@
                                         <table id="user_list">
                                             <thead>
                                             <tr>
-                                                <th></th>
+
                                                 <th>Mã số sinh viên</th>
                                                 <th>Học và tên</th>
                                             </tr>

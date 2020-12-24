@@ -9,7 +9,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Smart Food Court System</title>
+    <title>Learning System</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -120,7 +120,7 @@
                                     <th>Mã môn học</th>
                                     <th>Mã lớp học</th>
                                     <th>Tên môn học</th>
-                                    <th>Giảng viên</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -148,9 +148,6 @@
                                             <c:out value="${entry.getSubJectName()}"/>
                                         </td>
                                         <td>
-                                            <c:out value="${entry.getLecture()}"/>
-                                        </td>
-                                        <td>
                                             <input style="display:none" name="valuedetail"
                                                    value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
                                             <button type="submit" name="btn-form"
@@ -158,8 +155,8 @@
                                             </button>
 
                                             <button type="button" id="btn_edit" onclick="accountEditForm(this.value)"
-                                                    class="site-btn"
-                                                    value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}${" "}${entry.getLecturerId()}">
+                                                    class="site-btn btn-warning"
+                                                    value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}${" "}${entry.getLecturerId()} " data-toggle="modal" data-target="#EditModal">
                                                 Sửa
                                             </button>
                                         </td>
@@ -170,114 +167,20 @@
                             </table>
                         </div>
 
-                        <table id="account_add_form" style="display:none">
-
-                            <tr>
-                                <td>Năm học:</td>
-                                <td><input type="text" name="yearadd" style="color:black"></td>
-                            </tr>
-                            <tr>
-                                <td>Học kỳ:</td>
-                                <td><input type="text" name="semesteradd" style="color:black"></td>
-                            </tr>
-                            <tr>
-                                <td>Mã môn học:</td>
-                                <td><input type="text" name="subjectid" style="color:black"></td>
-                            </tr>
-                            <tr>
-                                <td>Mã lớp học:</td>
-                                <td><input type="text" name="subclassid" size="20" style="color:black">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ID Giảng viên:</td>
-                                <td><input type="text" name="lecturerid" size="20" style="color:black">
-                                </td>
-                            </tr>
-                        </table>
-
-                        <table id="account_edit_form" style="display:none">
-                            <tr>
-                                <td><input type="hidden" name="oldedit" id="oldedit"
-                                           style="color:black"></input></td>
-                            </tr>
-                            <tr><td><input type="hidden" name="account_id_edit" id ="account_id_edit" style="color:black"></input></td></tr>
-                            <tr>
-                                <td>Năm học:</td>
-                                <td><input type="text" id="yearedit" name="yearedit" style="color:black"></td>
-                            </tr>
-                            <tr>
-                                <td>Học kỳ:</td>
-                                <td><input type="text" id="semesteredit" name="semesteredit" style="color:black"></td>
-                            </tr>
-                            <tr>
-                                <td>Mã môn học:</td>
-                                <td><input type="text" id="subjectedit" name="subjectedit" style="color:black"></td>
-                            </tr>
-                            <tr>
-                                <td>Mã lớp học:</td>
-                                <td><input type="text" id="subclassidedit" name="subclassidedit" size="20"
-                                           style="color:black">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ID Giảng viên:</td>
-                                <td><input type="text" id="lectureridedit" name="lectureridedit" size="20"
-                                           style="color:black">
-                                </td>
-                            </tr>
-                        </table>
-
                         <div id="account_main_buttons" class="account__management__btns">
                             <button type="button" id="account_btn_remove" onclick="accountConfirmationForm()"
-                                    class="site-btn">Xóa
+                                    class="btn btn-danger">Xóa
                             </button>
-                            <button type="button" id="account_btn_new" onclick="newAccountForm()" class="site-btn">Tạo
+                            <button type="button" id="account_btn_new"  class="site-btn checkout__btn" data-toggle="modal" data-target="#AddModal">Tạo
                                 thêm lớp mới
                             </button>
                         </div>
                         <table id="account_remove_buttons" style="display:none">
-                            <tr>
-                                <td>
-                                    <button type="submit" name="btn-form" id="account_btn_yes" value="remove"
-                                            style="color:black">Yes
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" name="btn" id="account_btn_no" style="color:black"
-                                            onclick="accountConfirmationForm()">No
-                                    </button>
-                                </td>
+                            <tr><td><button type="submit" class="site-btn" name="btn-form" id="vendor_btn_yes" value = "remove" style="color:black">Yes</button></td>
+                                <td><button type="button" class="site-btn" name="btn" id="vendor_btn_no" style="color:black" onclick="accountConfirmationForm()">No</button></td>
                             </tr>
                         </table>
-                        <table id="account_edit_buttons" style="display:none">
-                            <tr>
-                                <td>
-                                    <button type="submit" name="btn-form" id="btn-form" value="edit"
-                                            style="color:black">Apply
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" name="btn_cancel" id="btn_canceledit" style="color:black"
-                                            onclick="accountEditForm(null)">Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
-                        <table id="account_add_buttons" style="display:none">
-                            <tr>
-                                <td>
-                                    <button type="submit" name="btn-form" id="btn_add" value="add"
-                                            style="color:black">Add new
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" name="btn_cancel" id="btn_canceladd" style="color:black"
-                                            onclick="newAccountForm()">Cancel
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
+
                     </form>
                 </div>
             </div>
@@ -290,7 +193,90 @@
 
 <!-- Profile Function Section End -->
 
-<c:import url="/footer.jsp"/>
+<%--<c:import url="/footer.jsp"/>--%>
+
+<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalTitle" aria-hidden="true">oi
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checkoutModalTitle">Điền thông tin Lớp học</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add_form" action="updateclassController" method="post">
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Năm học: </label>
+                        <input class="form-control" type="text" id="yearadd" name="yearadd" minlength="3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Học kỳ: </label>
+                        <input class="form-control" type="text" id="semesteradd" name="semesteradd" minlength="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Mã môn học: </label>
+                        <input class="form-control" type="text" id="subjectid" name="subjectid" minlength="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Mã lớp học: </label>
+                        <input class="form-control" type="text" id="subclassid" name="subclassid" minlength="3" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy </button>
+                <button form="add_form" type="submit" class="btn btn-primary" name="btn-form" value="add">Thêm lớp học </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalTitle" aria-hidden="true">oi
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalTitle">Điền thông tin Lớp học</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="account_edit_form" action="updateclassController" method="post">
+                    <input style="display:none" name="oldedit"id="oldedit"value="">
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Năm học: </label>
+                        <input class="form-control" type="text" id="yearedit" name="yearedit" minlength="3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Học kỳ: </label>
+                        <input class="form-control" type="text" id="semesteredit" name="semesteredit" minlength="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Mã môn học: </label>
+                        <input class="form-control" type="text" id="subjectedit" name="subjectedit" minlength="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearadd" class="col-form-label">Mã lớp học: </label>
+                        <input class="form-control" type="text" id="subclassidedit" name="subclassidedit" minlength="3" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy </button>
+                <button form="account_edit_form" type="submit" class="btn btn-primary" name="btn-form" value="edit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
@@ -301,7 +287,7 @@
 <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/aaoemployee/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/aaoemployee/main1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/customer/main.js"></script>
 </body>
 </html>

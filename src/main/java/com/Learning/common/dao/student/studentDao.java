@@ -6,6 +6,8 @@ import java.util.Map;
 
 import com.Learning.common.model.student.*;
 
+import javax.lang.model.type.NullType;
+
 public class studentDao {
     final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching";
     final private static String mysqlUsrName="root";
@@ -171,11 +173,9 @@ public class studentDao {
                 subclass.setSubJectName(res.getString("CNAME"));
                 subclass.setClassId(res.getString("SCID"));
                 subclass.setSubClassId(res.getString("SID"));
-                subclass.setLecture(res.getString("Fname")+" "+res.getString("LNAME"));
                 subclass.setNoCreadits(res.getInt("NoCredits"));
                 subclass.setYear(res.getInt("CYear"));
                 subclass.setSemester(res.getInt("CSemester"));
-                subclass.setLecturerId(res.getString("LID"));
                 list.add(subclass);
             }
         } catch (SQLException throwables) {
@@ -202,7 +202,11 @@ public class studentDao {
                 subclass.setSubJectName(res.getString("CNAME"));
                 subclass.setClassId(res.getString("SCID"));
                 subclass.setSubClassId(res.getString("SID"));
-                subclass.setLecture(res.getString("Fname")+" "+res.getString("LNAME"));
+                subclass.setNoCreadits(res.getInt("NoCredits"));
+                subclass.setYear(res.getInt("CYear"));
+                String lecturer=res.getString("FNAME")+" "+res.getString("LNAME");
+                if(!lecturer.contains("null"))
+                subclass.setLecture(lecturer);
                 list.add(subclass);
             }
         } catch (SQLException throwables) {
