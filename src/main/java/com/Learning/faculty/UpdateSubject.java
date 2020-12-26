@@ -40,11 +40,12 @@ public class UpdateSubject extends HttpServlet {
                 String subjectNName = request.getParameter("addsubjectname");
                 String mess;
 
-                int Nocredit = Integer.parseInt(request.getParameter("addNocredits"));
+                String  Nocredit = request.getParameter("addNocredits");
 
-                int status = Integer.parseInt(request.getParameter("addstatus"));
-                mess = facultyDao.InserSubject(subjectID, subjectNName, status, Nocredit, employee.getFacultyName());
-                if (status == 1) {
+                String   status = request.getParameter("addstatus");
+                String lectuerID=request.getParameter("addlecturerID");
+                mess = facultyDao.InserSubject(subjectID, subjectNName, status, Nocredit, employee.getFacultyName(),lectuerID);
+                if (status.equals("1")) {
                     request.setAttribute("closepage", "active");
                     request.setAttribute("lecturer_featured", "lecturer_featured");
                 } else {

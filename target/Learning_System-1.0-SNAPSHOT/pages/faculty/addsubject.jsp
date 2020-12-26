@@ -75,6 +75,11 @@
                                required>
                     </div>
                     <div class="form-group">
+                        <label for="addlecturerID" class="col-form-label">ID Giảng Viên: </label>
+                        <input class="form-control" type="text" id="addlecturerID" name="addlecturerID" minlength="1"
+                               required>
+                    </div>
+                    <div class="form-group">
                         <label for="addNocredits" class="col-form-label">Trang thái: </label>
                         <input class="form-control" type="text" id="addstatus" name="addstatus" minlength="1" required>
                     </div>

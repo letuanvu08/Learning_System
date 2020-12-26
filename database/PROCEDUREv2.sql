@@ -14,12 +14,12 @@ WHERE ID = PERSONALSID;
 
 DROP VIEW IF EXISTS SUBCLASS_INFO;
 CREATE VIEW SUBCLASS_INFO AS
-SELECT CID, CYEAR, CSEMESTER, SID, CNAME,SCLID
+SELECT CID, CYEAR, CSEMESTER, SID, CNAME,SCLID,FCName,NoCredits
 FROM SubClass, Subject
 WHERE SCID = CID;
 DROP VIEW IF EXISTS LECTURERS_SUBJECT;
 CREATE VIEW LECTURERS_SUBJECT AS
-SELECT DISTINCT LID, FEName, CNAME, CID, CSemester
+SELECT DISTINCT LID, FEName, CNAME, CID, CSemester,CYEAR,SID,LNAME,FNAME
 FROM LECTURER_INFO, SUBCLASS_INFO
 WHERE SCLID = LID;
 
@@ -262,10 +262,10 @@ DELIMITER ;
 -- Cập nhật danh sách môn học được mở trước đầu mỗi học kỳ.
 drop procedure  if exists them_mon_hoc;
 DELIMITER \\
-CREATE PROCEDURE them_mon_hoc(_CID CHAR(6), _CNAME VARCHAR(50), _STATUS tinyint(1), _NOCREDITS INT, _FCNAME VARCHAR(70))
+CREATE PROCEDURE them_mon_hoc(_CID CHAR(6), _CNAME VARCHAR(50), _STATUS tinyint(1), _NOCREDITS INT, _FCNAME VARCHAR(70),lecturerID char(6))
 BEGIN
-	INSERT INTO Subject
-    VALUES (_CID, _CNAME, _STATUS, _NOCREDITS, _FCNAME);
+	INSERT INTO Subject(CID, CName, STATUS, NoCredits, FCName, SLID)
+    VALUES (_CID, _CNAME, _STATUS, _NOCREDITS, _FCNAME,lecturerID);
 END\\
 DELIMITER ;
 
@@ -298,7 +298,6 @@ BEGIN
     VALUES (WYEAR, WSEMESTER, WCID, WSID, `NUMBER`, WLID);
 END;
 DELIMITER ;
-
 
 
 drop procedure if exists xoa_gv_phu_trach;
@@ -821,37 +820,6 @@ DELIMITER ;
 
 
 
-
-
-
-DROP PROCEDURE IF EXISTS GET_ACCOUNT;
-DELIMITER |
-CREATE PROCEDURE GET_ACCOUNT(name varchar(100)
-                             )
-BEGIN
-
-        select * ,CASE when exists(select * from Account join MemberOfEducationUnit M on M.ID = Account.USERID
-                                            join Employee E on M.ID = E.PersonalEID join AAOEmployee AE on E.EmployeeID = AE.AEID
-                                            WHERE name=Account.USERNAME)
-                                then 'AAEMPLOYEE'
-                         when exists(select * from Account join MemberOfEducationUnit M on M.ID = Account.USERID
-                                            join Employee E on M.ID = E.PersonalEID JOIN Lecturer L on E.EmployeeID = L.LID
-                                     WHERE name=Account.USERNAME)
-                                then 'LECTURER'
-                        when exists(select * from Account join MemberOfEducationUnit M on M.ID = Account.USERID
-                                            join Employee E on M.ID = E.PersonalEID join SeniorLecturer SL on E.EmployeeID = SL.SLID
-                                    WHERE name=Account.USERNAME)
-                                then 'UNIORLECTURER'
-                        when exists(select * from Account join MemberOfEducationUnit M on M.ID = Account.USERID
-                                            join Student S on M.ID = S.PersonalSID
-                                    WHERE name=Account.USERNAME)
-                                then 'STUDENT'
-                        END as TYPEUSER
-                from Account JOIN MemberOfEducationUnit MOEU on MOEU.ID = Account.USERID where USERNAME=name;
-
-end;
-DELIMITER ;
-
 DROP PROCEDURE IF EXISTS GET_TYPE_ACCOUNT_ID;
 DELIMITER |
 CREATE PROCEDURE GET_TYPE_ACCOUNT_ID(iduser varchar(100)
@@ -881,7 +849,6 @@ BEGIN
 end;
 DELIMITER ;
 use Learning_Teaching1;
-call GET_TYPE_ACCOUNT_ID('000000014');
 
 DROP PROCEDURE IF EXISTS GET_STUDENT;
 DELIMITER |
@@ -924,16 +891,16 @@ BEGIN
         where SID=SubclaaID and SCID=IdMonHoc and CYear=_year and _semester=CSemester;
 end;
 DELIMITER ;
-DROP PROCEDURE IF EXISTS LIST_SUBJECT_SEMESTER_FACULTY;
+DROP PROCEDURE IF EXISTS LIST_SUBCLASS_SEMESTER_FACULTY;
 DELIMITER |
-CREATE PROCEDURE LIST_SUBJECT_SEMESTER_FACULTY(_year year,semester char(3),FacultyName varchar(70))
+CREATE PROCEDURE LIST_SUBCLASS_SEMESTER_FACULTY(_year year,semester char(3),FacultyName varchar(70))
 BEGIN
 
-       SELECT CName,SID,SCID,NoCredits,CSemester SEMESTER,SubClass.CYear,LF.LNAME,LF.FNAME,WL.FNAME as WLFNAME,WL.LNAME AS WLLNAME
-       FROM (SubClass JOIN Subject ON SubClass.SCID=Subject.CID left outer join LECTURER_INFO as LF on SCLID=LID)
-           left join (Week join LECTURER_INFO as WL on WLID=WL.LID) on WYear=SubClass.CSemester and CSemester=WSemester and WCID=CID and WSID=SID
-                                WHERE CYear=_year and semester=CSemester and FCName=FacultyName
-        group by CName,SID,SCID,SubClass.CYear,CSemester,LNAME,FNAME,WLFNAME,WLLNAME;
+       select CNAME,SID,CID,SUBCLASS_INFO.NoCredits,CYEAR,CSEMESTER,LECTURER_INFO.FNAME,LECTURER_INFO.LNAME,WL.FNAME as WLFNAME,WL.LNAME AS WLLNAME
+       from (SUBCLASS_INFO left outer join LECTURER_INFO on LID=SCLID)
+           left outer join (Week join LECTURER_INFO WL on WLID=LID)
+               on WSID=SID and WCID=CID and WSemester=CSemester and WYear=CYEAR
+            where CYEAR=_year and semester=CSemester and SUBCLASS_INFO.FCName=FacultyName;
 
 end;
 DELIMITER ;
@@ -944,9 +911,11 @@ DELIMITER |
 CREATE PROCEDURE LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY(_year year,semester char(3),FacultyName varchar(70),lecturerID char(6))
 BEGIN
         if EXISTS(select * from LECTURER_INFO where LID=lecturerID and LECTURER_INFO.FEName=FacultyName) then
-       SELECT CName,SID,SCID,NoCredits,CSemester SEMESTER,SubClass.CYear,LNAME,FNAME FROM SubClass JOIN Subject ON SubClass.SCID=Subject.CID left outer join LECTURER_INFO on SCLID=LID
-                                WHERE CYear=_year and semester=CSemester and FCName=FacultyName and LID=lecturerID
-        group by CName,SID,SCID,SubClass.CYear,CSemester,LNAME,FNAME;
+        select CNAME,SID,CID,SUBCLASS_INFO.NoCredits,CYEAR,CSEMESTER,LECTURER_INFO.FNAME,LECTURER_INFO.LNAME,WL.FNAME as WLFNAME,WL.LNAME AS WLLNAME
+       from (SUBCLASS_INFO left outer join LECTURER_INFO on LECTURER_INFO.LID=SCLID)
+           left outer join (Week join LECTURER_INFO WL on WLID=WL.LID)
+               on WSID=SID and WCID=CID and WSemester=CSemester and WYear=CYEAR
+                                WHERE CYear=_year and semester=CSemester and FCName=FacultyName and LECTURER_INFO.LID=lecturerID;
        else
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Không tìm thấy Giảng Viên';
             end if;
@@ -957,7 +926,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS GET_EMPLOYEE;
 DELIMITER |
-CREATE PROCEDURE GET_EMPLOYEE(persionID char(6))
+CREATE PROCEDURE GET_EMPLOYEE(persionID char(9))
 BEGIN
         select EmployeeID ID,FEName FACULTYNAME from Employee where PersonalEID=PersonalEID;
 
@@ -990,3 +959,8 @@ BEGIN
 
 end;
 DELIMITER ;
+
+
+
+use Learning_Teaching1;
+call LIST_SUBCLASS_SEMESTER_FACULTY(2020,'201','Khoa khoa hoc va ki thuat may tinh')

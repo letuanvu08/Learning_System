@@ -134,6 +134,7 @@
                                             <th>Tên Môn học</th>
                                             <th>Mã lớp học</th>
                                             <th>Giảng Viên</th>
+                                            <th>Giảng Viên phụ</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -157,11 +158,16 @@
                                                     <c:out value="${entry.getLecture()}"/>
                                                 </td>
                                                 <td>
+                                                    <c:forEach items="${entry.getListlectuer()}" var="lecturer">
+                                                        <p><c:out value="${lecturer.getName()}"/></p>
+                                                    </c:forEach>
+                                                </td>
+                                                <td>
                                                 <input style="display:none" name="valuedetail"
                                                        value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
 
                                                 <button type="submit" name="btn-form"
-                                                        class="site-btn" value="detail">Danh sách sinh viên
+                                                        class="site-btn" value="detail">DS sinh viên
                                                 </button>
                                                 </td>
                                             </tr>
@@ -187,6 +193,7 @@
                                             <th>Tên Môn học</th>
                                             <th>Mã lớp học</th>
                                             <th>Giảng Viên</th>
+                                            <th>Giảng Viên phụ</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -210,11 +217,16 @@
                                                     <c:out value="${entry.getLecture()}"/>
                                                 </td>
                                                 <td>
+                                                    <c:forEach items="${entry.getListlectuer()}" var="lecturer">
+                                                        <p><c:out value="${lecturer.getName()}"/></p>
+                                                    </c:forEach>
+                                                </td>
+                                                <td>
                                                 <input style="display:none" name="valuedetail"
                                                        value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
 
                                                 <button type="submit" name="btn-form"
-                                                        class="site-btn" value="detail">Danh sách sinh viên
+                                                        class="site-btn" value="detail">DS sinh viên
                                                 </button>
                                                 </td>
 

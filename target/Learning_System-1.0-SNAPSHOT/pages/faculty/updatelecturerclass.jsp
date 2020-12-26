@@ -137,7 +137,7 @@
                                                 </td>
                                                 <td>
                                                     <button type="button" name="btn_dk" onclick="accountEditForm(this.value)" class="site-btn"
-                                                            value="${subclass.getClassId()}${" "}${subclass.getSubClassId()}${" "}${subclass.getYear()}${" "}${subclass.getSemester()}"data-toggle="modal" data-target="#updateModal">
+                                                            value="${subclass.getClassId()}${" "}${subclass.getSubClassId()}${" "}${subclass.getYear()}${" "}${subclass.getSemester()}"data-toggle="modal" data-target="#updateModal" onclick="removeinputformaddlectuer()">
                                                         Cập Nhật
                                                     </button>
                                                 </td>
@@ -185,7 +185,7 @@
                     </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="removeinputformaddlectuer()">Hủy </button>
-                <button form="add_form" type="submit" class="btn btn-primary" name="btn-form" value="add" onclick="removeinputformaddlectuer()">Cập nhât</button>
+                <button form="add_form" type="submit" class="btn btn-primary" name="btn-form" value="add">Cập nhât</button>
             </div>
         </div>
     </div>
