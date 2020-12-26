@@ -77,13 +77,13 @@ INSERT INTO Student(StudentID, PersonalSID,YearofAdmission, FSName)
 VALUES ('1813904','000000007','2019','Khoa hoa');
 
 INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
-VALUES ('CO2014','He co so du lieu',True,4,'Khoa khoa hoc va ki thuat may tinh','000002');
+VALUES ('CO2014','He co so du lieu',True,3,'Khoa khoa hoc va ki thuat may tinh','000002');
 INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
-VALUES ('CO3005','Nguyen ly ngon ngu lap trinh',True,4,'Khoa khoa hoc va ki thuat may tinh','000002');
+VALUES ('CO3005','Nguyen ly ngon ngu lap trinh',True,3,'Khoa khoa hoc va ki thuat may tinh','000002');
 INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
 VALUES ('CO2015','Cong nghe phan mem',True,3,'Khoa khoa hoc va ki thuat may tinh','000002');
 INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
-VALUES ('CO2008','Kien truc may tinh',False,4,'Khoa khoa hoc va ki thuat may tinh','000002');
+VALUES ('CO2008','Kien truc may tinh',False,3,'Khoa khoa hoc va ki thuat may tinh','000002');
 
 INSERT INTO Publisher(pname, location)
 VALUES ('Addison-Wesley','AMERICAN');
@@ -150,6 +150,9 @@ VALUES (2020,201,'CO2014','L14','1812482');
 INSERT INTO Attend(AYear, ASemester, ACID, ASID, AStudentID)
 VALUES (2020,201,'CO2014','L14','1813904');
 
+INSERT INTO `WEEK`(WYEAR, WSEMESTER, WCID, WSID, NUMBER, WLID) 
+VALUES (2020, 201, 'CO2014', 'L14', 5, '000002');
+
 INSERT INTO Written_by(WISBN, WAID)
 VALUES ('1234567','1234561');
 INSERT INTO Written_by(WISBN, WAID)
@@ -173,7 +176,7 @@ VALUES ('1810730',0,0);
 INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
 VALUES ('1810078',2,2);
 INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
-VALUES ('1810390',3,3);
+VALUES ('1810390',3,2);
 
 INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
 VALUES ('1814812','201',0);

@@ -15,19 +15,26 @@ WHERE ID = PERSONALSID;
 DROP VIEW IF EXISTS SUBCLASS_INFO;
 CREATE VIEW SUBCLASS_INFO AS
 SELECT CID, CYEAR, CSEMESTER, SID, CNAME,SCLID,FCName,NoCredits
-FROM SubClass, Subject
+FROM SubClass, `Subject`
 WHERE SCID = CID;
+
 DROP VIEW IF EXISTS LECTURERS_SUBJECT;
 CREATE VIEW LECTURERS_SUBJECT AS
 SELECT DISTINCT LID, FEName, CNAME, CID, CSemester,CYEAR,SID,LNAME,FNAME
 FROM LECTURER_INFO, SUBCLASS_INFO
 WHERE SCLID = LID;
 
-
-
+DROP VIEW  IF EXISTS Nocreadit_semeter;
+create view Nocreadit_semeter as
+SELECT sum(NoCredits) sum,ASemester
+        from SubClass JOIN Subject ON (SubClass.SCID=Subject.CID ),
+            Student JOIN Attend A on Student.StudentID = A.AStudentID
+        WHERE AStudentID='1814812' AND ACID=CID AND ASID=SID AND ASemester=CSemester group by ASemester;
 
 
 -- ####################################################################
+
+
 -- Cập nhật đăng ký môn học của các lớp.
 DROP PROCEDURE IF EXISTS them_lop;
 DELIMITER //
@@ -133,7 +140,7 @@ BEGIN
 
 END\\
 DELIMITER ;
-call xem_ds_lop_cua_1_gv('000002','201');
+
 -- Xem danh sách môn học được đăng ký ở mỗi học kỳ ở mỗi khoa.
 DROP PROCEDURE IF EXISTS xem_ds_mon_hoc_dk;
 DELIMITER //
@@ -280,8 +287,8 @@ BEGIN
 END\\
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS xoa_mon_hoc;
 DELIMITER \\
-drop procedure if exists xoa_mon_hoc;
 CREATE PROCEDURE xoa_mon_hoc(CID CHAR(6))
 BEGIN
 	DELETE FROM Subject
@@ -289,29 +296,27 @@ BEGIN
 END\\
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS cap_nhat_mon_hoc;
 DELIMITER \\
-drop procedure if exists cap_nhat_mon_hoc;
 CREATE PROCEDURE cap_nhat_mon_hoc(CID CHAR(6), CNAME VARCHAR(50), `STATUS` BOOL, NOCREDITS INT, FCNAME VARCHAR(70))
 BEGIN
 	UPDATE Subject
     SET Subject.CNAME = CNAME, Subject.`STATUS` = `STATUS`, Subject.NOCREDITS = NOCREDITS, Subject.FCNAME = FCNAME
     WHERE Subject.CID = CID;
-END;
+END\\
 DELIMITER ;
 
 -- Cập nhật danh sách giảng viên phụ trách mỗi lớp học được mở trước đầu mỗi học kỳ.
-drop procedure if exists them_gv_phu_trach;
+DROP PROCEDURE IF EXISTS them_gv_phu_trach;
 DELIMITER \\
-
 CREATE PROCEDURE them_gv_phu_trach(WCID CHAR(6),WSID CHAR(3),WYEAR YEAR, WSEMESTER CHAR(3),`NUMBER` INT, WLID CHAR(6))
 BEGIN
 	INSERT INTO Week 
     VALUES (WYEAR, WSEMESTER, WCID, WSID, `NUMBER`, WLID);
-END;
+END\\
 DELIMITER ;
 
-
-drop procedure if exists xoa_gv_phu_trach;
+DROP PROCEDURE IF EXISTS xoa_gv_phu_trach;
 DELIMITER \\
 CREATE PROCEDURE xoa_gv_phu_trach(WYEAR YEAR, WSEMESTER CHAR(3), WCID CHAR(6), WSID CHAR(3), `NUMBER` INT)
 BEGIN
@@ -319,7 +324,8 @@ BEGIN
     WHERE Week.WYEAR = WYEAR AND Week.WSEMESTER = WSEMESTER AND Week.WCID = WCID AND Week.WSID = WSID AND Week.`NUMBER` = `NUMBER`;
 END\\
 DELIMITER ;
-drop procedure if exists cap_nhat_gv_phu_trach;
+
+DROP PROCEDURE IF EXISTS cap_nhat_gv_phu_trach;
 DELIMITER \\
 CREATE PROCEDURE cap_nhat_gv_phu_trach(WYEAR YEAR, WSEMESTER CHAR(3), WCID CHAR(6), WSID CHAR(3), `NUMBER` INT, WLID CHAR(6))
 BEGIN
@@ -328,8 +334,9 @@ BEGIN
     WHERE Week.WYEAR = WYEAR AND Week.WSEMESTER = WSEMESTER AND Week.WCID = WCID AND Week.WSID = WSID AND Week.`NUMBER` = `NUMBER`;
 END\\
 DELIMITER ;
-drop procedure if exists xem_ds_mon_hoc;
+
 -- Xem danh sách môn học ở một học kỳ.
+DROP PROCEDURE IF EXISTS xem_ds_mon_hoc;
 DELIMITER \\
 CREATE PROCEDURE xem_ds_mon_hoc(FCNAME VARCHAR(70))
 BEGIN
@@ -338,17 +345,19 @@ BEGIN
     WHERE Subject.FCNAME = FCNAME;
 END\\
 DELIMITER ;
-drop procedure if exists xem_ds_giang_vien_phu_trach;
+
+DROP PROCEDURE IF EXISTS xem_ds_giang_vien_phu_trach;
+DELIMITER \\
 CREATE PROCEDURE xem_ds_giang_vien_phu_trach(_year year,semester char(3),subjectID char(6),subclassID char(3))
 BEGIN
 	SELECT LID,FNAME,LNAME
     FROM Week join SubClass SC on SC.CYear = Week.WYear and SC.CSemester = Week.WSemester and SC.SCID = Week.WCID and SC.SID = Week.WSID join LECTURER_INFO on WLID=LID
     WHERE SC.CYear=_year and SC.CSemester=semester and SCID=subjectID and SC.SID=subclassID;
-END;
+END\\
 DELIMITER ;
 
 -- Xem danh sách giảng viên ở một học kỳ.
-drop procedure if exists xem_ds_giang_vien;
+DROP PROCEDURE IF EXISTS xem_ds_giang_vien;
 DELIMITER \\
 CREATE PROCEDURE xem_ds_giang_vien(facultyName varchar(70))
 BEGIN
@@ -359,7 +368,7 @@ END\\
 DELIMITER ;
 
 -- Xem những môn có nhiều giảng viên cùng phụ trách nhất ở một học kỳ.
-drop procedure if exists xem_top_mon_hoc_nhieu_gv_phu_trach
+DROP PROCEDURE IF EXISTS xem_top_mon_hoc_nhieu_gv_phu_trach;
 DELIMITER \\
 CREATE PROCEDURE xem_top_mon_hoc_nhieu_gv_phu_trach(_CSEMESTER CHAR(3))
 BEGIN
@@ -369,9 +378,10 @@ BEGIN
 	GROUP BY CYEAR, CSEMESTER, CID, SID
 	ORDER BY COUNT(DISTINCT LID) DESC;
 
-END;
+END\\
 DELIMITER ;
-drop procedure if exists xem_tb_sv_dk_mon_hoc;
+
+DROP PROCEDURE IF EXISTS xem_tb_sv_dk_mon_hoc;
 -- Xem số sinh viên đăng ký trung bình trong 3 năm gần nhất cho một môn học ở một học kỳ.
 DELIMITER \\
 CREATE PROCEDURE xem_tb_sv_dk_mon_hoc(_CYEAR YEAR, _CSEMESTER CHAR(3), _CID CHAR(6))
@@ -382,167 +392,152 @@ BEGIN
 		WHERE StudentID = AStudentID AND (AYEAR, ASEMESTER, ACID, ASID) = (CYEAR, CSEMESTER, CID, SID) 
 				AND ( (_CYEAR - 2) <= CYEAR  <=_CYEAR) AND CSEMESTER = _CSEMESTER AND CID = _CID
 		GROUP BY CID, CYEAR, CSEMESTER) T;
-END;
+END\\
 DELIMITER ;
-drop procedure if exists them_textbook_chinh;
+
 -- Cập nhật giáo trình chính cho môn học do mình phụ trách.
-DELIMITER $$
+DROP PROCEDURE IF EXISTS them_textbook_chinh;
+DELIMITER \\
 CREATE PROCEDURE them_textbook_chinh(MCID_IN CHAR(6), MISBD_IN CHAR(7))
 BEGIN
    IF (SELECT COUNT(*) FROM MainlyUse WHERE MCID=MCID_IN) = 3 THEN
-      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='There are already 3 main textbook for this Subject!';
+      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='There are already 3 main textbooks for this Subject!';
    ELSE
       INSERT INTO MainlyUse(MCID, MISBD)
       VALUES (MCID_IN, MISBD_IN);
    END IF;
-END $$
+END \\
 DELIMITER ;
-drop procedure if exists xem_textbook_mon_hoc_pt;
-DELIMITER $$
+
+DROP PROCEDURE IF EXISTS xem_textbook_mon_hoc_pt;
+DELIMITER \\
 CREATE PROCEDURE xem_textbook_mon_hoc_pt(EmployeeID_IN CHAR(6))
-BEGIN
-   SELECT *
-   FROM MainlyUse
-   WHERE MCID IN
-      (SELECT CID
-      FROM Subject,
-            Faculty
-      WHERE FCName = FacultyName
-         AND FacultyName IN
-            (SELECT FEName
-            FROM LECTURER_INFO
-            WHERE LID =EmployeeID_IN));
-END $$
+BEGIN            
+	SELECT MCID, CName, MISBD, TName, TPName, CName
+    FROM MainlyUse, TextBook, `Subject`
+    WHERE MCID = CID AND MISBD = ISBN AND SLID = EmployeeID_IN;
+END \\
 DELIMITER ;
-DROP PROCEDURE IF EXISTS xoa_textbook_then_ma_mh;
-DELIMITER $$
-CREATE PROCEDURE xoa_textbook_then_ma_mh(MCID_IN CHAR(6))
+
+DROP PROCEDURE IF EXISTS xoa_textbook_theo_ma_mh;
+DELIMITER \\
+CREATE PROCEDURE xoa_textbook_theo_ma_mh(MCID_IN CHAR(6))
 BEGIN
-  DELETE
+   DELETE
    FROM MainlyUse
    WHERE MCID = MCID_IN; 
-END $$
+END \\
 DELIMITER ;
-DROP PROCEDURE IF EXISTS xoa_textbook_theo_ten;
 
-DELIMITER $$
+DROP PROCEDURE IF EXISTS xoa_textbook_theo_ten;
+DELIMITER \\
 CREATE PROCEDURE xoa_textbook_theo_ten(MISBD_IN CHAR(7))
 BEGIN
    DELETE
    FROM MainlyUse
    WHERE MISBD = MISBD_IN;
-END $$
+END \\
 DELIMITER ;
+
 -- Xem danh sách lớp học của mỗi môn học do mình phụ trách ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_ds_lop_pt;
-DELIMITER $$
-CREATE PROCEDURE xem_ds_lop_pt(LID_IN CHAR(6), CSemester_IN CHAR(3))
+DELIMITER \\
+CREATE PROCEDURE xem_ds_lop_pt(CID_IN CHAR(6), CSemester_IN CHAR(3))
 BEGIN
-   SELECT CID
-   FROM SUBCLASS_INFO;
-END $$
+   SELECT *
+   FROM SUBCLASS_INFO 
+   WHERE CSEMESTER = CSemester_IN AND CID = CID_IN;
+END \\
 DELIMITER ;
-drop procedure if exists xem_ds_sv_pt;
+
 -- Xem danh sách sinh viên của mỗi lớp học do mình phụ trách ở một học kỳ.
-DELIMITER $$
-CREATE PROCEDURE xem_ds_sv_pt(LID_IN CHAR(6), CSemester_IN CHAR(3))
+DROP PROCEDURE IF EXISTS xem_ds_sv_pt;
+DELIMITER \\
+CREATE PROCEDURE xem_ds_sv_pt(CSemester_IN CHAR(3), CID_IN CHAR(6), SID_IN CHAR(3))
 BEGIN
-   SELECT ASID AS SID, StudentID, LName, FName 
-   FROM Student_INFO, Attend
-   WHERE AStudentID = StudentID
-      AND ASID IN (SELECT SID
-                  FROM SUBCLASS_INFO
-                  WHERE CID IN (SELECT CCID
-                                 FROM Class, LECTURERS_SUBJECT
-                                 WHERE LID = LID_IN AND CSemester = CSemester_IN  AND CCID = CID)
-                  )
-   ORDER BY ASID;
-END $$
+	SELECT * 
+    FROM STUDENT_INFO
+    WHERE STUDENTID IN (SELECT ASTUDENTID FROM ATTEND
+		WHERE ASID = SID_IN AND ACID = CID_IN AND ASEMESTER = CSemester_IN);
+END \\
 DELIMITER ;
 
 -- Xem danh sách môn học và giáo trình chính cho mỗi môn học do mình phụ trách ở một học kỳ.
-drop procedure if exists xem_ds_mon_hoc_textbook_pt;
-DELIMITER $$
+DROP PROCEDURE IF EXISTS xem_ds_mon_hoc_textbook_pt;
+DELIMITER \\
 CREATE PROCEDURE xem_ds_mon_hoc_textbook_pt(LID_IN CHAR(6), CSemester_IN CHAR(3))
 BEGIN
-   SELECT CID, CName, TName, ISBN
+   SELECT DISTINCT CID, CName, TName, ISBN
    FROM LECTURERS_SUBJECT, Textbook, MainlyUse
    WHERE LID = LID_IN
       AND CSemester = CSemester_IN
       AND ISBN = MISBD
       AND MCID = CID
    ORDER BY CID;
-END $$
+END \\
 DELIMITER ;
 
 -- Xem tổng số sinh viên của mỗi lớp học do mình phụ trách ở một học kỳ.
-drop procedure if exists xem_tong_sv_moi_lop_pt;
-DELIMITER $$
+DROP PROCEDURE IF EXISTS xem_tong_sv_moi_lop_pt;
+DELIMITER \\
 CREATE PROCEDURE xem_tong_sv_moi_lop_pt(LID_IN CHAR(6), CSemester_IN CHAR(3))
 BEGIN
-   SELECT ASID AS SID,COUNT(AStudentID) AS Student_NUM
-   FROM Attend
+   SELECT AYEAR AS `YEAR`, ASEMESTER AS SEMESTER, ACID AS CID, CNAME, ASID AS SID, COUNT(AStudentID) AS Student_NUM
+   FROM Attend, `SUBJECT`
    WHERE ASID IN (SELECT SID
                   FROM SUBCLASS_INFO
                   WHERE CID IN (SELECT CCID
                                  FROM Class, LECTURERS_SUBJECT
                                  WHERE LID = LID_IN AND CSemester = CSemester_IN AND CCID = CID))
+			AND ACID = CID
    GROUP BY ASID;
-END $$
+END \\
 DELIMITER ;
 
 -- Xem số lớp học do mình phụ trách ở mỗi học kỳ trong 3 năm liên tiếp gần đây nhất
-drop procedure if exists xem_so_lop_pt_gan_day;
-DELIMITER $$
+DROP PROCEDURE IF EXISTS xem_so_lop_pt_gan_day;
+DELIMITER \\
 CREATE PROCEDURE xem_so_lop_pt_gan_day(LID_IN CHAR(6))
 BEGIN
-   SELECT CSemester, COUNT(SID) AS CLASS_NUM
+   SELECT CSemester AS CUR_SEMESTER, COUNT(SID) AS CLASS_NUM
    FROM SUBCLASS_INFO
    WHERE CYear BETWEEN (YEAR(CURDATE()) - 3) AND (YEAR(CURDATE()))
          AND SCLID = LID_IN
    GROUP BY CSemester;
-END $$
+END \\
 DELIMITER ;
 
 -- Xem 5 lớp học có số sinh viên cao nhất mà giảng viên từng phụ trách.
-# DELIMITER $$
-# CREATE PROCEDURE xem_top_5_lop_sv_cao_nhat_pt(LID_IN CHAR(6), CSemester_IN CHAR(3))
-# BEGIN
-#    WITH CLASS_Student_NUM AS (
-#       SELECT ASID AS SID,COUNT(AStudentID) AS Student_NUM
-#       FROM Attend
-#       WHERE ASID IN (SELECT SID
-#                      FROM SUBCLASS_INFO
-#                      WHERE CID IN (SELECT CCID
-#                                     FROM Class, LECTURERS_SUBJECT
-#                                     WHERE LID = LID_IN AND CSemester = CSemester_IN AND CCID = CID))
-#       GROUP BY ASID
-#    )
-#    SELECT CID, Student_NUM
-#    FROM SUBCLASS_Student_NUM
-#    LIMIT 5;
-# END $$
-# DELIMITER ;
+DROP PROCEDURE IF EXISTS xem_top_5_lop_sv_cao_nhat_pt;
+DELIMITER \\
+CREATE PROCEDURE xem_top_5_lop_sv_cao_nhat_pt(LID_IN CHAR(6))
+BEGIN
+	SELECT CID, CYEAR, CSEMESTER, SID, CNAME, COUNT(*) AS STUDENT_NUMBER
+    FROM SUBCLASS_INFO, ATTEND 
+    WHERE SCLID = LID_IN AND CYEAR = AYEAR AND CSEMESTER = ASEMESTER AND CID = ACID AND ASID = SID
+    GROUP BY CYEAR, CSEMESTER, CID, SID
+    ORDER BY COUNT(*)
+    LIMIT 5;
+END \\
+DELIMITER ;
 
 -- Xem 5 học kỳ có số lớp nhiều nhất mà giảng viên từng phụ trách.
-# DELIMITER $$
-# CREATE PROCEDURE xem_top_5_hk_lop_nhieu_nhat_pt(LID_IN CHAR(6))
-# BEGIN
-#    WITH SUBCLASS_NUM_BY_SEMESTER AS (
-#       SELECT CSemester, COUNT(SID) AS CLASS_NUM
-#       FROM SUBCLASS_INFO
-#       WHERE SCLID = LID_IN
-#       GROUP BY CSemester
-#    )
-#    SELECT * FROM SUBCLASS_NUM_BY_SEMESTER
-#    ORDER BY CLASS_NUM
-#    LIMIT 5;
-# END $$
-# DELIMITER ;
+DROP PROCEDURE IF EXISTS xem_top_5_hk_lop_nhieu_nhat_pt;
+DELIMITER \\
+CREATE PROCEDURE xem_top_5_hk_lop_nhieu_nhat_pt(LID_IN CHAR(6))
+BEGIN
+	SELECT CYEAR, CSEMESTER, COUNT(*) AS CLASS_NUMBER
+    FROM SUBCLASS
+    WHERE (CYEAR, CSEMESTER, SCID, SID) IN (SELECT WYEAR, WSEMESTER, WCID, WSID FROM `WEEK` A WHERE A.WLID = LID_IN)
+    GROUP BY CSEMESTER
+    ORDER BY COUNT(*)
+    LIMIT 5;
+END \\
+DELIMITER ;
 
 -- Đăng ký môn học ở học kỳ được đăng ký.
 DROP PROCEDURE IF EXISTS dang_ky;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE dang_ky(
                 DKYEAR YEAR,
                 DKSEMESTER CHAR(3),
@@ -566,12 +561,12 @@ BEGIN
 
     end if;
 
-end|
+end\\
 DELIMITER ;
 
 -- XEM DANH SACH MON HOC ĐÃ DK
 DROP PROCEDURE IF EXISTS xem_mon_hoc_dk;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE xem_mon_hoc_dk(viewSEMESTER CHAR(3))
 BEGIN
 
@@ -579,12 +574,12 @@ BEGIN
         WHERE  SC.CSemester=viewSEMESTER
          AND SC.SCLID=L.LID AND SJ.CID=SC.SCID AND  E.EmployeeID=L.LID AND MOEU.ID=E.PersonalEID;
 
-end|
+end\\
 DELIMITER ;
 
 -- Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_textbook_dk;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE xem_textbook_dk( VIEWStudentID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -592,12 +587,12 @@ BEGIN
         SELECT CName,TName  from Subject JOIN MainlyUse MU on Subject.CID = MU.MCID JOIN Textbook T on MU.MISBD = T.ISBN,
                                  (Student JOIN Attend A on Student.StudentID = A.AStudentID)
         WHERE AStudentID=VIEWStudentID AND ASemester=VIEWSEMESTER AND ACID=CID;
-end|
+end\\
 DELIMITER ;
 
 -- Xem danh sách lớp học của mỗi môn học mà mình đăng ký ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_ds_lop_dk;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE xem_ds_lop_dk( VIEWStudentID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -605,12 +600,12 @@ BEGIN
         SELECT CName,SID,SCID FROM SubClass JOIN Subject ON SubClass.SCID=Subject.CID,
                                    Student JOIN Attend A on Student.StudentID = A.AStudentID
                                 WHERE AStudentID=VIEWStudentID AND ASemester=VIEWSEMESTER AND ACID=CID;
-end|
+end\\
 DELIMITER ;
 
 -- Xem danh sách lớp học của mỗi môn học mà mình đăng ký có nhiều hơn 1 giảng viên phụ trách ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_ds_lop_dk_hon_1_gv;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE xem_ds_lop_dk_hon_1_gv( VIEWStudentID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -624,12 +619,12 @@ BEGIN
                                     from Lecturer LL,SubClass sc
                                     where sc.SCID=CID AND sc.SCLID= LID
                                     group by sc.SCID having count(*)>1);
-end|
+end\\
 DELIMITER ;
 
 -- Xem tổng số tín chỉ đã đăng ký được ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_tong_tin_chi_dk;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE xem_tong_tin_chi_dk( VIEWStudentID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -639,19 +634,19 @@ BEGIN
             Student JOIN Attend A on Student.StudentID = A.AStudentID
         WHERE AStudentID=VIEWStudentID AND ASemester=VIEWSEMESTER
             AND ACID=CID AND ASID=SID AND ASemester=CSemester;
-end|
+end\\
 DELIMITER ;
 
 -- Xem tổng số môn học đã đăng ký được ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_tong_mon_hoc_dk;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE xem_tong_mon_hoc_dk( VIEWStudentID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
 
         SELECT COUNT(*) from SubClass,Student JOIN Attend A on Student.StudentID = A.AStudentID
         WHERE AStudentID=VIEWStudentID AND ASemester=VIEWSEMESTER AND ACID=SCID AND ASID=SID AND ASemester=CSemester;
-end|
+end\\
 DELIMITER ;
 
 -- Xem 3 học kỳ có số tổng số tín chỉ cao nhất mà mình đã từng đăng ký.
@@ -662,7 +657,7 @@ SELECT sum(NoCredits) sum,ASemester
             Student JOIN Attend A on Student.StudentID = A.AStudentID
         WHERE AStudentID='1814812' AND ACID=CID AND ASID=SID AND ASemester=CSemester group by ASemester;
 DROP PROCEDURE IF EXISTS xem_top_3_hk_tong_tin_chi_cao_nhat;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE xem_top_3_hk_tong_tin_chi_cao_nhat( VIEWStudentID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -670,14 +665,11 @@ BEGIN
         select ASemester,sum
                 from Nocreadit_semeter
                 order by sum desc limit 3;
-end|
+end\\
 DELIMITER ;
 
-
-
-
 DROP PROCEDURE IF EXISTS DANGKY;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE DANGKY(
                 DKYEAR YEAR,
                 DKSEMESTER CHAR(3),
@@ -706,23 +698,24 @@ BEGIN
 
     end if;
 
-end|
+end\\
 DELIMITER ;
 
-### XEM DANH SACH MON HOC ĐÃ DK
+-- XEM DANH SACH MON HOC ĐÃ DK
 DROP PROCEDURE IF EXISTS LIST_SUBJECT_SEMESTER;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE LIST_SUBJECT_SEMESTER(viewSEMESTER CHAR(3))
 BEGIN
 
         select CNAME,CYear,CSemester,SID,SUBCLASS_INFO.CID SCID, NoCredits  FROM SUBCLASS_INFO
         WHERE  CSemester=viewSEMESTER ;
 
-end;
+END\\
 DELIMITER ;
-#######Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.
+
+-- Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.
 DROP PROCEDURE IF EXISTS LIST_SUBJECT_ATTEND;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE LIST_SUBJECT_ATTEND( VIEWSTUDENTID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -731,12 +724,12 @@ BEGIN
                                  (Student JOIN Attend A on Student.StudentID = A.AStudentID)
         WHERE AStudentID=VIEWSTUDENTID AND ASemester=VIEWSEMESTER AND ACID=CID
         group by CID,CName,NoCredits,TName;
-end;
+end\\
 DELIMITER ;
 
-###Xem danh sách lớp học của mỗi môn học mà mình đăng ký ở một học kỳ.
+-- Xem danh sách lớp học của mỗi môn học mà mình đăng ký ở một học kỳ.
 DROP PROCEDURE IF EXISTS LIST_SUBCLASS_ATTEND;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE LIST_SUBCLASS_ATTEND( VIEWSTUDENTID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -746,12 +739,12 @@ BEGIN
            left outer join (Week join LECTURER_INFO WL on WLID=LID)
                on WSID=SID and WCID=CID and WSemester=CSemester and WYear=CYEAR
                                 WHERE AStudentID=VIEWSTUDENTID AND ASemester=VIEWSEMESTER;
-end;
+END\\
 DELIMITER ;
 
-### Xem danh sách lớp học của mỗi môn học mà mình đăng ký có nhiều hơn 1 giảng viên phụ trách ở một học kỳ.
+-- Xem danh sách lớp học của mỗi môn học mà mình đăng ký có nhiều hơn 1 giảng viên phụ trách ở một học kỳ.
 DROP PROCEDURE IF EXISTS LIST_SUBCLASS_OF_SUBJECT_ATTEND_LEAST_1_LECTURE;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE LIST_SUBCLASS_OF_SUBJECT_ATTEND_LEAST_1_LECTURE( VIEWSTUDENTID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -765,11 +758,12 @@ BEGIN
                                     from Lecturer LL,SubClass sc
                                     where sc.SCID=CID AND sc.SCLID= LID
                                     group by sc.SCID having count(*)>1);
-end;
+end\\
 DELIMITER ;
-#### SXem tổng số tín chỉ đã đăng ký được ở một học kỳ.\
+
+-- Xem tổng số tín chỉ đã đăng ký được ở một học kỳ.\
 DROP PROCEDURE IF EXISTS SUM_No_Registered_Credits_ONE_SEMESTER;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE SUM_No_Registered_Credits_ONE_SEMESTER( VIEWSTUDENTID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -779,12 +773,12 @@ BEGIN
             Student JOIN Attend A on Student.StudentID = A.AStudentID
         WHERE AStudentID=VIEWSTUDENTID AND ASemester=VIEWSEMESTER
             AND ACID=CID AND ASID=SID AND ASemester=CSemester;
-end;
+END\\
 DELIMITER ;
 
-#### SXem tổng số tín chỉ đã đăng ký được ở mỗi học kỳ.\
+-- Xem tổng số tín chỉ đã đăng ký được ở mỗi học kỳ.\
 DROP PROCEDURE IF EXISTS SUM_No_Registered_Credits_ALL_SEMESTER;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE SUM_No_Registered_Credits_ALL_SEMESTER( VIEWSTUDENTID CHAR(7))
 BEGIN
 
@@ -794,29 +788,24 @@ BEGIN
         WHERE AStudentID=VIEWSTUDENTID
             AND ACID=CID AND ASID=SID AND ASemester=CSemester
         GROUP BY ASemester;
-end;
+end\\
 DELIMITER ;
 
-####Xem tổng số môn học đã đăng ký được ở một học kỳ.
+-- Xem tổng số môn học đã đăng ký được ở một học kỳ.
 DROP PROCEDURE IF EXISTS SUM_SUBJECT_ATTEND;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE SUM_SUBJECT_ATTEND( VIEWSTUDENTID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
 
         SELECT COUNT(*) from SubClass,Student JOIN Attend A on Student.StudentID = A.AStudentID
         WHERE AStudentID=VIEWSTUDENTID AND ASemester=VIEWSEMESTER AND ACID=SCID AND ASID=SID AND ASemester=CSemester;
-end;
+END\\
 DELIMITER ;
-#### Xem 3 học kỳ có số tổng số tín chỉ cao nhất mà mình đã từng đăng ký.
-DROP VIEW  IF EXISTS Nocreadit_semeter;
-create view Nocreadit_semeter as
-SELECT sum(NoCredits) sum,ASemester
-        from SubClass JOIN Subject ON (SubClass.SCID=Subject.CID ),
-            Student JOIN Attend A on Student.StudentID = A.AStudentID
-        WHERE AStudentID='1814812' AND ACID=CID AND ASID=SID AND ASemester=CSemester group by ASemester;
+
+-- Xem 3 học kỳ có số tổng số tín chỉ cao nhất mà mình đã từng đăng ký.
 DROP PROCEDURE IF EXISTS GET3_Nocreadit_semeter;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE GET3_Nocreadit_semeter( VIEWSTUDENTID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
@@ -824,13 +813,13 @@ BEGIN
         select ASemester,sum
                 from Nocreadit_semeter
                 order by sum desc limit 3;
-end;
+END\\
 DELIMITER ;
 
 
 
 DROP PROCEDURE IF EXISTS GET_TYPE_ACCOUNT_ID;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE GET_TYPE_ACCOUNT_ID(iduser varchar(100)
                              )
 BEGIN
@@ -855,12 +844,12 @@ BEGIN
                         END as TYPEUSER
                 from MemberOfEducationUnit M where M.ID=iduser;
 
-end;
+END\\
 DELIMITER ;
 use Learning_Teaching1;
 
 DROP PROCEDURE IF EXISTS GET_STUDENT;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE GET_STUDENT(memberID char(9)
                              )
 BEGIN
@@ -872,36 +861,32 @@ BEGIN
                                         from Status
                                         where Status.SSID=Student.StudentID);
 
-end;
+END\\
 DELIMITER ;
 
-
-
-
-
 DROP PROCEDURE IF EXISTS UPDATE_SUBJECT_STATUS;
-DELIMITER |
-CREATE PROCEDURE UPDATE_SUBJECT_STATUS(subjectID char(6),setstatus int
-                             )
+DELIMITER \\
+CREATE PROCEDURE UPDATE_SUBJECT_STATUS(subjectID char(6),setstatus int)
 BEGIN
 
         update  Subject set STATUS=setstatus
         where CID=subjectID;
-end;
+END\\
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS UPDATE_LECTURER_CLASS;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE UPDATE_LECTURER_CLASS(IdMonHoc CHAR(6),SubclaaID char(3),_year year,_semester char(3)
                              ,lecturerID char(6))
 BEGIN
 
         update SubClass set SCLID=lecturerID
         where SID=SubclaaID and SCID=IdMonHoc and CYear=_year and _semester=CSemester;
-end;
+END\\
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS LIST_SUBCLASS_SEMESTER_FACULTY;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE LIST_SUBCLASS_SEMESTER_FACULTY(_year year,semester char(3),FacultyName varchar(70))
 BEGIN
 
@@ -911,12 +896,11 @@ BEGIN
                on WSID=SID and WCID=CID and WSemester=CSemester and WYear=CYEAR
             where CYEAR=_year and semester=CSemester and SUBCLASS_INFO.FCName=FacultyName;
 
-end;
+END\\
 DELIMITER ;
 
-
 DROP PROCEDURE IF EXISTS LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY(_year year,semester char(3),FacultyName varchar(70),lecturerID char(6))
 BEGIN
         if EXISTS(select * from LECTURER_INFO where LID=lecturerID and LECTURER_INFO.FEName=FacultyName) then
@@ -929,17 +913,17 @@ BEGIN
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT ='Không tìm thấy Giảng Viên';
             end if;
 
-end;
+END\\
 DELIMITER ;
 
 
 DROP PROCEDURE IF EXISTS GET_EMPLOYEE;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE GET_EMPLOYEE(persionID char(9))
 BEGIN
         select EmployeeID ID,FEName FACULTYNAME from Employee where PersonalEID=PersonalEID;
 
-end;
+END\\
 DELIMITER ;
 
 
@@ -948,24 +932,23 @@ DELIMITER ;
 
 
 
-use LEARNING_TEACHING_ACCOUNT;
+USE LEARNING_TEACHING_ACCOUNT;
+
 DROP PROCEDURE IF EXISTS GET_ACCOUNT_ID;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE GET_ACCOUNT_ID(id char(9))
 BEGIN
     select USERID,USERNAME,PASSWORD from Account where Account.USERID=id;
 
-end;
+END\\
 DELIMITER ;
 
-
-use LEARNING_TEACHING_ACCOUNT;
 DROP PROCEDURE IF EXISTS GET_ACCOUNT_NAME;
-DELIMITER |
+DELIMITER \\
 CREATE PROCEDURE GET_ACCOUNT_NAME(_USERNAME varchar(100))
 BEGIN
     select USERID,USERNAME,PASSWORD from Account where Account.USERNAME=_USERNAME;
 
-end;
+END\\
 DELIMITER ;
 
