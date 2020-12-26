@@ -114,18 +114,26 @@ BEGIN
 END 
 //
 DELIMITER ;
-call xem_ds_lop_cua_1_sv('1814812',2020,'201');
+
 -- Xem danh sách lớp được phụ trách bởi một giảng viên ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_ds_lop_cua_1_gv;
 DELIMITER \\
-CREATE PROCEDURE xem_ds_lop_cua_1_gv(LID CHAR(6), SEMESTER CHAR(3))
+CREATE PROCEDURE xem_ds_lop_cua_1_gv(_LID CHAR(6), SEMESTER CHAR(3))
 BEGIN
-	SELECT DISTINCT SID, SCID, CNAME
-	FROM  SubClass, `Week`, Subject
-	WHERE (WYEAR, WSEMESTER, WCID, WSID) = (CYEAR, CSEMESTER, SCID, SID) AND SCID = CID AND WLID = LID AND CSEMESTER = SEMESTER;
+    select SID,SCID, CNAME from (select SID,CID SCID, CNAME
+       from (SUBCLASS_INFO  join LECTURER_INFO on LID=SCLID)
+	WHERE LID=_LID and SEMESTER=CSEMESTER
+	union all
+	select SID,CID SCID, CNAME
+	from (SUBCLASS_INFO)
+         join (Week join LECTURER_INFO WL on WLID=LID)
+               on WSID=SID and WCID=CID and WSemester=CSemester and WYear=CYEAR
+    WHERE LID=_LID and SEMESTER=CSEMESTER) as A
+    group by SID,SCID, CNAME;
+
 END\\
 DELIMITER ;
-call xem_ds_lop_cua_1_gv('000002',201);
+call xem_ds_lop_cua_1_gv('000002','201');
 -- Xem danh sách môn học được đăng ký ở mỗi học kỳ ở mỗi khoa.
 DROP PROCEDURE IF EXISTS xem_ds_mon_hoc_dk;
 DELIMITER //
@@ -162,17 +170,22 @@ BEGIN
 END\\
 DELIMITER ;
 
-call xem_ds_sv_dk_1_lop(2020,'201','CO2015','L05');
-
 
 DROP PROCEDURE IF EXISTS xem_ds_gv_cua_1_lop;
 -- Xem danh sách giảng viên phụ trách ở mỗi lớp ở một học kỳ.
 DELIMITER \\
 CREATE PROCEDURE xem_ds_gv_cua_1_lop(_CYEAR YEAR,_CSEMESTER INT,_SCID CHAR(6), _SID CHAR(3))
 BEGIN
-	SELECT DISTINCT SID, SCID,LID,LNAME,FName
-	FROM  SubClass join LECTURER_INFO on SubClass.SCLID=LID
-	WHERE SubClass.SCID=_SCID AND SID=_SID AND SubClass.CSemester=_CSEMESTER;
+	select  LECTURER_INFO.LID,LECTURER_INFO.FNAME,LECTURER_INFO.LNAME,LECTURER_INFO.EMAIL,LECTURER_INFO.FEName
+       from (SUBCLASS_INFO  join LECTURER_INFO on LID=SCLID)
+	WHERE SUBCLASS_INFO.CID=_SCID AND SUBCLASS_INFO.SID=_SID AND SUBCLASS_INFO.CSemester=_CSEMESTER
+	union all
+	select LID,WL.FNAME,WL.LNAME,EMAIL,FEName
+	from (SUBCLASS_INFO)
+         join (Week join LECTURER_INFO WL on WLID=LID)
+               on WSID=SID and WCID=CID and WSemester=CSemester and WYear=CYEAR
+	WHERE SUBCLASS_INFO.CID=_SCID AND SUBCLASS_INFO.SID=_SID AND SUBCLASS_INFO.CSemester=_CSEMESTER;
+
 END\\
 DELIMITER ;
 
@@ -186,7 +199,6 @@ BEGIN
 	WHERE  Subject.FCName=facultyName;
 END\\
 DELIMITER ;
-call xem_giao_trinh_mon_hoc_khoa('Khoa khoa hoc va ki thuat may tinh');
 
 -- Xem tổng số môn học được đăng ký ở mỗi học kỳ ở mỗi khoa.
 DROP PROCEDURE IF EXISTS xem_tong_mon_hoc;
@@ -211,7 +223,6 @@ BEGIN
     group by FacultyName;
 END\\
 DELIMITER ;
-call xem_tong_lop(201);
 -- Xem tổng số sinh viên đăng ký ở mỗi lớp của một môn học ở một học kỳ.
 DROP PROCEDURE IF EXISTS xem_tong_sv_dk_1_lop;
 DELIMITER //
@@ -704,13 +715,11 @@ DELIMITER |
 CREATE PROCEDURE LIST_SUBJECT_SEMESTER(viewSEMESTER CHAR(3))
 BEGIN
 
-        select CNAME,CYear,CSemester,SID,SCID, NoCredits  FROM SubClass SC,Subject SJ
-        WHERE  SC.CSemester=viewSEMESTER
-         AND SJ.CID=SC.SCID  ;
+        select CNAME,CYear,CSemester,SID,SUBCLASS_INFO.CID SCID, NoCredits  FROM SUBCLASS_INFO
+        WHERE  CSemester=viewSEMESTER ;
 
 end;
 DELIMITER ;
-
 #######Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.
 DROP PROCEDURE IF EXISTS LIST_SUBJECT_ATTEND;
 DELIMITER |
@@ -732,13 +741,13 @@ CREATE PROCEDURE LIST_SUBCLASS_ATTEND( VIEWSTUDENTID CHAR(7),
                                     VIEWSEMESTER CHAR(3))
 BEGIN
 
-        SELECT CName,SID,SCID,NoCredits,ASemester SEMESTER,SubClass.CYear,LNAME,FNAME FROM SubClass JOIN Subject ON SubClass.SCID=Subject.CID left outer join LECTURER_INFO on SCLID=LID,
-                                   Student JOIN Attend A on Student.StudentID = A.AStudentID
-                                WHERE AStudentID=VIEWSTUDENTID AND ASemester=VIEWSEMESTER AND ACID=CID and ASID=SID and AYear=SubClass.CYear
-        group by CName,SID,SCID,SubClass.CYear,ASemester,LNAME,FNAME;
+       select CNAME,SID,CID,SUBCLASS_INFO.NoCredits,CYEAR,CSEMESTER,LECTURER_INFO.FNAME,LECTURER_INFO.LNAME,WL.FNAME as WLFNAME,WL.LNAME AS WLLNAME
+       from Attend join (SUBCLASS_INFO left outer join LECTURER_INFO on LID=SCLID) on ASemester=CSEMESTER and AYear=CYEAR and ACID=CID and ASID=SID
+           left outer join (Week join LECTURER_INFO WL on WLID=LID)
+               on WSID=SID and WCID=CID and WSemester=CSemester and WYear=CYEAR
+                                WHERE AStudentID=VIEWSTUDENTID AND ASemester=VIEWSEMESTER;
 end;
 DELIMITER ;
-
 
 ### Xem danh sách lớp học của mỗi môn học mà mình đăng ký có nhiều hơn 1 giảng viên phụ trách ở một học kỳ.
 DROP PROCEDURE IF EXISTS LIST_SUBCLASS_OF_SUBJECT_ATTEND_LEAST_1_LECTURE;
@@ -960,7 +969,3 @@ BEGIN
 end;
 DELIMITER ;
 
-
-
-use Learning_Teaching1;
-call LIST_SUBCLASS_SEMESTER_FACULTY(2020,'201','Khoa khoa hoc va ki thuat may tinh')

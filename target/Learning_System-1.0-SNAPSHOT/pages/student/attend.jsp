@@ -103,9 +103,10 @@
                                         <tr>
 
                                             <th>Mã Môn học</th>
+                                            <th>Mã lớp học</th>
                                             <th>Tên Môn học</th>
                                             <th>Số tín chỉ</th>
-                                            <th>Subclass</th>
+
                                             <th></th>
                                             <%--                            class="hidden_column"--%>
                                             <th></th>
@@ -119,14 +120,15 @@
                                                     <c:out value="${subclass.getClassId()}"/>
                                                 </td>
                                                 <td>
+                                                    <c:out value="${subclass.getSubClassId()}"/>
+                                                </td>
+                                                <td>
                                                     <c:out value="${subclass.getSubJectName()}"/>
                                                 </td>
                                                 <td>
                                                     <c:out value="${subclass.getNoCreadits()}"/>
                                                 </td>
-                                                <td>
-                                                    <c:out value="${subclass.getSubClassId()}"/>
-                                                </td>
+
 
                                                 <td>
                                                     <button type="submit" name="btn_dk" class="site-btn"
@@ -153,9 +155,10 @@
                                     <thead>
                                     <tr>
                                         <th>Mã Môn học</th>
+                                        <th>Mã lớp hoc</th>
                                         <th>Tên Môn học</th>
                                         <th>Số tín chỉ</th>
-                                        <th>Subclass</th>
+
                                         <th></th>
                                         <%--                            class="hidden_column"--%>
                                         <th></th>
@@ -169,14 +172,15 @@
                                                 <c:out value="${subclass.getClassId()}"/>
                                             </td>
                                             <td>
+                                                <c:out value="${subclass.getSubClassId()}"/>
+                                            </td>
+                                            <td>
                                                 <c:out value="${subclass.getSubJectName()}"/>
                                             </td>
                                             <td>
                                                 <c:out value="${subclass.getNoCreadits()}"/>
                                             </td>
-                                            <td>
-                                                <c:out value="${subclass.getSubClassId()}"/>
-                                            </td>
+
 
                                             <td>
                                                 <button type="submit" name="btn_dk" class="site-btn btn-danger"

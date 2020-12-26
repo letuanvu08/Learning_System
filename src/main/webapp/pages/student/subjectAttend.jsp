@@ -84,7 +84,8 @@
 
                             <td>
                                 <c:forEach items="${subcject.getListTexbook()}" var="textBook">
-                                <p><c:out value="${textBook}"/></p>
+                                <c:out value="${textBook}"/><p/>
+                                    <hr/>
                                 </c:forEach>
                             </td>
 

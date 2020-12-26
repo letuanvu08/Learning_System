@@ -174,6 +174,9 @@ INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
 VALUES ('1810078',2,2);
 INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
 VALUES ('1810390',3,3);
+
+INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
+VALUES ('1814812','201',0);
 INSERT INTO Category(CISBN, CategoryName)
 values ('1234567','database');
 INSERT INTO Category(CISBN, CategoryName)

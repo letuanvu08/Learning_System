@@ -266,6 +266,9 @@ public class aaoemployeeDao {
                 Student student =new Student();
                 student.setStudentID(res.getString("StudentID"));
                 student.setName(res.getString("FNAME")+" "+res.getString("LNAME"));
+                student.setEmail(res.getString("EMAIL"));
+                student.setFSName(res.getString("FSName"));
+
                 list.add(student);
             }
         } catch (SQLException throwables) {
@@ -289,6 +292,8 @@ public class aaoemployeeDao {
                 Lecturer student =new Lecturer();
                 student.setLecturerID(res.getString("LID"));
                 student.setName(res.getString("FNAME")+" "+res.getString("LNAME"));
+                student.setEmail(res.getString("EMAIL"));
+                student.setFacultyName(res.getString("FEName"));
                 list.add(student);
             }
         } catch (SQLException throwables) {

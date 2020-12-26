@@ -132,7 +132,8 @@
                                                 </td>
                                                 <td>
                                                     <c:forEach items="${subclass.getListlectuer()}" var="lecturer">
-                                                        <p><c:out value="${lecturer.getName()}"/></p>
+                                                        <c:out value="${lecturer.getName()}"/><p/>
+                                                        <hr/>
                                                     </c:forEach>
                                                 </td>
                                                 <td>

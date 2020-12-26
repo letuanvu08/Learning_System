@@ -68,7 +68,9 @@
                             <th>Mã môn học </th>
                             <th>Tên Môn học</th>
                             <th>Mã lớp học</th>
-                            <th>Giảng viên</th>
+                            <th>Giảng viên chính</th>
+                            <th>Giảng viên phụ</th>
+
 
                         </tr>
                         </thead>
@@ -81,6 +83,11 @@
                                 <td><c:out value="${sublass.getSubJectName()}"/></td>
                                 <td><c:out value="${sublass.getSubClassId()}"/></td>
                                 <td><c:out value="${sublass.getLecture()}"/></td>
+                                <td>
+                                    <c:forEach items="${sublass.getListlectuer()}" var="lecturer">
+                                        <c:out value="${lecturer.getName()}"/><p/>
+                                    </c:forEach>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

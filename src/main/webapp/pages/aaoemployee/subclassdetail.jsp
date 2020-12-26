@@ -75,24 +75,25 @@
             <div class="profile__featured__general col-lg-12 mix general">
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-8  text-center">
+
+                        <div class="col-lg-12  text-center">
                             <div class="card mb-2 justify-content-center">
                                 <form action="updateclassController" method="post">
                                     <div class="shoping__cart__table">
                                         <table id="user_list">
                                             <thead>
                                             <tr>
-
                                                 <th>Mã số sinh viên</th>
                                                 <th>Học và tên</th>
+                                                <th>Email</th>
+                                                <th>Khoa</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <c:forEach items="${subclassDetail.getListstudent()}" var="entry"
                                                        varStatus="loop">
                                                 <tr>
-
                                                     <td>
                                                         <c:out value="${entry.getStudentID()}"/>
                                                     </td>
@@ -101,6 +102,13 @@
                                                         <c:out value="${entry.getName()}"/>
                                                     </td>
 
+                                                    <td>
+                                                        <c:out value="${entry.getEmail()}"/>
+                                                    </td>
+
+                                                    <td>
+                                                        <c:out value="${entry.getFSName()}"/>
+                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                             </tbody>
@@ -110,41 +118,48 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="profile__featured__general col-lg-12 mix lecturer">
-                    <div class="row">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-8  text-center">
-                            <div class="card mb-2 justify-content-center">
+            </div>
+            <div class="profile__featured__general col-lg-12 mix lecturer">
+                <div class="row">
+                    <div class="col-lg-12  text-center">
+                        <div class="card mb-2 justify-content-center">
 
-                                <form action="updateclassController" method="post">
-                                    <div class="shoping__cart__table">
-                                        <table>
-                                            <thead>
+                            <form action="updateclassController" method="post">
+                                <div class="shoping__cart__table">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Mã số Nhân viên</th>
+                                            <th>Họ và tên</th>
+                                            <th>Email</th>
+                                            <th>Khoa</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${subclassDetail.getListlecturer()}" var="entry"
+                                                   varStatus="loop">
                                             <tr>
-                                                <th>Mã số Nhân viên</th>
-                                                <th>Học và tên</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <c:forEach items="${subclassDetail.getListlecturer()}" var="entry"
-                                                       varStatus="loop">
-                                                <tr>
-                                                    <td>
-                                                        <c:out value="${entry.getLecturerID()}"/>
-                                                    </td>
+                                                <td>
+                                                    <c:out value="${entry.getLecturerID()}"/>
+                                                </td>
 
-                                                    <td>
-                                                        <c:out value="${entry.getName()}"/>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </form>
-                            </div>
+                                                <td>
+                                                    <c:out value="${entry.getName()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${entry.getEmail()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${entry.getFacultyName()}"/>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
                         </div>
                     </div>
 

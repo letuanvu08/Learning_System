@@ -4,6 +4,7 @@ import java.util.List;
 import java.sql.*;
 import java.util.Map;
 
+import com.Learning.common.model.lecturer.Lecturer;
 import com.Learning.common.model.student.*;
 
 import javax.lang.model.type.NullType;
@@ -185,7 +186,13 @@ public class studentDao {
         return list;
     }
 
-
+    private static int checkContainLecturer(List<subclass> list, String subjectID, String CID) {
+        for (subclass subclass : list) {
+            if (subclass.getSubClassId().equals(CID) && subclass.getClassId().equals(subjectID))
+                return list.indexOf(subclass);
+        }
+        return -1;
+    }
     public static List<subclass> getListSubclassAttended(String studentID,int semester){
         List<subclass> list = new ArrayList<>();
 
@@ -198,16 +205,31 @@ public class studentDao {
             //This line is for debug purpose only
             ResultSet res=preparedStatement.executeQuery();
             while (res.next()){
-                subclass subclass=new subclass();
-                subclass.setSubJectName(res.getString("CNAME"));
-                subclass.setClassId(res.getString("SCID"));
-                subclass.setSubClassId(res.getString("SID"));
-                subclass.setNoCreadits(res.getInt("NoCredits"));
-                subclass.setYear(res.getInt("CYear"));
-                String lecturer=res.getString("FNAME")+" "+res.getString("LNAME");
-                if(!lecturer.contains("null"))
-                subclass.setLecture(lecturer);
-                list.add(subclass);
+                while (res.next()) {
+                    subclass subclass = new subclass();
+                    subclass.setSubJectName(res.getString("CNAME"));
+                    subclass.setClassId(res.getString("CID"));
+                    subclass.setSubClassId(res.getString("SID"));
+                    subclass.setNoCreadits(res.getInt("NoCredits"));
+                    subclass.setYear(res.getInt("CYear"));
+                    subclass.setSemester(res.getInt("CSEMESTER"));
+                    String lecturer = res.getString("FNAME") + " " + res.getString("LNAME");
+                    Lecturer Wlecturer = new Lecturer();
+                    Wlecturer.setName(res.getString("WLFNAME") + " " + res.getString("WLLNAME"));
+                    if (Wlecturer.getName().contains("null"))
+                        Wlecturer.setName("");
+                    if (!lecturer.contains("null"))
+                        subclass.setLecture(lecturer);
+                    int check = checkContainLecturer(list, subclass.getClassId(), subclass.getSubClassId());
+                    if (check == -1) {
+                        List<Lecturer> lecturerList = new ArrayList<>();
+                        lecturerList.add(Wlecturer);
+                        subclass.setListlectuer(lecturerList);
+                        list.add(subclass);
+                    } else {
+                        list.get(check).addlecturer(Wlecturer);
+                    }
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
