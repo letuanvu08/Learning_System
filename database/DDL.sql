@@ -1,16 +1,16 @@
-DROP SCHEMA IF EXISTS Learning_Teaching;
 
-CREATE SCHEMA Learning_Teaching;
+drop schema  if exists Learning_Teaching1;
+CREATE SCHEMA Learning_Teaching1;
 
-USE Learning_Teaching;
+USE Learning_Teaching1;
 
 CREATE TABLE MemberOfEducationUnit(
     ID CHAR(9),
     Gender CHAR,
-    Fname VARCHAR(15) NOT NULL,
-    Lname VARCHAR(30) NOT NULL,
+    Fname NVARCHAR(15) NOT NULL,
+    Lname NVARCHAR(30) NOT NULL,
     DOB DATE,
-    Email VARCHAR(50),
+    Email NVARCHAR(50),
     PRIMARY KEY (ID)
 );
 
@@ -48,13 +48,13 @@ CREATE TABLE Lecturer(
 );
 
 CREATE TABLE Faculty(
-    FacultyName VARCHAR(70),
+    FacultyName NVARCHAR(70),
     PRIMARY KEY (FacultyName)
 );
 
 CREATE TABLE `Subject`(
     CID CHAR(6),
-    CName VARCHAR(50) NOT NULL,
+    CName NVARCHAR(50) NOT NULL,
     STATUS BOOLEAN,
     NoCredits INT NOT NULL,
     PRIMARY KEY (CID),
@@ -63,22 +63,21 @@ CREATE TABLE `Subject`(
         AND 3
     )
 );
-
 CREATE TABLE Textbook(
     ISBN CHAR(7),
-    TName VARCHAR(50) NOT NULL,
+    TName NVARCHAR(50) NOT NULL,
     PRIMARY KEY (ISBN)
 );
 
 CREATE TABLE Author(
     AID CHAR(7),
-    AName VARCHAR(50) NOT NULL,
+    AName NVARCHAR(50) NOT NULL,
     PRIMARY KEY (AID)
 );
 
 CREATE TABLE Publisher(
-    PName VARCHAR(50),
-    Location VARCHAR(80),
+    PName NVARCHAR(50),
+    Location NVARCHAR(80),
     PRIMARY KEY (PName)
 );
 
@@ -89,7 +88,6 @@ CREATE TABLE Class(
     PRIMARY KEY (`Year`, Semester, CCID),
     FOREIGN KEY (CCID) REFERENCES Subject(CID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-drop table SubClass;
 CREATE TABLE SubClass(
     CYear YEAR,
     CSemester CHAR(3),
@@ -98,7 +96,6 @@ CREATE TABLE SubClass(
     PRIMARY KEY (CYear, CSemester, SCID, SID),
     FOREIGN KEY (CYear, CSemester, SCID) REFERENCES Class(`Year`, Semester, CCID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE `Week`(
     WYear YEAR,
     WSemester CHAR(3),
@@ -152,17 +149,7 @@ CREATE TABLE Attend(
     FOREIGN KEY (AYear, ASemester, ACID, ASID) REFERENCES SubClass(CYear, CSemester, SCID, SID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Manage(
-    MLID CHAR(6),
-    MYear YEAR,
-    MSemester CHAR(3),
-    MCID CHAR(6),
-    MISBN CHAR(7),
-    PRIMARY KEY (MLID, MYear, MSemester, MCID, MISBN),
-    FOREIGN KEY (MLID) REFERENCES Lecturer(LID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (MYear, MSemester, MCID) REFERENCES Class(`Year`, Semester, CCID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (MISBN) REFERENCES Textbook(ISBN) ON DELETE CASCADE ON UPDATE CASCADE
-);
+
 
 CREATE TABLE Written_by(
     WISBN CHAR(7),
@@ -175,7 +162,7 @@ CREATE TABLE Written_by(
 ALTER TABLE
     Employee
 ADD
-    (FEName VARCHAR(70));
+    (FEName NVARCHAR(70));
 
 ALTER TABLE
     Employee
@@ -185,7 +172,7 @@ ADD
 ALTER TABLE
     Student
 ADD
-    (FSName VARCHAR(70)  NOT NULL);
+    (FSName NVARCHAR(70)  NOT NULL);
 
 ALTER TABLE
     Student
@@ -195,16 +182,14 @@ ADD
 ALTER TABLE
     `Subject`
 ADD
-    (FCName VARCHAR(70) NOT NULL);
+    (FCName NVARCHAR(70) NOT NULL);
 
 ALTER TABLE
     `Subject`
 ADD
     FOREIGN KEY (FCName) REFERENCES Faculty(FacultyName) ON DELETE CASCADE ON UPDATE CASCADE;
-use Learning_Teaching;
 ALTER TABLE
     SubClass
-DROP column SCLID,
 ADD (SCLID CHAR(6) NULL);
 ALTER TABLE
     SubClass
@@ -234,12 +219,12 @@ ADD
 ALTER TABLE
     Textbook
 ADD
-    (TPName CHAR(50) NOT NULL);
+    (TPName NVARCHAR(50) NOT NULL);
 
 ALTER TABLE
     Textbook
 ADD
-    FOREIGN KEY (TPName) REFERENCES Publisher(Pname) ON DELETE CASCADE ON UPDATE CASCADE;
+    FOREIGN KEY (TPName) REFERENCES Publisher(PName) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE Phone(
     MOEID CHAR(9),
@@ -247,7 +232,6 @@ CREATE TABLE Phone(
     PRIMARY KEY (MOEID, PhoneNumber),
     FOREIGN KEY (MOEID) REFERENCES MemberOfEducationUnit(ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-SHOW CREATE TABLE Status;
 CREATE TABLE `Status`(
     SSID CHAR(7),
     SemesterStatus CHAR(3),
@@ -262,7 +246,7 @@ CREATE TABLE `Status`(
 
 CREATE TABLE Category(
     CISBN CHAR(7),
-    CategoryName VARCHAR(15),
+    CategoryName NVARCHAR(15),
     PRIMARY KEY (CISBN, CategoryName),
     FOREIGN KEY (CISBN) REFERENCES Textbook(ISBN) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -273,15 +257,19 @@ CREATE TABLE PublishingYear(
     PRIMARY KEY (PYISBN, PYear),
     FOREIGN KEY (PYISBN) REFERENCES Textbook(ISBN) ON DELETE CASCADE ON UPDATE CASCADE
 );
+alter table Subject
+add column SLID char(6) not null references  Lecturer(LID);
 
-create table Learning_Teaching.Account
+
+drop database if exists LEARNING_TEACHING_ACCOUNT;
+CREATE DATABASE LEARNING_TEACHING_ACCOUNT;
+USE  LEARNING_TEACHING_ACCOUNT;
+create table Account
 (
     USERID   char(9)      not null,
-    USERNAME varchar(100) not null,
-    PASSWORD varchar(100) not null,
+    USERNAME NVARCHAR(100) not null,
+    PASSWORD NVARCHAR(100) not null,
     primary key (USERID, USERNAME),
     constraint USERNAME
-        unique (USERNAME),
-    constraint Account_ibfk_1
-        foreign key (USERID) references Learning_Teaching.MemberOfEducationUnit (ID)
+        unique (USERNAME)
 );

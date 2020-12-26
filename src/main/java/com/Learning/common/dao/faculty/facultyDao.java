@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class facultyDao {
-    final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching";
+    final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching1";
     final private static String mysqlUsrName = "root";
     final private static String mysqlPass = "0974706833vu";
 
@@ -32,7 +32,7 @@ public class facultyDao {
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(mysqlURL, "root", "0974706833vu");
+            conn = DriverManager.getConnection(mysqlURL, mysqlUsrName, mysqlPass);
             return conn;
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block

@@ -1,4 +1,4 @@
-use Learning_Teaching;
+use Learning_Teaching1;
 INSERT INTO MemberOfEducationUnit(ID, Gender, Fname, Lname, DOB, Email)
 VALUE ('000000001','M','Le','Vu','2000-11-20','letuanvu@gmail.com');
 INSERT INTO MemberOfEducationUnit(ID, Gender, Fname, Lname, DOB, Email)
@@ -23,25 +23,22 @@ INSERT INTO MemberOfEducationUnit(ID, Gender, Fname, Lname, DOB, Email)
 VALUE ('000000011','M','Tran','duy','2000-07-17','duybt@hcmut.com');
 INSERT INTO MemberOfEducationUnit(ID, Gender, Fname, Lname, DOB, Email)
 VALUE ('000000012','M','Truong','Loc','2000-07-17','loc@hcmut.com');
-
+INSERT INTO Faculty(FacultyName) VALUE ('Khoa khoa hoc va ki thuat may tinh');
+INSERT INTO Faculty(FacultyName) VALUE ('Khoa hoa');
+INSERT INTO Faculty(FacultyName) VALUE ('Khoa co khi');
 INSERT INTO MemberOfEducationUnit(ID, Gender, Fname, Lname, DOB, Email)
 VALUE ('000000013','M','Nguyen Van','A','2000-07-17','A@hcmut.com');
 INSERT INTO Employee(EmployeeID, PersonalEID,FEName)
 VALUE ('000006','000000013','Khoa khoa hoc va ki thuat may tinh');
 INSERT INTO AAOEmployee(AEID)
 VALUE ('000006');
-insert into Account(USERID, USERNAME, PASSWORD) values ('000000013','nguyenvana','12345');
 
 INSERT INTO MemberOfEducationUnit(ID, Gender, Fname, Lname, DOB, Email)
 VALUE ('000000014','M','Nguyen Van','B','2000-07-17','B@hcmut.com');
 INSERT INTO Employee(EmployeeID, PersonalEID,FEName)
 VALUE ('000007','000000014','Khoa khoa hoc va ki thuat may tinh');
+insert into SeniorLecturer values ('000007');
 
-insert into Account(USERID, USERNAME, PASSWORD) values ('000000014','nguyenvanb','12345');
-
-INSERT INTO Faculty(FacultyName) VALUE ('Khoa khoa hoc va ki thuat may tinh');
-INSERT INTO Faculty(FacultyName) VALUE ('Khoa hoa');
-INSERT INTO Faculty(FacultyName) VALUE ('Khoa co khi');
 
 INSERT INTO Employee(EmployeeID, PersonalEID,FEName)
 VALUE ('000001','000000008','Khoa khoa hoc va ki thuat may tinh');
@@ -79,16 +76,15 @@ VALUES ('1812890','000000006','2019','Khoa co khi');
 INSERT INTO Student(StudentID, PersonalSID,YearofAdmission, FSName)
 VALUES ('1813904','000000007','2019','Khoa hoa');
 
-INSERT INTO Subject(CID, CName, Status, NoCredits, FCName)
-VALUES ('CO2014','He co so du lieu',True,4,'Khoa khoa hoc va ki thuat may tinh');
-INSERT INTO Subject(CID, CName, Status, NoCredits, FCName)
-VALUES ('CO3005','Nguyen ly ngon ngu lap trinh',True,4,'Khoa khoa hoc va ki thuat may tinh');
-INSERT INTO Subject(CID, CName, Status, NoCredits, FCName)
-VALUES ('CO2015','Cong nghe phan mem',True,3,'Khoa khoa hoc va ki thuat may tinh');
-INSERT INTO Subject(CID, CName, Status, NoCredits, FCName)
-VALUES ('CO2008','Kien truc may tinh',False,4,'Khoa khoa hoc va ki thuat may tinh');
-INSERT INTO Subject(CID, CName, Status, NoCredits, FCName)
-VALUES ('CO1001','Hoa dai cuong',true,3,'Khoa hoa');
+INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
+VALUES ('CO2014','He co so du lieu',True,4,'Khoa khoa hoc va ki thuat may tinh','000002');
+INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
+VALUES ('CO3005','Nguyen ly ngon ngu lap trinh',True,4,'Khoa khoa hoc va ki thuat may tinh','000002');
+INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
+VALUES ('CO2015','Cong nghe phan mem',True,3,'Khoa khoa hoc va ki thuat may tinh','000002');
+INSERT INTO Subject(CID, CName, Status, NoCredits, FCName,SLID)
+VALUES ('CO2008','Kien truc may tinh',False,4,'Khoa khoa hoc va ki thuat may tinh','000002');
+
 INSERT INTO Publisher(pname, location)
 VALUES ('Addison-Wesley','AMERICAN');
 INSERT INTO Publisher(pname, location)
@@ -113,8 +109,7 @@ INSERT INTO Class(Year, Semester, CCID)
 VALUES (2020,192,'CO2008');
 INSERT INTO Class(Year, Semester, CCID)
 VALUES (2020,201,'CO3005');
-INSERT INTO Class(Year, Semester, CCID)
-VALUES (2018,181,'CO1001');
+
 INSERT INTO SubClass(CYear, CSemester, SCID, SID, SCLID)
 VALUES (2020,201,'CO2014','L14','000002');
 INSERT INTO SubClass(CYear, CSemester, SCID, SID, SCLID)
@@ -125,12 +120,7 @@ INSERT INTO SubClass(CYear, CSemester, SCID, SID, SCLID)
 VALUES (2019,191,'CO2015','L05','000003');
 INSERT INTO SubClass(CYear, CSemester, SCID, SID, SCLID)
 VALUES (2020,192,'CO2008','L06','000004');
-INSERT INTO SubClass(CYear, CSemester, SCID, SID, SCLID)
-VALUES (2018,181,'CO1001','L10','000002');
-INSERT INTO Week(WYear, WSemester, WCID, WSID, Number)
-VALUES (2020,201,'CO2014','L14',2);
-INSERT INTO Week(WYear, WSemester, WCID, WSID, Number)
-VALUES (2019,191,'CO2015','L05',4);
+
 INSERT INTO `Use` (UCID, UISBN)
 VALUES ('CO2014','1234567');
 INSERT INTO `Use`(UCID, UISBN)
@@ -159,10 +149,7 @@ INSERT INTO Attend(AYear, ASemester, ACID, ASID, AStudentID)
 VALUES (2020,201,'CO2014','L14','1812482');
 INSERT INTO Attend(AYear, ASemester, ACID, ASID, AStudentID)
 VALUES (2020,201,'CO2014','L14','1813904');
-INSERT INTO Manage(MLID, MYear, MSemester, MCID, MISBN)
-VALUES ('000002',2020,201,'CO2014','1234567');
-INSERT INTO Manage(MLID, MYear, MSemester, MCID, MISBN)
-VALUES ('000002',2020,201,'CO2014','1234568');
+
 INSERT INTO Written_by(WISBN, WAID)
 VALUES ('1234567','1234561');
 INSERT INTO Written_by(WISBN, WAID)
@@ -199,3 +186,10 @@ INSERT INTO PublishingYear(PYISBN, PYear)
 VALUES ('1234568',2006);
 INSERT INTO PublishingYear(PYISBN, PYear)
 VALUES ('1234569',2007);
+
+
+use LEARNING_TEACHING_ACCOUNT;
+insert into Account(USERID, USERNAME, PASSWORD) values ('000000014','faculty','12345');
+insert into Account(USERID, USERNAME, PASSWORD) values ('000000013','aaoemployee','12345');
+insert into Account values ('000000001','student','12345');
+insert into Account values ('000000009','lecturer','12345');

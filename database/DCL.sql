@@ -88,4 +88,14 @@ GRANT EXECUTE ON PROCEDURE Learning_Teaching.xem_top_3_hk_tong_tin_chi_cao_nhat 
 
 
 
+drop user if exists 'student'@'localhost';
+CREATE USER 'student'@'localhost' IDENTIFIED BY 'student';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.DANGKY TO 'student'@'localhost';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.LIST_SUBCLASS_ATTEND TO 'student'@'localhost';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.LIST_SUBCLASS_OF_SUBJECT_ATTEND_LEAST_1_LECTURE TO 'student'@'localhost';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.LIST_SUBJECT_ATTEND TO 'student'@'localhost';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.LIST_SUBJECT_SEMESTER TO 'student'@'localhost';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.SUM_No_Registered_Credits_ONE_SEMESTER TO 'student'@'localhost';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.GET3_Nocreadit_semeter TO 'student'@'localhost';
+GRANT EXECUTE ON PROCEDURE Learning_Teaching.SUM_SUBJECT_ATTEND TO 'student'@'localhost';
 
