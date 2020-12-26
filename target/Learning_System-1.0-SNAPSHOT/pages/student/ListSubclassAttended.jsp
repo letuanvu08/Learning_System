@@ -86,6 +86,7 @@
                                 <td>
                                     <c:forEach items="${sublass.getListlectuer()}" var="lecturer">
                                         <c:out value="${lecturer.getName()}"/><p/>
+                                        <hr/>
                                     </c:forEach>
                                 </td>
                             </tr>
