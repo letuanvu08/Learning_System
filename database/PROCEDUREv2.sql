@@ -866,10 +866,7 @@ BEGIN
                                             join Employee E on M.ID = E.PersonalEID JOIN Lecturer L on E.EmployeeID = L.LID
                                      WHERE M.ID=iduser)
                                 then 'lecturer'
-                        when exists(select * from  MemberOfEducationUnit M
-                                            join Employee E on M.ID = E.PersonalEID join SeniorLecturer SL on E.EmployeeID = SL.SLID
-                                    WHERE M.ID=iduser)
-                                then 'uniorlecturer'
+
                         when exists(select * from  MemberOfEducationUnit M
                                             join Student S on M.ID = S.PersonalSID
                                     WHERE M.ID=iduser)
@@ -883,6 +880,9 @@ BEGIN
 
 end;
 DELIMITER ;
+use Learning_Teaching1;
+call GET_TYPE_ACCOUNT_ID('000000014');
+
 DROP PROCEDURE IF EXISTS GET_STUDENT;
 DELIMITER |
 CREATE PROCEDURE GET_STUDENT(memberID char(9)

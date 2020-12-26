@@ -20,7 +20,7 @@ public class UserDao {
 		return databaseName;
 	}
 	private static String getDatabaseNameLearning() {
-		String databaseName="LEARNING_TEACHING_ACCOUNT";
+		String databaseName="Learning_Teaching1";
 		return databaseName;
 	}
 	//The queries
@@ -109,7 +109,10 @@ public class UserDao {
 				String username=res.getString("Fname")+" "+res.getString("Lname");
 				String userType = res.getString("TYPEUSER");
 				String email = res.getString("Email");
-				System.out.println();
+				System.out.println(userType);
+				System.out.println(username);
+				System.out.println(email);
+
 				for (UserType iterator: UserType.values()) {
 					//This line is for debug purpose only
 					if (iterator.toString().equals(userType)) {
