@@ -31,6 +31,8 @@ public class subclassOfmemberController extends HttpServlet {
                 list = aaoemployeeDao.getlistclassofStudent(ID, year, semester);
                 request.setAttribute("chooses", "active");
                 request.setAttribute("listclasss", list);
+                System.out.println(list.size());
+
                 break;
             case "lecturer":
                 list = aaoemployeeDao.getlistclassofLecturer(ID, semester);

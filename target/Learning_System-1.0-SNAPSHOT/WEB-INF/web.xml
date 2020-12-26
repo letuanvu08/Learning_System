@@ -28,6 +28,31 @@
         <url-pattern>/faculty/updateLecturerClass</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>classFacultyControler</servlet-name>
+        <servlet-class>com.Learning.faculty.classFacultyControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>classFacultyControler</servlet-name>
+        <url-pattern>/faculty/classFacultyControler</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>listlecturerfaculty</servlet-name>
+        <servlet-class>com.Learning.faculty.listlecturerfacultyControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listlecturerfaculty</servlet-name>
+        <url-pattern>/faculty/listlecturerfaculty</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>listsubjectfacultyControler</servlet-name>
+        <servlet-class>com.Learning.faculty.listsubjectfacultyControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listsubjectfacultyControler</servlet-name>
+        <url-pattern>/faculty/listsubjectfaculty</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>subjectattend</servlet-name>
         <servlet-class>com.Learning.Student.SubjectAttendController</servlet-class>
     </servlet>
@@ -106,7 +131,38 @@
         <servlet-name>detailfacultyController</servlet-name>
         <url-pattern>/aaoemployee/detailfaculty</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>updateTextBook</servlet-name>
+        <servlet-class>com.Learning.lecturer.updateTextBookControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateTextBook</servlet-name>
+        <url-pattern>/lecturer/updateTextBook</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>listclasslecturer</servlet-name>
+        <servlet-class>com.Learning.lecturer.listclasslecturerControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listclasslecturer</servlet-name>
+        <url-pattern>/lecturer/listclasslecturer</url-pattern>
+    </servlet-mapping>
+<servlet>
+        <servlet-name>relatedinformation</servlet-name>
+        <servlet-class>com.Learning.lecturer.relatedinformationControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>relatedinformation</servlet-name>
+        <url-pattern>/lecturer/relatedinformation</url-pattern>
+    </servlet-mapping>
+<servlet>
+        <servlet-name>liststudentlecturer</servlet-name>
+        <servlet-class>com.Learning.lecturer.liststudentlecturerControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>liststudentlecturer</servlet-name>
+        <url-pattern>/lecturer/liststudentlecturer</url-pattern>
+    </servlet-mapping>
     <!--    ################################################ -->
     <servlet>
         <servlet-name>subclassofmember</servlet-name>

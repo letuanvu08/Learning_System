@@ -3,6 +3,9 @@ package com.Learning.common.model.lecturer;
 public class Lecturer {
     private String name;
     private String lecturerID;
+    private String email;
+    private String FacultyName;
+
 
     public Lecturer() {
     }
@@ -21,5 +24,21 @@ public class Lecturer {
 
     public void setLecturerID(String lecturerID) {
         this.lecturerID = lecturerID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFacultyName() {
+        return FacultyName;
+    }
+
+    public void setFacultyName(String facultyName) {
+        FacultyName = facultyName;
     }
 }

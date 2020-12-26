@@ -1,5 +1,9 @@
 package com.Learning.common.model.student;
 
+import com.Learning.common.model.lecturer.Lecturer;
+
+import java.util.List;
+
 public class subclass {
 
             private String SubJectName;
@@ -10,6 +14,7 @@ public class subclass {
             private int NoCreadits;
             private int Year;
             private int Semester;
+            private List<Lecturer> listlectuer;
     public subclass(){};
     public subclass(String SubJectName,String ClassId,String SubClassId,String Lecture){
             this.SubJectName=SubJectName;
@@ -80,5 +85,16 @@ public class subclass {
 
     public void setLecturerId(String lecturerId) {
         LecturerId = lecturerId;
+    }
+
+    public List<Lecturer> getListlectuer() {
+        return listlectuer;
+    }
+
+    public void setListlectuer(List<Lecturer> listlectuer) {
+        this.listlectuer = listlectuer;
+    }
+    public void addlecturer(Lecturer lecturer){
+        this.listlectuer.add(lecturer);
     }
 }

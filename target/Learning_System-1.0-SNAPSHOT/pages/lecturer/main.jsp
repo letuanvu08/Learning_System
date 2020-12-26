@@ -69,35 +69,24 @@
                 <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
-                        <h4 class="title"><a href="attend">Đăng ký môn học</a></h4>
-                        <p class="description">Đăng ký những môn học được mở trong học kì hiện tại mà bạn dược đăng ký</p>
+                        <h4 class="title"><a href="updateTextBook">CẬP NHẬT GIÁO TRÌNH</a></h4>
+                        <p class="description">Giảng Viên cập nhật giao trình chính cho môn học mình phụ trách.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
-                        <h4 class="title"><a href="subjectattend">Xem giáo trình chính của môn học.</a></h4>
-                        <p class="description">Xem danh sách môn học và giáo trình dùng chinh cho nhưng môn học đã đăng ký ở học kì hiện tại </p>
+                        <h4 class="title"><a href="listclasslecturer">Danh sách lớp học phụ trách</a></h4>
+                        <p class="description">Xem danh sách lớp học của mỗi môn học do mình phụ trách ở một học kỳ </p>
                     </div>
                 </div>
-
                 <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
-                        <h4 class="title"><a href="ListSubclassAttended">Xem danh sách lớp học.</a></h4>
-                        <p class="description">Xem danh sách tất cả các lớp học của nhưng môn mà đã đăng ký ở học kỳ hiện tại</p>
+                        <h4 class="title"><a href="relatedinformation">Các Thống kê liên quan</a></h4>
+                        <p class="description">Xem thống kê về tổng số lớp phụ trách trong 3 năm, 5 lớp có số sinh viên đông nhât,...</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-                    <div class="box">
-                        <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
-                        <h4 class="title"><a href="NoCreditStudent">Xem tổng số tín chỉ.</a></h4>
-                        <p class="description">xem tổng số tín chỉ tích luỹ ở mỗi kì và tổng số tín chỉ đã tích lũy</p>
-                    </div>
-                </div>
-
-
-
             </div>
 
         </div>

@@ -149,9 +149,9 @@
                                         </td>
                                         <td>
                                             <input style="display:none" name="valuedetail"
-                                                   value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
+                                                   value="">
                                             <button type="submit" name="btn-form"
-                                                    class="site-btn" value="detail">Detail
+                                                    class="site-btn" value="detail${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">Detail
                                             </button>
 
                                             <button type="button" id="btn_edit" onclick="accountEditForm(this.value)"

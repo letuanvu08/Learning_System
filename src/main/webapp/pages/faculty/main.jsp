@@ -85,18 +85,25 @@
                 <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
-                        <h4 class="title"><a href="subjectattend">Danh sách lớp học.</a></h4>
+                        <h4 class="title"><a href="classFacultyControler">Danh sách lớp học.</a></h4>
                         <p class="description">Xem danh sách các lớp học, thông tin mỗi lớp học ở học kì hiện tại </p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-5  wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
-                        <h4 class="title"><a href="NoCreditStudent">Danh sách môn học và giáo trình</a></h4>
+                        <h4 class="title"><a href="listlecturerfaculty">Danh sách Giảng Viên</a></h4>
+                        <p class="description">xem danh sách giảng viên ở khoa</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
+                        <h4 class="title"><a href="listsubjectfaculty">Danh sách môn học và giáo trình</a></h4>
                         <p class="description">xem tât các các môn học của khoa</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-5  offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                <div class="col-md-6 col-lg-5  wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
                         <h4 class="title"><a href="NoCreditStudent">Thống kê các thông tin liên quan</a></h4>

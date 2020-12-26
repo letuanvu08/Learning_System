@@ -81,15 +81,16 @@
         <section class="profile__featured">
             <div class="container">
                 <div class="row">
-<%--                    <div class="col-lg-12">--%>
-<%--                        <div class="featured__controls">--%>
-<%--                            <ul>--%>
+                    <div class="col-lg-12">
+                        <div class="featured__controls">
+                            <ul>
 
-<%--                                <li class="active" data-filter=".general">CẬP NHÂT GIẢNG VIÊN</li>--%>
+                                <li class="active" data-filter=".general">CẬP NHÂT GIẢNG VIÊN</li>
 
-<%--                            </ul>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="row justify-content-center profile__options__filter">
                     <div class="col-lg-12">
@@ -105,7 +106,8 @@
                                             <th>Tên Môn học</th>
 
                                             <th>Mã lớp học</th>
-                                            <th>Giảng Viên</th>
+                                            <th>Giảng Viên Chinh</th>
+                                            <th>Giảng Viên phụ</th>
                                             <%--                            class="hidden_column"--%>
                                             <th></th>
                                         </tr>
@@ -128,7 +130,11 @@
                                                 <td>
                                                     <c:out value="${subclass.getLecture()}"/>
                                                 </td>
-
+                                                <td>
+                                                    <c:forEach items="${subclass.getListlectuer()}" var="lecturer">
+                                                        <p><c:out value="${lecturer.getName()}"/></p>
+                                                    </c:forEach>
+                                                </td>
                                                 <td>
                                                     <button type="button" name="btn_dk" onclick="accountEditForm(this.value)" class="site-btn"
                                                             value="${subclass.getClassId()}${" "}${subclass.getSubClassId()}${" "}${subclass.getYear()}${" "}${subclass.getSemester()}"data-toggle="modal" data-target="#updateModal">
@@ -162,14 +168,24 @@
             <div class="modal-body">
                 <form id="add_form" action="updateLecturerClass" method="post">
                     <div class="form-group">
-                        <label for="lectuerID" class="col-form-label">ID Giảng Viên: </label>
-                        <input class="form-control" type="text" id="lectuerID" name="lectuerID" minlength="6" required>
+                        <label for="lectuerIDmain" class="col-form-label">ID Giảng Viên Chinh: </label>
+                        <div class="row">
+                            <div class="col-lg-10">
+                        <input class="form-control" type="text" id="lectuerIDmain" name="lectuerID" minlength="6" required>
+                            </div>
+                        </div>
                     </div>
-                    <input style="display:none" name="valueform"id="valueform"value="">
 
+                    <div id="inserthere"></div>
+                    <input style="display:none" name="valueform"id="valueform"value="">
+                    <div class="form-group row" >
+                        <div class="offset-lg-10 col-lg-2">
+                            <button type="button" class="btn btn-link"onclick="inputformaddlectuer()" >+</button>
+                        </div>
+                    </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy </button>
-                <button form="add_form" type="submit" class="btn btn-primary" name="btn-form" value="add">Cập nhât</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="removeinputformaddlectuer()">Hủy </button>
+                <button form="add_form" type="submit" class="btn btn-primary" name="btn-form" value="add" onclick="removeinputformaddlectuer()">Cập nhât</button>
             </div>
         </div>
     </div>
@@ -193,7 +209,6 @@
 <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<%--<script src="${pageContext.request.contextPath}/js/aaoemployee/main1.js"></script>--%>
-<script src="${pageContext.request.contextPath}/js/faculty/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/faculty/main1.js"></script>
 </body>
 </html>

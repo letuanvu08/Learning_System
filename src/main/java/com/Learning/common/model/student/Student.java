@@ -7,6 +7,7 @@ public class Student {
     private int yearofadmission;
     private String FSName;
     private int Semester;
+    private String email;
     public Student(){}
 
     public String getStudentID() {
@@ -55,5 +56,13 @@ public class Student {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

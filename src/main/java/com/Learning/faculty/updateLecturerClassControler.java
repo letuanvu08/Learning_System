@@ -27,8 +27,16 @@ public class updateLecturerClassControler extends HttpServlet {
         String values=request.getParameter("valueform");
         String[] list=values.split(" ");
         String lecturerID=request.getParameter("lectuerID");
-        String mess=facultyDao.UpdateLecturerClass(list[0],list[1],list[2],list[3],lecturerID);
-        if(!mess.equals(""))mess="ID Giang Viên không đúng";
+        String[] listWlectuer=request.getParameterValues("lectuerIDW");
+        System.out.println();
+        String[] listnumber=request.getParameterValues("numberWeek");
+        String mess="";
+        if(listWlectuer!=null){
+            for(int i=0;i<listWlectuer.length;i++)
+            mess+=facultyDao.UpdateLecturerWeekClass(list[0],list[1],list[2],list[3],listnumber[i],listWlectuer[i]);
+        }
+        mess+=facultyDao.UpdateLecturerClass(list[0],list[1],list[2],list[3],lecturerID);
+        if(!mess.equals(""))mess="ID Giang Viên: " +lecturerID +" không đúng";
         request.setAttribute("status",mess);
         List<subclass> listpost = facultyDao.getListSubclassInSemesterFaculty(year,semester,employee.getFacultyName());
         request.setAttribute("listSubclass", listpost);

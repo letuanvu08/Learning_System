@@ -129,9 +129,9 @@
                                                         </td>
                                                         <td>
                                                             <input style="display:none" name="valueopen"
-                                                                   value="${subject.getSubjectID()}">
+                                                                   value="">
                                                             <button type="submit" name="btn-form" class="site-btn"
-                                                                    value="open">
+                                                                    value="open ${subject.getSubjectID()}">
                                                                 Mở
                                                             </button>
                                                         </td>
@@ -199,9 +199,9 @@
                                         </td>
                                         <td>
                                             <input style="display:none" name="valueclose"
-                                                   value="${subject.getSubjectID()}">
+                                                   value="">
                                             <button type="submit" name="btn-form" class="btn btn-danger"
-                                                    value="close">
+                                                    value="close ${subject.getSubjectID()}">
                                                 Đóng
                                             </button>
                                         </td>

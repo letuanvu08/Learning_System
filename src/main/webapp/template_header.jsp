@@ -92,13 +92,6 @@
                     </ol>
                 </nav>
                 <!-- ======= What We Do Section ======= -->
-                <section id="what-we-do" class="what-we-do">
-
-                        <div class="section-title">
-                            <h2>${param.title}</h2>
-                        </div>
-
-                </section>
             </main>
         </div>
     </c:otherwise>

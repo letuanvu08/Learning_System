@@ -181,7 +181,6 @@
             </div>
             <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
 
-
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 profile__name">
 
@@ -210,7 +209,7 @@
                     </div>
                 </div>
                 <c:choose>
-                    <c:when test="${listclasss==null}">
+                    <c:when test="${listclassl==null}">
                     </c:when>
                     <c:otherwise>
                 <div class="col-lg-12">
@@ -231,7 +230,6 @@
                                 <tbody>
                                 <c:forEach items="${listclassl}" var="entry" varStatus="loop">
                                     <tr>
-
                                         <td>
                                             <c:out value="${entry.getClassId()}"/>
                                         </td>
@@ -241,7 +239,6 @@
                                         <td>
                                             <c:out value="${entry.getSubJectName()}"/>
                                         </td>
-
                                     </tr>
                                 </c:forEach>
                                 </tbody>

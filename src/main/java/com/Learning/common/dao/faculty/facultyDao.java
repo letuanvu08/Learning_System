@@ -2,6 +2,9 @@ package com.Learning.common.dao.faculty;
 
 import com.Learning.common.model.aaoemployee.Facultydetail;
 import com.Learning.common.model.faculty.SubjectFaculty;
+import com.Learning.common.model.lecturer.Lecturer;
+import com.Learning.common.model.student.Student;
+import com.Learning.common.model.student.SubjectAttend;
 import com.Learning.common.model.student.subclass;
 
 import java.sql.*;
@@ -19,7 +22,12 @@ public class facultyDao {
     private static final String PROCEDURE_them_mon_hoc = "call them_mon_hoc(?,?,?,?,?)";
     private static final String PROCEDURE_UPDATE_LECTURER_CLASS = "call UPDATE_LECTURER_CLASS(?,?,?,?,?)";
     private static final String PRODCEDURE_LIST_SUBJECT_SEMESTER_FACULTY = "call LIST_SUBJECT_SEMESTER_FACULTY(?,?,?)";
-
+    private static final String PRODCEDURE_LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY = "call LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY(?,?,?,?)";
+    private static final String PRODCEDURE_xem_ds_sv_dk_1_lop = "call xem_ds_sv_dk_1_lop(?,?,?,?)";
+    private static final String PRODCEDURE_xem_ds_giang_vien = "call xem_ds_giang_vien(?)";
+    private static final String PRODCEDURE_xem_giao_trinh_mon_hoc_khoa = "call xem_giao_trinh_mon_hoc_khoa(?)";
+    private static final String PRODCEDURE_xem_ds_giang_vien_phu_trach = "call xem_ds_giang_vien_phu_trach(?)";
+    private static final String PRODCEDURE_them_gv_phu_trach = "call them_gv_phu_trach(?,?,?,?,?,?)";
     private static Connection getConnection() {
         Connection conn = null;
         try {
@@ -35,29 +43,133 @@ public class facultyDao {
         }
         return conn;
     }
-    public static List<subclass> getListSubclassInSemesterFaculty(int year,int semester,String FacultyName){
-        List<subclass> list = new ArrayList<>();
 
-        Connection conn=getConnection();
+    public static int checkContain(List<SubjectAttend> list, String CID) {
+        for (SubjectAttend subjectAttend : list) {
+            if (subjectAttend.getSubjectID().equals(CID)) return list.indexOf(subjectAttend);
+        }
+        return -1;
+    }
+
+    private static int checkContainLecturer(List<subclass> list, String subjectID, String CID) {
+        for (subclass subclass : list) {
+            if (subclass.getSubClassId().equals(CID) && subclass.getClassId().equals(subjectID))
+                return list.indexOf(subclass);
+        }
+        return -1;
+    }
+
+    public static List<SubjectAttend> getListSubjectAndTextBookFaculty(String SubjectID) {
+        List<SubjectAttend> list = new ArrayList<>();
+
+        Connection conn = getConnection();
 
         try {
-            PreparedStatement preparedStatement=conn.prepareStatement(PRODCEDURE_LIST_SUBJECT_SEMESTER_FACULTY);
-            preparedStatement.setInt(1,year);
-            preparedStatement.setInt(2,semester);
-            preparedStatement.setString(3,FacultyName);
+            PreparedStatement preparedStatement = conn.prepareStatement(PRODCEDURE_xem_giao_trinh_mon_hoc_khoa);
+            preparedStatement.setString(1, SubjectID);
             //This line is for debug purpose only
-            ResultSet res=preparedStatement.executeQuery();
-            while (res.next()){
-                subclass subclass=new subclass();
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                String CID = res.getString("CID");
+                String TName = res.getString("TName");
+                int index = checkContain(list, CID);
+                if (index != -1)
+                    list.get(index).addTexBook(TName);
+                else {
+                    SubjectAttend subjectAttend = new SubjectAttend();
+                    subjectAttend.setSubjectID(res.getString("CID"));
+                    subjectAttend.setSubjectName(res.getString("CName"));
+                    subjectAttend.setNoCreadits(res.getInt("NoCredits"));
+                    subjectAttend.addTexBook(TName);
+                    list.add(subjectAttend);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public static List<Lecturer> getListLecturerFaculty(String facultyName) {
+        List<Lecturer> list = new ArrayList<>();
+
+        Connection conn = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PRODCEDURE_xem_ds_giang_vien);
+            preparedStatement.setString(1, facultyName);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                Lecturer lecturer = new Lecturer();
+                lecturer.setName(res.getString("LNAME") + " " + res.getString("FNAME"));
+                lecturer.setLecturerID(res.getString("LID"));
+                lecturer.setEmail(res.getString("EMAIL"));
+                lecturer.setFacultyName(res.getString("FEName"));
+                list.add(lecturer);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+
+
+
+    public static List<Student> getListStudentFaculty(String year, String semester, String ClassID, String subclassID) {
+        List<Student> list = new ArrayList<>();
+
+        Connection conn = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PRODCEDURE_xem_ds_sv_dk_1_lop);
+            preparedStatement.setString(1, year);
+            preparedStatement.setString(2, semester);
+            preparedStatement.setString(3, ClassID);
+            preparedStatement.setString(4, subclassID);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                Student student = new Student();
+                student.setStudentID(res.getString("StudentID"));
+                student.setFSName(res.getString("FSName"));
+                student.setEmail(res.getString("EMAIL"));
+                student.setName(res.getString("FNAME") + " " + res.getString("LNAME"));
+                list.add(student);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+
+    public static List<subclass> getListClassOfLecturerFaculty(String year, String semester, String FacultyName, String lecturerID) {
+        List<subclass> list = new ArrayList<>();
+
+        Connection conn = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PRODCEDURE_LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY);
+            preparedStatement.setString(1, year);
+            preparedStatement.setString(2, semester);
+            preparedStatement.setString(3, FacultyName);
+            preparedStatement.setString(4, lecturerID);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                subclass subclass = new subclass();
                 subclass.setSubJectName(res.getString("CNAME"));
                 subclass.setClassId(res.getString("SCID"));
                 subclass.setSubClassId(res.getString("SID"));
                 subclass.setNoCreadits(res.getInt("NoCredits"));
                 subclass.setYear(res.getInt("CYear"));
                 subclass.setSemester(res.getInt("SEMESTER"));
-                String lecturer=res.getString("FNAME")+" "+res.getString("LNAME");
+                String lecturer = res.getString("FNAME") + " " + res.getString("LNAME");
 
-                if(!lecturer.contains("null"))
+                if (!lecturer.contains("null"))
                     subclass.setLecture(lecturer);
                 list.add(subclass);
             }
@@ -69,10 +181,76 @@ public class facultyDao {
     }
 
 
+    public static List<subclass> getListSubclassInSemesterFaculty(int year, int semester, String FacultyName) {
+        List<subclass> list = new ArrayList<>();
 
-    public static String  UpdateLecturerClass(String IdMonHoc ,String SubclaaID ,String  _year,String  _semester
-                             ,String   lecturerID){
-        String mess="";
+        Connection conn = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PRODCEDURE_LIST_SUBJECT_SEMESTER_FACULTY);
+            preparedStatement.setInt(1, year);
+            preparedStatement.setInt(2, semester);
+            preparedStatement.setString(3, FacultyName);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                subclass subclass = new subclass();
+                subclass.setSubJectName(res.getString("CNAME"));
+                subclass.setClassId(res.getString("SCID"));
+                subclass.setSubClassId(res.getString("SID"));
+                subclass.setNoCreadits(res.getInt("NoCredits"));
+                subclass.setYear(res.getInt("CYear"));
+                subclass.setSemester(res.getInt("SEMESTER"));
+                String lecturer = res.getString("FNAME") + " " + res.getString("LNAME");
+                Lecturer Wlecturer = new Lecturer();
+                Wlecturer.setName(res.getString("WLFNAME") + " " + res.getString("WLLNAME"));
+                if (Wlecturer.getName().contains("null"))
+                    Wlecturer.setName("");
+                if (!lecturer.contains("null"))
+                    subclass.setLecture(lecturer);
+                int check = checkContainLecturer(list, subclass.getClassId(), subclass.getSubClassId());
+                if (check == -1) {
+                    List<Lecturer> lecturerList = new ArrayList<>();
+                    lecturerList.add(Wlecturer);
+                    subclass.setListlectuer(lecturerList);
+                    list.add(subclass);
+                } else {
+                    list.get(check).addlecturer(Wlecturer);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public static String UpdateLecturerWeekClass(String IdMonHoc, String SubclaaID, String _year, String _semester,String number
+            , String lecturerID) {
+        String mess = "";
+        Connection conn = getConnection();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PRODCEDURE_them_gv_phu_trach);
+            preparedStatement.setString(1, IdMonHoc);
+            preparedStatement.setString(2, SubclaaID);
+            preparedStatement.setString(3, _year);
+            preparedStatement.setString(4, _semester);
+            preparedStatement.setString(5, number);
+            preparedStatement.setString(6, lecturerID);
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            mess = throwables.getMessage();
+
+        }
+        return mess;
+    }
+
+
+
+
+    public static String UpdateLecturerClass(String IdMonHoc, String SubclaaID, String _year, String _semester
+            , String lecturerID) {
+        String mess = "";
         Connection conn = getConnection();
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(PROCEDURE_UPDATE_LECTURER_CLASS);
@@ -83,11 +261,12 @@ public class facultyDao {
             preparedStatement.setString(5, lecturerID);
             preparedStatement.execute();
         } catch (SQLException throwables) {
-           mess= throwables.getMessage();
+            mess = throwables.getMessage();
 
         }
         return mess;
     }
+
     public static String InserSubject(String subjectID, String subjectName, int status, int Nocredit, String FName) {
         String mess = "";
         Connection conn = getConnection();

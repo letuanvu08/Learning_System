@@ -159,6 +159,8 @@ public class aaoemployeeDao {
                 subclass.setClassId(res.getString("SCID"));
                 subclass.setSubClassId(res.getString("SID"));
                 subclass.setLecture(res.getString("Fname")+" "+res.getString("LNAME"));
+                if(subclass.getLecture().contains("null"))
+                    subclass.setLecture("");
                 list.add(subclass);
             }
         } catch (SQLException throwables) {

@@ -17,11 +17,12 @@ import java.util.List;
 public class updateclassController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String btn = (String) request.getParameter("btn-form");
+        String[] listbtn=btn.split(" ");
         List<subclass> list;
         String[] listvalue;
         String mess="";
         RequestDispatcher req;
-        switch (btn) {
+        switch (listbtn[0]) {
             case "find":
                 if(!request.getParameter("semesterfind").equals("")) {
                     semester = Integer.parseInt(request.getParameter("semesterfind"));
@@ -33,13 +34,8 @@ public class updateclassController extends HttpServlet {
                 req.forward(request, response);
                 break;
             case "detail":
-                String value=(String) request.getParameter("valuedetail");
-                System.out.println(value);
-                listvalue=value.split(" ");
-                SubclassDetail subclassDetail=aaoemployeeDao.getSubclassDetail(Integer.parseInt(listvalue[0]),Integer.parseInt(listvalue[1]),listvalue[2],listvalue[3]);
+                SubclassDetail subclassDetail=aaoemployeeDao.getSubclassDetail(Integer.parseInt(listbtn[1]),Integer.parseInt(listbtn[2]),listbtn[3],listbtn[4]);
                 request.setAttribute("subclassDetail",subclassDetail);
-                System.out.println(subclassDetail.getListstudent().get(0).getName());
-                System.out.println(subclassDetail.getListlecturer().get(0).getName());
                 req=request.getRequestDispatcher("/pages/aaoemployee/subclassdetail.jsp");
                 req.forward(request,response);
                 break;

@@ -22,16 +22,15 @@ public class UpdateSubject extends HttpServlet {
         String userID = (String) session.getAttribute("userID");
         Employee employee = UserDao.getEmployeeByID(userID);
         String chooseform = request.getParameter("btn-form");
-        System.out.println(chooseform);
-        switch (chooseform) {
+        String[] listvalue=chooseform.split(" ");
+        switch (listvalue[0]) {
             case "open":
-                String valueopen = request.getParameter("valueopen");
-                facultyDao.Update_Subject_Status(valueopen, 1);
+                facultyDao.Update_Subject_Status(listvalue[1], 1);
                 request.setAttribute("openpage", "active");
+
                 break;
             case "close":
-                String valueclose = request.getParameter("valueclose");
-                facultyDao.Update_Subject_Status(valueclose, 0);
+                facultyDao.Update_Subject_Status(listvalue[1], 0);
                 request.setAttribute("lecturer_featured", "lecturer_featured");
                 request.setAttribute("closepage", "active");
                 break;
