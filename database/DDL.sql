@@ -1,4 +1,3 @@
-
 drop schema  if exists Learning_Teaching1;
 CREATE SCHEMA Learning_Teaching1;
 
@@ -103,9 +102,9 @@ CREATE TABLE `Week`(
     WSID CHAR(3),
     Number INT,
     WLID CHAR(6) NOT NULL,
-    PRIMARY KEY (WYear, WSemester, WCID, WSID,WLID),
+    PRIMARY KEY (WYear, WSemester, WCID, WSID,Number,WLID),
     FOREIGN KEY (WYear, WSemester, WCID, WSID) REFERENCES SubClass(CYear, CSemester, SCID, SID) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (WLID) REFERENCES Lecturer(LID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (WLID) REFERENCES Lecturer(LID) ON DELETE CASCADE ON UPDATE CASCADE
                    );
 
 
