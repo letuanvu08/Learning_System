@@ -70,7 +70,7 @@
                 <div class="featured__controls">
                     <ul>
                         <li class="active" data-filter=".general">Thông tin chung</li>
-                      <%--     <li data-filter=".paid-orders">Thông tin Sinh Viên</li> --%>
+                        <li data-filter=".paid-orders">Thông tin Sinh Viên</li>
                     </ul>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                     <li ><a href="changepassword" class = "site-btn">Đổi mật khẩu</a></li>
                 </ul>
             </div>
-           <%--    <div class="profile__featured__general col-lg-6 mix paid-orders">
+            <div class="profile__featured__general col-lg-6 mix paid-orders">
                 <ul class="list-unstyled">
                     <li>
                         <h4>Loại tài khoản</h4>
@@ -161,7 +161,7 @@
                     </li>
 
                 </ul>
-            </div> --%>
+            </div>
             <!-- End General info -->
             <!-- View paid orders -->
 <%--            <div class="profile__featured__general col-lg-6 mix paid-orders">--%>

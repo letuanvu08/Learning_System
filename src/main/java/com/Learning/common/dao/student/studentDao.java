@@ -9,8 +9,8 @@ import com.Learning.common.model.student.*;
 public class studentDao {
     final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching1";
     final private static String mysqlUsrName="root";
-    final private static String mysqlPass="0974706833vu";
-
+    //final private static String mysqlPass="0974706833vu";
+    final private static String mysqlPass="soni1382000duy";
     private static final String PRODCEDURE_LIST_SUBJECT_SEMESTER ="Call LIST_SUBJECT_SEMESTER(?)";
     private static final String PRODCEDURE_SUBJECT_SEMESTER_BY_CID ="Call SUBJECT_SEMESTER_BY_CID(?,?)";
     private static final String PRODCEDURE_LIST_SUBJECT_ATTEND ="Call LIST_SUBJECT_ATTEND(?,?)";

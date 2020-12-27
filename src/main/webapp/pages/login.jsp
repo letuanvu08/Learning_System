@@ -63,7 +63,7 @@
 					</div>
 					
 				</form>
-				<div class="other-opts">
+				<%--<div class="other-opts">
 					<span>
 						<a id="forgot-pass" href="#">
 							Quên mật khẩu
@@ -71,11 +71,11 @@
 					</span>
 					<span>·</span>
 <%--					<span>--%>
-<%--						<a id="sign-up" href="./signup">--%>
-<%--							Đăng ký tài khoản ELearning--%>
-<%--						</a>--%>
-<%--					</span>--%>
-				</div>
+<%--						<a id="sign-up" href="./signup">
+<%--							Đăng ký tài khoản ELearning
+<%--						</a>
+<%--					</span>
+				</div>--%>
 			</div>
 			
 		</section>
