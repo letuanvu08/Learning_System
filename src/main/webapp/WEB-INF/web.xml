@@ -158,15 +158,15 @@
         <servlet-name>listClassOfSubjectLecturer</servlet-name>
         <url-pattern>/lecturer/listClassOfSubjectLecturer</url-pattern>
     </servlet-mapping>
-<servlet>
+    <servlet>
         <servlet-name>RelateInformationFacultyControler</servlet-name>
         <servlet-class>com.Learning.faculty.RelateInformationFacultyControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RelateInformationFacultyControler</servlet-name>
-        <url-pattern>/lecturer/RelateInformationFaculty</url-pattern>
+        <url-pattern>/faculty/RelateInformationFaculty</url-pattern>
     </servlet-mapping>
-<servlet>
+    <servlet>
         <servlet-name>relatedinformation</servlet-name>
         <servlet-class>com.Learning.lecturer.relatedinformationControler</servlet-class>
     </servlet>
@@ -174,7 +174,7 @@
         <servlet-name>relatedinformation</servlet-name>
         <url-pattern>/lecturer/relatedinformation</url-pattern>
     </servlet-mapping>
-<servlet>
+    <servlet>
         <servlet-name>liststudentlecturer</servlet-name>
         <servlet-class>com.Learning.lecturer.listclasslecturerControler</servlet-class>
     </servlet>
@@ -211,7 +211,7 @@
         <url-pattern>/aaoemployee/subclassdetail</url-pattern>
     </servlet-mapping>
 
-	<servlet>
+    <servlet>
         <servlet-name>profile_student</servlet-name>
         <jsp-file>/pages/Account/view_profile_student.jsp</jsp-file>
     </servlet>
@@ -219,7 +219,7 @@
         <servlet-name>profile_student</servlet-name>
         <url-pattern>/student/profile</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>profile</servlet-name>
         <jsp-file>/pages/Account/view_profile.jsp</jsp-file>
