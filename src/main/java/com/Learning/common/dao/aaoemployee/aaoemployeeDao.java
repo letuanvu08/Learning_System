@@ -143,14 +143,14 @@ public class aaoemployeeDao {
 
 
 
-    public static List<subclass> getlistclassofStudent(String studentid,int year,int semester){
+    public static List<subclass> getlistclassofStudent(String studentid,String  year,String  semester){
         Connection conn=getConnection();
         List<subclass> list=new ArrayList<>();
         try {
             PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_xem_ds_lop_cua_1_sv);
             preparedStatement.setString(1,studentid);
-            preparedStatement.setInt(2,year);
-            preparedStatement.setInt(3,semester);
+            preparedStatement.setString(2,year);
+            preparedStatement.setString(3,semester);
             //This line is for debug purpose only
             ResultSet res = preparedStatement.executeQuery();
             while (res.next()){
@@ -168,13 +168,13 @@ public class aaoemployeeDao {
         }
         return list;
     }
-    public static List<subclass> getlistclassofLecturer(String lecturertid,int semester){
+    public static List<subclass> getlistclassofLecturer(String lecturertid,String  semester){
         Connection conn=getConnection();
         List<subclass> list=new ArrayList<>();
         try {
             PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_xem_ds_lop_cua_1_gv);
             preparedStatement.setString(1,lecturertid);
-            preparedStatement.setInt(2,semester);
+            preparedStatement.setString(2,semester);
             //This line is for debug purpose only
             ResultSet res = preparedStatement.executeQuery();
             while (res.next()){
@@ -205,14 +205,14 @@ public class aaoemployeeDao {
         }
         return mess;
     }
-    public static String  deleteClass(String SubjectID, int year, int semester, String subclassID){
+    public static String  deleteClass(String SubjectID, String  year, String  semester, String subclassID){
         Connection conn=getConnection();
         String mess="";
         try {
             PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_XOA_LOP);
             preparedStatement.setString(1,SubjectID);
-            preparedStatement.setInt(2,year);
-            preparedStatement.setInt(3,semester);
+            preparedStatement.setString(2,year);
+            preparedStatement.setString(3,semester);
             preparedStatement.setString(4,subclassID);
             //This line is for debug purpose only
             preparedStatement.execute();
@@ -221,14 +221,14 @@ public class aaoemployeeDao {
         }
         return mess;
     }
-    public static String  updateClass(String SubjectID, int year, int semester, String subclassID,String newSubjectID, int newyear, int newsemester, String newsubclassID){
+    public static String  updateClass(String SubjectID, String  year, String  semester, String subclassID,String newSubjectID, int newyear, int newsemester, String newsubclassID){
         Connection conn=getConnection();
         String mess="";
         try {
             PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_cap_nhat_lop);
             preparedStatement.setString(1,SubjectID);
-            preparedStatement.setInt(2,year);
-            preparedStatement.setInt(3,semester);
+            preparedStatement.setString(2,year);
+            preparedStatement.setString(3,semester);
             preparedStatement.setString(4,subclassID);
             preparedStatement.setString(5,newSubjectID);
             preparedStatement.setInt(6,newyear);
@@ -242,7 +242,7 @@ public class aaoemployeeDao {
         return mess;
     }
 
-    public static SubclassDetail getSubclassDetail(int year, int semester, String classID, String subclassID){
+    public static SubclassDetail getSubclassDetail(String  year, String  semester, String classID, String subclassID){
         SubclassDetail subclassDetail= new SubclassDetail();
 
         subclassDetail.setListstudent(getListStudentOfSubClass(year, semester, classID, subclassID));
@@ -250,14 +250,14 @@ public class aaoemployeeDao {
         return subclassDetail;
     }
 
-    public static List<Student> getListStudentOfSubClass(int year, int semester, String classID, String subclassID){
+    public static List<Student> getListStudentOfSubClass(String  year, String  semester, String classID, String subclassID){
             List<Student> list=new ArrayList<>();
         Connection conn=getConnection();
 
         try {
             PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_XEM_DANH_SACH_SV);
-            preparedStatement.setInt(1,year);
-            preparedStatement.setInt(2,semester);
+            preparedStatement.setString(1,year);
+            preparedStatement.setString(2,semester);
             preparedStatement.setString(3,classID);
             preparedStatement.setString(4,subclassID);
             //This line is for debug purpose only
@@ -276,14 +276,14 @@ public class aaoemployeeDao {
         }
         return list;
     }
-    public static List<Lecturer> getListLecturerOfSubClass(int year, int semester, String classID, String subclassID){
+    public static List<Lecturer> getListLecturerOfSubClass(String  year, String  semester, String classID, String subclassID){
         List<Lecturer> list=new ArrayList<>();
         Connection conn=getConnection();
 
         try {
             PreparedStatement preparedStatement=conn.prepareStatement(PROCEDURE_XEM_DANH_SACH_GV);
-            preparedStatement.setInt(1,year);
-            preparedStatement.setInt(2,semester);
+            preparedStatement.setString(1,year);
+            preparedStatement.setString(2,semester);
             preparedStatement.setString(3,classID);
             preparedStatement.setString(4,subclassID);
             //This line is for debug purpose only

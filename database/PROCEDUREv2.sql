@@ -947,6 +947,16 @@ BEGIN
 END\\
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS SUBJECT_SEMESTER_BY_CID;
+DELIMITER \\
+CREATE PROCEDURE SUBJECT_SEMESTER_BY_CID(viewSEMESTER CHAR(3),subjectID char(6))
+BEGIN
+
+    select CNAME, CYear, CSemester, SID, SUBCLASS_INFO.CID SCID, NoCredits
+    FROM SUBCLASS_INFO
+    WHERE CSemester = viewSEMESTER and SUBCLASS_INFO.CID=subjectID;
+END\\
+DELIMITER ;
 -- Xem danh sách môn học và giáo trình chính cho mỗi môn học mà mình đăng ký ở một học kỳ.
 DROP PROCEDURE IF EXISTS LIST_SUBJECT_ATTEND;
 DELIMITER \\

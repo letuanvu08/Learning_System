@@ -40,15 +40,6 @@
     <%--    <c:param name="description" value="Đăng ký môn học"/>--%>
 </c:import>
 
-<!-- Breadcrumb Section Begin -->
-<!-- Breadcrumb Section End -->
-<%--<div class="row">--%>
-<%--    <div class="col-md-5"></div>--%>
-<%--    <div class="col-md-4 ">--%>
-<%--        <h3 class="header__logo"></h3>--%>
-<%--    </div>--%>
-<%--</div>--%>
-<!-- Profile Section Begin -->
 <div class="row" id="notifice">
     <div class="col-lg-6"></div>
     <div class="col-lg-6">
@@ -61,141 +52,205 @@
             <c:when test="${statusAttend.contains(\"thành công\")}">
                 <h5 class="alert alert-info" role="alert"><c:out value="${statusAttend}"/></h5>
             </c:when>
-
             <c:otherwise>
                 <h5 class="alert alert-warning" role="alert"><c:out value="${statusAttend}"/></h5>
             </c:otherwise>
         </c:choose>
     </div>
 </div>
-<section class="spad">
-    <div class="account__manangement col-lg-12">
 
-        <script>
-            setTimeout(() => {
-                var elem = document.getElementById("notifice");
-                elem.remove();
-            }, 5000);
-        </script>
+<script>
+    setTimeout(() => {
+        var elem = document.getElementById("notifice");
+        elem.remove();
+    }, 5000);
+</script>
+<section class="profile__featured">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="featured__controls">
+                    <ul>
 
-        <section class="profile__featured">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="featured__controls">
-                            <ul>
+                        <li class="active" data-filter=".general">Đăng ký môn học</li>
+                        <li class="" data-filter=".lecturer">Các môn học đã đăng ký</li>
 
-                                <li class="active" data-filter=".general">Đăng ký môn học</li>
-                                <li class="" data-filter=".lecturer">Các môn học đã đăng ký</li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center profile__options__filter">
-                    <div class="col-lg-12">
-
-                        <div class="profile__featured__general  col-lg-12 mix general">
-                            <form action="attend" method="post">
-                                    <table class="table table-striped" id="user_list">
-                                        <thead>
-                                        <tr class="table-primary">
-
-                                            <th scope="col">Mã Môn học</th>
-                                            <th scope="col">Mã lớp học</th>
-                                            <th scope="col">Tên Môn học</th>
-                                            <th scope="col">Số tín chỉ</th>
-
-                                            <th></th>
-                                            <%--                            class="hidden_column"--%>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach items="${listSubclass}" var="subclass">
-                                            <tr>
-
-                                                <td>
-                                                    <c:out value="${subclass.getClassId()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${subclass.getSubClassId()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${subclass.getSubJectName()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${subclass.getNoCreadits()}"/>
-                                                </td>
-
-
-                                                <td>
-                                                    <button type="submit" name="btn_dk" class="site-btn"
-                                                            value="${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
-                                                        Đăng ký
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-
-                                        </tbody>
-                                    </table>
-
-                            </form>
-                        </div>
-
-                    </div>
-
-                    <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
-                        <form action="attend" method="post">
-                            <div class="card-body">
-                                <table class="table table-striped" id="user_list">
-                                    <thead>
-                                    <tr class="table-primary">
-                                        <th>Mã Môn học</th>
-                                        <th>Mã lớp hoc</th>
-                                        <th>Tên Môn học</th>
-                                        <th>Số tín chỉ</th>
-
-                                        <th></th>
-                                        <%--                            class="hidden_column"--%>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${listattended}" var="subclass">
-                                        <tr>
-
-                                            <td>
-                                                <c:out value="${subclass.getClassId()}"/>
-                                            </td>
-                                            <td>
-                                                <c:out value="${subclass.getSubClassId()}"/>
-                                            </td>
-                                            <td>
-                                                <c:out value="${subclass.getSubJectName()}"/>
-                                            </td>
-                                            <td>
-                                                <c:out value="${subclass.getNoCreadits()}"/>
-                                            </td>
-
-
-                                            <td>
-                                                <button type="submit" name="btn_dk" class="site-btn btn-danger"
-                                                        value="xoa ${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
-                                                    Xóa Môn
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </form>
-                    </div>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
+        <div class="row justify-content-center profile__options__filter">
+
+
+            <div class="profile__featured__general  mix general">
+                <div class="row justify-content-center align-items-center">
+                    <form class="form-inline" action="attend" method="post">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="subjectid" class="sr-only">Mã môn học</label>
+                            <input type="text" class="form-control" id="subjectid" name="subjectid"
+                                   placeholder="Mã môn học">
+                        </div>
+                        <button type="submit" class=" btn btn-success " name="btn_dk" value="find">Search</button>
+                    </form>
+                </div>
+
+                        <div class="row justify-content-center align-items-center">
+
+                            <div class="col-lg-11" STYLE="padding-top:  40px">
+
+
+                                <fieldset>
+                                    <legend class="text-success"><b>Kêt quả tìm kiếm:</b></legend>
+
+                                    <form action="attend" method="post">
+                                        <table class="table table-striped" id="user_list">
+                                            <thead>
+                                            <tr class="table-primary">
+
+                                                <th scope="col">Mã Môn học</th>
+                                                <th scope="col">Mã lớp học</th>
+                                                <th scope="col">Tên Môn học</th>
+                                                <th scope="col">Số tín chỉ</th>
+
+                                                <th></th>
+                                                    <%--                            class="hidden_column"--%>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${listsubclassfind}" var="subclass">
+                                                <tr>
+
+                                                    <td>
+                                                        <c:out value="${subclass.getClassId()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subclass.getSubClassId()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subclass.getSubJectName()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subclass.getNoCreadits()}"/>
+                                                    </td>
+
+
+                                                    <td>
+                                                        <button type="submit" name="btn_dk" class="site-btn btn-success"
+                                                                value="${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
+                                                            Đăng ký
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+
+                                            </tbody>
+                                        </table>
+
+                                    </form>
+                                </fieldset>
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-11" STYLE="padding-top: 40px">
+                                <fieldset>
+                                    <legend class="text-success"><b>Tất cả các lớp học:</b></legend>
+                                    <form action="attend" method="post">
+                                        <table class="table table-striped" id="user_list">
+                                            <thead>
+                                            <tr class="table-primary">
+
+                                                <th scope="col">Mã Môn học</th>
+                                                <th scope="col">Mã lớp học</th>
+                                                <th scope="col">Tên Môn học</th>
+                                                <th scope="col">Số tín chỉ</th>
+
+                                                <th></th>
+                                                    <%--                            class="hidden_column"--%>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${listSubclass}" var="subclass">
+                                                <tr>
+
+                                                    <td>
+                                                        <c:out value="${subclass.getClassId()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subclass.getSubClassId()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subclass.getSubJectName()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subclass.getNoCreadits()}"/>
+                                                    </td>
+
+
+                                                    <td>
+                                                        <button type="submit" name="btn_dk" class="site-btn btn-success"
+                                                                value="${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
+                                                            Đăng ký
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+
+                                            </tbody>
+                                        </table>
+
+                                    </form>
+                                </fieldset>
+                            </div>
+                        </div>
+
+            </div>
+
+            <div class="profile__featured__general ${lecturer_featured} col-lg-11 mix lecturer">
+                <form action="attend" method="post">
+                    <div class="card-body">
+                        <table class="table table-striped" id="user_list">
+                            <thead>
+                            <tr class="table-primary">
+                                <th>Mã Môn học</th>
+                                <th>Mã lớp hoc</th>
+                                <th>Tên Môn học</th>
+                                <th>Số tín chỉ</th>
+
+                                <th></th>
+                                <%--                            class="hidden_column"--%>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${listattended}" var="subclass">
+                                <tr>
+
+                                    <td>
+                                        <c:out value="${subclass.getClassId()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${subclass.getSubClassId()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${subclass.getSubJectName()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${subclass.getNoCreadits()}"/>
+                                    </td>
+                                    <td>
+                                        <button type="submit" name="btn_dk" class=" btn btn-danger"
+                                                value="xoa ${subclass.getSubClassId()}${" "}${subclass.getClassId()}${" "}${subclass.getYear()}">
+                                            Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -203,8 +258,6 @@
 <!-- Profile Section End -->
 
 <!-- Profile Function Section Begin -->
-
-<c:import url="/footer.jsp"/>
 
 
 <!-- Js Plugins -->

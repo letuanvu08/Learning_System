@@ -34,7 +34,7 @@ public class updateclassController extends HttpServlet {
                 req.forward(request, response);
                 break;
             case "detail":
-                SubclassDetail subclassDetail=aaoemployeeDao.getSubclassDetail(Integer.parseInt(listbtn[1]),Integer.parseInt(listbtn[2]),listbtn[3],listbtn[4]);
+                SubclassDetail subclassDetail=aaoemployeeDao.getSubclassDetail(listbtn[1],listbtn[2],listbtn[3],listbtn[4]);
                 request.setAttribute("subclassDetail",subclassDetail);
                 req=request.getRequestDispatcher("/pages/aaoemployee/subclassdetail.jsp");
                 req.forward(request,response);
@@ -46,7 +46,7 @@ public class updateclassController extends HttpServlet {
                 String subclassidedit=(String) request.getParameter("subclassidedit");
                 String oldvalue=(String) request.getParameter("oldedit");
                 String [] listOld=oldvalue.split(" ");
-                mess =aaoemployeeDao.updateClass(listOld[2],Integer.parseInt(listOld[0]),Integer.parseInt(listOld[1]),listOld[3],subjectidedit,yearedit,semesteridedit,subclassidedit);
+                mess =aaoemployeeDao.updateClass(listOld[2],listOld[0],listOld[1],listOld[3],subjectidedit,yearedit,semesteridedit,subclassidedit);
                 if (mess.equals(""))mess="Chỉnh sửa Lớp học thành công!";
                 request.setAttribute("status",mess);
                 list = studentDao.getListSubclassInSemester(semester);
@@ -72,7 +72,7 @@ public class updateclassController extends HttpServlet {
                    listvalue=request.getParameterValues("userlist");
                 for (String values:listvalue) {
                     String[] listparam=values.split(" ");
-                    mess=aaoemployeeDao.deleteClass(listparam[0],Integer.parseInt(listparam[1]),Integer.parseInt(listparam[2]),listparam[3]);
+                    mess=aaoemployeeDao.deleteClass(listparam[0],listparam[1],listparam[2],listparam[3]);
                 }
                 if (mess.equals(""))mess="Xoá Lớp học thành công!";
                 request.setAttribute("status",mess);

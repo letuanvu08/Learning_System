@@ -1,12 +1,12 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="${pageContext.request.contextPath}/assets/img/favicon.png" rel="icon">
 <link href="${pageContext.request.contextPath}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet">
 
 <!-- Vendor CSS Files -->
 <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -63,36 +63,34 @@
             <li><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></li>
         </nav>
     </div>
-</header><!-- End Header -->
+</header>
+<!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
 <c:choose>
-        <c:when test="${param.home==1}">
-            <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-                <div class="container text-center text-md-left" data-aos="fade-up">
-                    <h1>Welcome to <span>Learining System</span></h1>
-                    <h2>Hệ thông Elearning Đại Học Bách Khoa TP HCM </h2>
-                </div>
+    <c:when test="${param.home==1}">
+        <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+            <div class="container text-center text-md-left" data-aos="fade-up">
+                <h1>Welcome to <span>Learining System</span></h1>
+                <h2>Hệ thống ELearning Đại Học Bách Khoa TP HCM </h2>
+            </div>
 
-            </section><!-- End Hero -->
+        </section>
+        <!-- End Hero -->
 
-        </c:when>
+    </c:when>
     <c:otherwise>
-<div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-11">
 
-    </div>
-</div>
-            <main id="main" class="border-top" style=" margin-top: 100px;">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/${param.user}/main">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">${param.title}</a></li>
-                    </ol>
-                </nav>
-                <!-- ======= What We Do Section ======= -->
-            </main>
+        <main id="main" class="border-top" style=" padding-top: 80px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/${param.user}/main">Home</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">${param.title}</a></li>
+                </ol>
+            </nav>
+            <!-- ======= What We Do Section ======= -->
+        </main>
         </div>
     </c:otherwise>
 </c:choose>

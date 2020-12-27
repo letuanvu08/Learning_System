@@ -56,41 +56,45 @@
               <i class="fas fa-table mr-1"></i>
               DataTable Example
             </div>-->
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table
-                            class="table table-striped"
-                            id="dataTable"
-                            width="100%"
-                            cellspacing="0"
-                    >
-                        <thead>
-                        <tr class="table-primary">
-                            <th>Mã môn học </th>
-                            <th>Tên Môn học </th>
-                            <th>Số tín chỉ </th>
-                            <th>Texboook</th>
+            <div class="row justify-content-center profile__options__filter">
+                <div class="col-lg-10">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table
+                                    class="table table-striped"
+                                    id="dataTable"
+                                    width="100%"
+                                    cellspacing="0"
+                            >
+                                <thead>
+                                <tr class="table-primary">
+                                    <th>Mã môn học</th>
+                                    <th>Tên Môn học</th>
+                                    <th>Số tín chỉ</th>
+                                    <th>Texboook</th>
 
-                        </tr>
-                        </thead>
+                                </tr>
+                                </thead>
 
-                        <tbody>
-                    <c:forEach items="${listsubject}" var="subcject">
+                                <tbody>
+                                <c:forEach items="${listsubject}" var="subcject">
 
-                            <tr>
-                                <td><c:out value="${subcject.getSubjectID()}"/></td>
-                                <td><c:out value="${subcject.getSubjectName()}"/></td>
-                                <td><c:out value="${subcject.getNoCreadits()}"/></td>
-                                <td>
-                                    <c:forEach items="${subcject.getListTexbook()}" var="textBook">
-                                        <p><c:out value="${textBook}"/></p>
-                                    </c:forEach>
-                                </td>
+                                    <tr>
+                                        <td><c:out value="${subcject.getSubjectID()}"/></td>
+                                        <td><c:out value="${subcject.getSubjectName()}"/></td>
+                                        <td><c:out value="${subcject.getNoCreadits()}"/></td>
+                                        <td>
+                                            <c:forEach items="${subcject.getListTexbook()}" var="textBook">
+                                                <p><c:out value="${textBook}"/></p>
+                                            </c:forEach>
+                                        </td>
 
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -68,110 +68,63 @@
     }, 6000);
 </script>
 <c:import url="/pages/faculty/addsubject.jsp"/>
-<section class="spad">
-    <div class="account__manangement col-lg-12">
+<script>
+    setTimeout(() => {
+        var elem = document.getElementById("notifice");
+        elem.remove();
+    }, 5000);
+</script>
 
-        <script>
-            setTimeout(() => {
-                var elem = document.getElementById("notifice");
-                elem.remove();
-            }, 5000);
-        </script>
 
-        <section class="profile__featured">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="featured__controls">
-                            <ul>
+<div class="container-fluid ">
+    <section class="section bg-light">
+        <div class="row justify-content-center profile__options__filter">
+            <div class="col-lg-10">
+        <form action="updateSubject" method="post">
+            <table id="user_list" class="table table-striped"
 
-                                <li class="${openpage}" data-filter=".general">Tất cả các môn học</li>
-                                <li class="${closepage}" data-filter=".lecturer">Các môn học đã mở</li>
+                <thead>
+                <tr class="table-primary">
+                    <th>Mã Môn học</th>
+                    <th>Tên Môn học</th>
+                    <th>Số tín chỉ</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${listsubject}" var="subject">
+                    <c:choose>
+                        <c:when test="${subject.getStatus()==0}">
+                            <tr>
+                                <td>
+                                    <c:out value="${subject.getSubjectID()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${subject.getSubjectName()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${subject.getNocredit()}"/>
+                                </td>
+                                <td>
+                                    <input style="display:none" name="valueopen"
+                                           value="">
+                                    <button type="submit" name="btn-form" class="site-btn"
+                                            value="open ${subject.getSubjectID()}">
+                                        Mở
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:when>
+                    </c:choose>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center profile__options__filter">
-                    <div class="col-lg-12">
-                        <p id="account_prompt" style="display:none">Remove these subject?</p>
-                        <div class="profile__featured__general  col-lg-12 mix general">
-                            <form action="updateSubject" method="post">
-                                <table id="user_list" class="table table-striped">
-                                    <thead>
-                                    <tr class="table-primary">
-                                        <th></th>
-                                        <th>Mã Môn học</th>
-                                        <th>Tên Môn học</th>
-                                        <th>Số tín chỉ</th>
-                                        <%--                            class="hidden_column"--%>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${listsubject}" var="subject">
-                                        <c:choose>
-                                            <c:when test="${subject.getStatus()==0}">
-                                                <tr>
-                                                    <td>
-                                                        <input type="checkbox" name="userlist"
-                                                               value="${entry.getClassId()}${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getSubClassId()}">
-                                                    </td>
-                                                    <td>
-                                                        <c:out value="${subject.getSubjectID()}"/>
-                                                    </td>
-                                                    <td>
-                                                        <c:out value="${subject.getSubjectName()}"/>
-                                                    </td>
-                                                    <td>
-                                                        <c:out value="${subject.getNocredit()}"/>
-                                                    </td>
-                                                    <td>
-                                                        <input style="display:none" name="valueopen"
-                                                               value="">
-                                                        <button type="submit" name="btn-form" class="site-btn"
-                                                                value="open ${subject.getSubjectID()}">
-                                                            Mở
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </c:when>
-                                        </c:choose>
+                </c:forEach>
 
-                                    </c:forEach>
-
-                                    </tbody>
-                                </table>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="account_main_buttons" class="account__management__btns">
-                    <button type="button" onclick="accountConfirmationForm()"
-                            class="btn btn-danger">Xóa
-                    </button>
-                </div>
-
-                <table id="account_remove_buttons" style="display:none">
-                    <tr>
-                        <td>
-                            <button type="submit" class="site-btn" name="btn-form" id="vendor_btn_yes"
-                                    value="remove" style="color:black">Yes
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="site-btn" name="btn" id="vendor_btn_no"
-                                    style="color:black" onclick="accountConfirmationForm()">No
-                            </button>
-                        </td>
-                    </tr>
-                </table>
-
-                </form>
+                </tbody>
+            </table>
+        </form>
             </div>
-    </div>
-    <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
+            <div class="clearfix"></div>
+            <div class="col-lg-10">
         <form action="updateSubject" method="post">
             <table id="user_list" class="table table-striped">
                 <thead>
@@ -179,46 +132,39 @@
                     <th>Mã Môn học</th>
                     <th>Tên Môn học</th>
                     <th>Số tín chỉ</th>
-                    <%--                            class="hidden_column"--%>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${listsubject}" var="subject">
-                <c:choose>
-                <c:when test="${subject.getStatus()==1}">
-                <tr>
-
-                    <td>
-                        <c:out value="${subject.getSubjectID()}"/>
-                    </td>
-                    <td>
-                        <c:out value="${subject.getSubjectName()}"/>
-                    </td>
-                    <td>
-                        <c:out value="${subject.getNocredit()}"/>
-                    </td>
-                    <td>
-                        <input style="display:none" name="valueclose"
-                               value="">
-                        <button type="submit" name="btn-form" class="btn btn-danger"
-                                value="close ${subject.getSubjectID()}">
-                            Đóng
-                        </button>
-                    </td>
-                </tr>
-                </c:when>
-                </c:choose>
-
+                    <c:choose>
+                        <c:when test="${subject.getStatus()==1}">
+                            <tr>
+                                <td>
+                                    <c:out value="${subject.getSubjectID()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${subject.getSubjectName()}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${subject.getNocredit()}"/>
+                                </td>
+                                <td>
+                                    <button type="submit" name="btn-form" class="site-btn btn-danger"
+                                            value="close ${subject.getSubjectID()}">
+                                        Đóng
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:when>
+                    </c:choose>
                 </c:forEach>
+                </tbody>
+            </table>
+        </form>
+            </div>
+        </div>
     </div>
-    </form>
-
-    </div>
-
-</section>
-</div>
-
 </section>
 
 

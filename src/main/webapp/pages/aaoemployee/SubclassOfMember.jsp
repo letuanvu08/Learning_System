@@ -44,12 +44,6 @@
 <!-- Profile Section End -->
 
 <!-- Profile Function Section Begin -->
-<section class="profile">
-    <div class="container">
-
-
-    </div>
-</section>
 <div class="row" id="notifice">
     <div class="col-lg-6"></div>
     <div class="col-lg-6">
@@ -94,7 +88,7 @@
 
             <div class="profile__featured__general  col-lg-12 mix general">
                 <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9 profile__name">
+                    <div class="col-lg-5 profile__name">
                         <form action="subclassOfmemberController" id="signup_form" method="post">
                             <!-- form field-->
                             <div class="form-group">
@@ -118,103 +112,102 @@
                         </form>
                     </div>
                 </div>
-                <c:choose>
+                <div class="col-lg-10">
+                    <c:choose>
                     <c:when test="${listclasss==null}">
                     </c:when>
                     <c:otherwise>
-                <div class="col-lg-12">
-                    <p id="account_prompt" style="display:none">Danh sách lớp học của sinh viên</p>
+
                     <form action="updateclassController" method="post">
 
-                            <table id="user_list" class="table table-striped">
-                                <thead>
-                                <tr class="table-primary">
-                                    <th></th>
-                                    <th>Năm học</th>
-                                    <th>Học kỳ</th>
-                                    <th>Mã môn học</th>
-                                    <th>Mã lớp học</th>
-                                    <th>Tên môn học</th>
-                                    <th>Giảng viên</th>
+                        <table id="user_list" class="table table-striped">
+                            <thead>
+                            <tr class="table-primary">
+                                <th></th>
+                                <th>Năm học</th>
+                                <th>Học kỳ</th>
+                                <th>Mã môn học</th>
+                                <th>Mã lớp học</th>
+                                <th>Tên môn học</th>
+                                <th>Giảng viên</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${listclasss}" var="entry" varStatus="loop">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="userlist"
+                                               value="${entry.getClassId()}${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getSubClassId()}">
+                                    </td>
+
+                                    <td>
+                                        <c:out value="${entry.getYear()}"/>
+                                    </td>
+
+                                    <td>
+                                        <c:out value="${entry.getSemester()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${entry.getClassId()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${entry.getSubClassId()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${entry.getSubJectName()}"/>
+                                    </td>
+                                    <td>
+                                        <c:out value="${entry.getLecture()}"/>
+                                    </td>
+
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${listclasss}" var="entry" varStatus="loop">
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="userlist"
-                                                   value="${entry.getClassId()}${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getSubClassId()}">
-                                        </td>
-
-                                        <td>
-                                            <c:out value="${entry.getYear()}"/>
-                                        </td>
-
-                                        <td>
-                                            <c:out value="${entry.getSemester()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${entry.getClassId()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${entry.getSubClassId()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${entry.getSubJectName()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${entry.getLecture()}"/>
-                                        </td>
-
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </form>
                 </div>
-                    </c:otherwise>
+                </c:otherwise>
                 </c:choose>
-
-
             </div>
-            <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
+        </div>
+        <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
 
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9 profile__name">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9 profile__name">
 
-                        <form action="subclassOfmemberController" method="post">
-                            <!-- form field-->
-                            <div class="form-group">
-                                <label class="control-label" for="memberid">Mã Giảng viên</label>
-                                <input class="form-control" type="text" name="memberid" id="memberid" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="year">Năm học</label>
-                                <input class="form-control" type="text" name="year" id="year" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="semester">học kỳ</label>
-                                <input class="form-control" type="text" name="semester" id="semester" required>
-                            </div>
+                    <form action="subclassOfmemberController" method="post">
+                        <!-- form field-->
+                        <div class="form-group">
+                            <label class="control-label" for="memberid">Mã Giảng viên</label>
+                            <input class="form-control" type="text" name="memberid" id="memberid" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="year">Năm học</label>
+                            <input class="form-control" type="text" name="year" id="year" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="semester">học kỳ</label>
+                            <input class="form-control" type="text" name="semester" id="semester" required>
+                        </div>
 
-                            <div class="form-group text-center">
-                                <button type="submit" class="site-btn" id="btn-form" name="btn-form" value="lecturer">
-                                    Search
-                                </button>
-                            </div>
-                        </form>
+                        <div class="form-group text-center">
+                            <button type="submit" class="site-btn" id="btn-form" name="btn-form" value="lecturer">
+                                Search
+                            </button>
+                        </div>
+                    </form>
 
-                    </div>
                 </div>
-                <c:choose>
-                    <c:when test="${listclassl==null}">
-                    </c:when>
-                    <c:otherwise>
-                <div class="col-lg-12">
-                    <p id="account_prompt" style="display:none">Danh sách lớp học của Giảng viên</p>
-                    <form action="updateclassController" method="post">
+            </div>
+            <c:choose>
+                <c:when test="${listclassl==null}">
+                </c:when>
+                <c:otherwise>
+                    <div class="col-lg-12">
+                        <p id="account_prompt" style="display:none">Danh sách lớp học của Giảng viên</p>
+                        <form action="updateclassController" method="post">
 
-                            <table id="user_list"  class="table table-striped">
+                            <table id="user_list" class="table table-striped">
                                 <thead>
                                 <tr class="table-primary">
 
@@ -241,23 +234,15 @@
                                 </tbody>
                             </table>
 
-                    </form>
-                </div>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+                        </form>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
+    </div>
 </section>
-<!-- End View users -->
 
-<!-- View vendors -->
-
-<!-- Profile Function Section End -->
-
-<c:import url="/footer.jsp"/>
-
-<!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>

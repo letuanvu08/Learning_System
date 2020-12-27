@@ -12,6 +12,7 @@ public class studentDao {
     final private static String mysqlPass="0974706833vu";
 
     private static final String PRODCEDURE_LIST_SUBJECT_SEMESTER ="Call LIST_SUBJECT_SEMESTER(?)";
+    private static final String PRODCEDURE_SUBJECT_SEMESTER_BY_CID ="Call SUBJECT_SEMESTER_BY_CID(?,?)";
     private static final String PRODCEDURE_LIST_SUBJECT_ATTEND ="Call LIST_SUBJECT_ATTEND(?,?)";
     private static final String PRODCEDURE_LIST_SUBCLASS_ATTEND ="Call LIST_SUBCLASS_ATTEND(?,?)";
     private static final String PRODCEDURE_SUM_No_Registered_Credits_ALL_SEMESTER ="Call SUM_No_Registered_Credits_ALL_SEMESTER(?)";
@@ -182,6 +183,32 @@ public class studentDao {
 
         return list;
     }
+    public static List<subclass> getListSubclassInSemesterBYCID(int semester,String subjectID){
+        List<subclass> list = new ArrayList<>();
+        Connection conn=getConnection();
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(PRODCEDURE_SUBJECT_SEMESTER_BY_CID);
+            preparedStatement.setInt(1,semester);
+            preparedStatement.setString(2,subjectID);
+            //This line is for debug purpose only
+            ResultSet res=preparedStatement.executeQuery();
+            while (res.next()){
+                subclass subclass=new subclass();
+                subclass.setSubJectName(res.getString("CNAME"));
+                subclass.setClassId(res.getString("SCID"));
+                subclass.setSubClassId(res.getString("SID"));
+                subclass.setNoCreadits(res.getInt("NoCredits"));
+                subclass.setYear(res.getInt("CYear"));
+                subclass.setSemester(res.getInt("CSemester"));
+                list.add(subclass);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return list;
+    }
+
 
     private static int checkContainLecturer(List<subclass> list, String subjectID, String CID) {
         for (subclass subclass : list) {

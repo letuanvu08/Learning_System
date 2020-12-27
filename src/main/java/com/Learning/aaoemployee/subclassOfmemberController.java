@@ -22,8 +22,8 @@ public class subclassOfmemberController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String ID = request.getParameter("memberid");
-        int year = Integer.parseInt(request.getParameter("year"));
-        int semester = Integer.parseInt(request.getParameter("semester"));
+        String  year = request.getParameter("year");
+        String  semester = request.getParameter("semester");
         String choose = request.getParameter("btn-form");
         List<subclass> list;
         switch (choose) {
