@@ -40,7 +40,7 @@ DELIMITER //
 CREATE TRIGGER check_textbook_publish_year BEFORE INSERT ON MainlyUse
 	FOR EACH ROW
     BEGIN 
-		IF (SELECT MAX(PYEAR) FROM PUBLISHINGYEAR WHERE PUISBN = NEW.MISBD) < YEAR(CURDATE()) - 10 THEN
+		IF (SELECT MAX(PYEAR) FROM PUBLISHINGYEAR WHERE PYISBN = NEW.MISBD) < YEAR(CURDATE()) - 10 THEN
         SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = "Giáo trình chính phải xuất bản cách hiện nay không quá 10 năm.";
 		END IF;
     END;
@@ -99,18 +99,3 @@ CREATE TRIGGER check_publishing_year BEFORE INSERT ON PublishingYear
     END;
 //
 DELIMITER ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
