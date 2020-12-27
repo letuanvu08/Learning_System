@@ -3,9 +3,7 @@ package com.Learning.faculty;
 import com.Learning.common.dao.User.UserDao;
 import com.Learning.common.dao.faculty.facultyDao;
 import com.Learning.common.model.faculty.Employee;
-import com.Learning.common.model.faculty.SubjectFaculty;
-import com.Learning.common.model.lecturer.Lecturer;
-import com.Learning.common.model.student.SubjectAttend;
+import com.Learning.common.model.student.Subject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +25,7 @@ public class listsubjectfacultyControler extends HttpServlet {
         HttpSession session = request.getSession();
         String userID = (String) session.getAttribute("userID");
         Employee employee = UserDao.getEmployeeByID(userID);
-        List<SubjectAttend> list= facultyDao.getListSubjectAndTextBookFaculty(employee.getFacultyName());
+        List<Subject> list= facultyDao.getListSubjectAndTextBookFaculty(employee.getFacultyName());
         request.setAttribute("listsubject",list);
         RequestDispatcher req = request.getRequestDispatcher("/pages/faculty/listsubjectfaculty.jsp");
         req.forward(request, response);

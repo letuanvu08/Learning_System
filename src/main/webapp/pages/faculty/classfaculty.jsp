@@ -163,11 +163,8 @@
                                                     </c:forEach>
                                                 </td>
                                                 <td>
-                                                <input style="display:none" name="valuedetail"
-                                                       value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
-
                                                 <button type="submit" name="btn-form"
-                                                        class="site-btn" value="detail">DS sinh viên
+                                                        class="site-btn" value="detail${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">DS sinh viên
                                                 </button>
                                                 </td>
                                             </tr>
@@ -222,12 +219,9 @@
                                                     </c:forEach>
                                                 </td>
                                                 <td>
-                                                <input style="display:none" name="valuedetail"
-                                                       value="${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
-
-                                                <button type="submit" name="btn-form"
-                                                        class="site-btn" value="detail">DS sinh viên
-                                                </button>
+                                                    <button type="submit" name="btn-form"
+                                                            class="site-btn" value="detail${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">DS sinh viên
+                                                    </button>
                                                 </td>
 
                                             </tr>

@@ -95,6 +95,8 @@ INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('1234568',' Database Systems – A Practical Approach to Design','Addison-Wesley');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('1234569','Database Systems Using Oracle','Prentice Hall');
+
+
 INSERT INTO  Author(AID, AName)
 VALUES ('1234561','Elmasri');
 INSERT INTO  Author(AID, AName)
@@ -199,3 +201,6 @@ insert into Account(USERID, USERNAME, PASSWORD) values ('000000014','faculty','1
 insert into Account(USERID, USERNAME, PASSWORD) values ('000000013','aaoemployee','12345');
 insert into Account values ('000000001','student','12345');
 insert into Account values ('000000009','lecturer','12345');
+update Account
+set USERID = '000000010'
+where Account.USERID='000000009';

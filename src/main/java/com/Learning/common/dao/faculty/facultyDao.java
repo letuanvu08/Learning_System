@@ -1,10 +1,9 @@
 package com.Learning.common.dao.faculty;
 
-import com.Learning.common.model.aaoemployee.Facultydetail;
 import com.Learning.common.model.faculty.SubjectFaculty;
 import com.Learning.common.model.lecturer.Lecturer;
 import com.Learning.common.model.student.Student;
-import com.Learning.common.model.student.SubjectAttend;
+import com.Learning.common.model.student.Subject;
 import com.Learning.common.model.student.subclass;
 
 import java.sql.*;
@@ -19,7 +18,7 @@ public class facultyDao {
     private static final String PROCEDURE_XEM_DANH_SACH_SV = "call xem_ds_sv_dk_1_lop(?,?,?,?)";
     private static final String PROCEDURE_xem_ds_mon_hoc = "call xem_ds_mon_hoc(?)";
     private static final String PROCEDURE_UPDATE_SUBJECT_STATUS = "call UPDATE_SUBJECT_STATUS(?,?)";
-    private static final String PROCEDURE_them_mon_hoc = "call them_mon_hoc(?,?,?,?,?)";
+    private static final String PROCEDURE_them_mon_hoc = "call them_mon_hoc(?,?,?,?,?,?)";
     private static final String PROCEDURE_UPDATE_LECTURER_CLASS = "call UPDATE_LECTURER_CLASS(?,?,?,?,?)";
     private static final String PRODCEDURE_LIST_SUBCLASS_SEMESTER_FACULTY = "call LIST_SUBCLASS_SEMESTER_FACULTY(?,?,?)";
     private static final String PRODCEDURE_LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY = "call LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY(?,?,?,?)";
@@ -43,9 +42,9 @@ public class facultyDao {
         return conn;
     }
 
-    public static int checkContain(List<SubjectAttend> list, String CID) {
-        for (SubjectAttend subjectAttend : list) {
-            if (subjectAttend.getSubjectID().equals(CID)) return list.indexOf(subjectAttend);
+    public static int checkContain(List<Subject> list, String CID) {
+        for (Subject subject : list) {
+            if (subject.getSubjectID().equals(CID)) return list.indexOf(subject);
         }
         return -1;
     }
@@ -58,8 +57,8 @@ public class facultyDao {
         return -1;
     }
 
-    public static List<SubjectAttend> getListSubjectAndTextBookFaculty(String SubjectID) {
-        List<SubjectAttend> list = new ArrayList<>();
+    public static List<Subject> getListSubjectAndTextBookFaculty(String SubjectID) {
+        List<Subject> list = new ArrayList<>();
 
         Connection conn = getConnection();
 
@@ -75,12 +74,12 @@ public class facultyDao {
                 if (index != -1)
                     list.get(index).addTexBook(TName);
                 else {
-                    SubjectAttend subjectAttend = new SubjectAttend();
-                    subjectAttend.setSubjectID(res.getString("CID"));
-                    subjectAttend.setSubjectName(res.getString("CName"));
-                    subjectAttend.setNoCreadits(res.getInt("NoCredits"));
-                    subjectAttend.addTexBook(TName);
-                    list.add(subjectAttend);
+                    Subject subject = new Subject();
+                    subject.setSubjectID(res.getString("CID"));
+                    subject.setSubjectName(res.getString("CName"));
+                    subject.setNoCreadits(res.getInt("NoCredits"));
+                    subject.addTexBook(TName);
+                    list.add(subject);
                 }
             }
         } catch (SQLException throwables) {

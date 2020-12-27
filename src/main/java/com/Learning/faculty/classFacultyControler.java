@@ -24,10 +24,11 @@ public class classFacultyControler extends HttpServlet {
         String ID = request.getParameter("memberid");
         String  yearfind = request.getParameter("year");
         String  semesterfind = request.getParameter("semester");
-        String choose = request.getParameter("btn-form");
+        String values = request.getParameter("btn-form");
+        String[] listvalues=values.split(" ");
         List<subclass> list;
         RequestDispatcher req;
-        switch (choose) {
+        switch (listvalues[0]) {
             case "find":
                 HttpSession session = request.getSession();
                 String userID = (String) session.getAttribute("userID");
@@ -43,9 +44,7 @@ public class classFacultyControler extends HttpServlet {
                 req.forward(request, response);
                 break;
             case "detail":
-                String valuedetail=request.getParameter("valuedetail");
-                String[] listvalues=valuedetail.split(" ");
-                List<Student> liststudent=facultyDao.getListStudentFaculty(listvalues[0],listvalues[1],listvalues[2],listvalues[3]);
+                List<Student> liststudent=facultyDao.getListStudentFaculty(listvalues[1],listvalues[2],listvalues[3],listvalues[4]);
                 request.setAttribute("liststudent",liststudent);
                 req = request.getRequestDispatcher("/pages/faculty/lisstudentClassFaculty.jsp");
                 req.forward(request, response);

@@ -36,7 +36,7 @@
 <c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
     <c:param name="user" value="faculty"/>
-    <c:param name="title" value="CẬP NHÂT GIẢNG VIÊN"/>
+    <c:param name="title" value="DANH SÁCH SINH VIÊN"/>
 </c:import>
 
 

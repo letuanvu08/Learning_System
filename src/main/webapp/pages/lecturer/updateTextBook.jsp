@@ -35,8 +35,8 @@
 
 <c:import url="/template_header.jsp">
     <c:param name="navbar_opt" value="1"/>
-    <c:param name="user" value="faculty"/>
-    <c:param name="title" value="CẬP NHÂT GIẢNG VIÊN"/>
+    <c:param name="user" value="lecturer"/>
+    <c:param name="title" value="DANH SÁCH MÔN HOC PHỤ TRÁCH"/>
 </c:import>
 
 
@@ -53,17 +53,13 @@
     <div class="col-lg-6"></div>
     <div class="col-lg-6">
         <c:choose>
-            <c:when test="${statusAttend==null}">
+            <c:when test="${status==null}">
             </c:when>
-            <c:when test="${statusAttend.equals(\"Môn học này đã được bàn đăng ký\")}">
-                <h5 class="alert alert-warning" role="alert">Môn học này đã được bạn đăng ký</h5>
+            <c:when test="${status.contains(\"thành công\")}">
+                <h5 class="alert alert-info" role="alert"><c:out value="${status}"/></h5>
             </c:when>
-            <c:when test="${statusAttend.equals(\"Đăng ký thành công\")}">
-                <h5 class="alert alert-info" role="alert">Đăng ký thành công</h5>
-            </c:when>
-
             <c:otherwise>
-                <h5 class="alert alert-warning" role="alert"><c:out value="${statusAttend}"/></h5>
+                <h5 class="alert alert-warning" role="alert"><c:out value="${status}"/></h5>
             </c:otherwise>
         </c:choose>
     </div>
@@ -77,7 +73,80 @@
                 elem.remove();
             }, 5000);
         </script>
+    </div>
+</section>
+<c:choose>
+    <c:when test="${listsubject!=null}">
+    <section class="profile__featured">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="featured__controls">
+                        <ul>
 
+                            <li class="active" data-filter=".general">DANH SÁCH MÔN HOC PHỤ TRÁCH</li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center profile__options__filter">
+                <div class="col-lg-12">
+
+                    <div class="profile__featured__general  col-lg-12 mix general">
+                        <form action="updateTextBook" method="post">
+                            <div class="shoping__cart__table">
+                                <table id="user_list" class="align-content-lg-start">
+                                    <thead>
+                                    <tr>
+                                        <th>Mã Môn học</th>
+                                        <th>Tên Môn học</th>
+                                        <th>Số tín chỉ</th>
+                                        <th>TextBook</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${listsubject}" var="subject">
+                                        <tr>
+                                            <td>
+                                                <c:out value="${subject.getSubjectID()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subject.getSubjectName()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subject.getNoCreadits()}"/>
+                                            </td>
+                                            <td>
+                                                <c:forEach items="${subject.getListTexbook()}" var="textbook">
+                                                    <c:out value="${textbook.getTextBookName()}"/><p/>
+                                                    <hr/>
+                                                </c:forEach>
+                                            </td>
+                                            <td>
+                                                <button type="submit" name="btn-form" class="site-btn"
+                                                        value="update${" "}${subject.getSubjectID()}">
+                                                    Cập Nhật
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    </c:when>
+    <c:when test="${subjectlecturer!=null}">
         <section class="profile__featured">
             <div class="container">
                 <div class="row">
@@ -85,7 +154,7 @@
                         <div class="featured__controls">
                             <ul>
 
-                                <li class="active" data-filter=".general">CẬP NHÂT GIẢNG VIÊN</li>
+                                <li class="active" data-filter=".general">CẬP NHẬT TEXTBOOK</li>
 
 
                             </ul>
@@ -96,102 +165,84 @@
                     <div class="col-lg-12">
 
                         <div class="profile__featured__general  col-lg-12 mix general">
-                            <form action="attend" method="post">
+                            <form action="updateTextBook" method="post">
                                 <div class="shoping__cart__table">
-                                    <table id="user_list">
+                                    <table id="user_list" class="align-content-lg-start">
                                         <thead>
                                         <tr>
-                                            <th>Mã Môn học</th>
-                                            <th>Tên Môn học</th>
-                                            <%--                            class="hidden_column"--%>
-                                            <th></th>
+
+                                            <th>ISBM</th>
+                                            <th>TextBook</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${listSubclass}" var="subclass">
+                                        <c:choose>
+                                            <c:when test="${subjectlecturer.getListTexbook().size()>0}">
+
+                                        <c:forEach items="${subjectlecturer.getListTexbook()}" var="textbook">
                                             <tr>
                                                 <td>
-                                                    <c:out value="${subclass.getSemester()}"/>
+                                                    <c:out value="${textbook.getISBN()}"/>
                                                 </td>
                                                 <td>
-                                                    <c:out value="${subclass.getClassId()}"/>
+                                                    <c:out value="${textbook.getTextBookName()}"/>
                                                 </td>
                                                 <td>
-                                                    <c:out value="${subclass.getSubJectName()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${subclass.getSubClassId()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${subclass.getLecture()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:forEach items="${subclass.getListlectuer()}" var="lecturer">
-                                                        <c:out value="${lecturer.getName()}"/><p/>
-                                                        <hr/>
-                                                    </c:forEach>
-                                                </td>
-                                                <td>
-                                                    <button type="button" name="btn_dk" onclick="accountEditForm(this.value)" class="site-btn"
-                                                            value="${subclass.getClassId()}${" "}${subclass.getSubClassId()}${" "}${subclass.getYear()}${" "}${subclass.getSemester()}"data-toggle="modal" data-target="#updateModal" onclick="removeinputformaddlectuer()">
-                                                        Cập Nhật
+                                                    <button type="submit" name="btn-form" class="site-btn btn-danger"
+                                                            value="remove${" "}${subjectlecturer.getSubjectID()}${" "}${textbook.getISBN()}">
+                                                        Xóa
                                                     </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
-
+                                            </c:when>
+                                        </c:choose>
                                         </tbody>
                                     </table>
                                 </div>
 
                             </form>
                         </div>
-
+                        <button type="button" name="btn-form" class="site-btn" data-toggle="modal"
+                                data-target="#addTextbookModal">
+                            Thêm TextBook
+                        </button>
                     </div>
 
                 </div>
+
             </div>
         </section>
-    </div><div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalTitle" aria-hidden="true">oi
+    </c:when>
+</c:choose>
+<div class="modal fade" id="addTextbookModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalTitle"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="checkoutModalTitle">Điền thông tin Giảng Viên</h5>
+                <h5 class="modal-title" id="editModalTitle">Điền thông tin TextBook</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="add_form" action="updateLecturerClass" method="post">
+                <form id="addtextbook" action="updateTextBook" method="post">
+                    <input style="display:none" name="oldedit" id="oldedit" value="">
                     <div class="form-group">
-                        <label for="lectuerIDmain" class="col-form-label">ID Giảng Viên Chinh: </label>
-                        <div class="row">
-                            <div class="col-lg-10">
-                                <input class="form-control" type="text" id="lectuerIDmain" name="lectuerID" minlength="6" required>
-                            </div>
-                        </div>
+                        <label for="addisbn" class="col-form-label">ISBN: </label>
+                        <input class="form-control" type="text" id="addisbn" name="addisbn" minlength="7" required>
                     </div>
-
-                    <div id="inserthere"></div>
-                    <input style="display:none" name="valueform"id="valueform"value="">
-                    <div class="form-group row" >
-                        <div class="offset-lg-10 col-lg-2">
-                            <button type="button" class="btn btn-link"onclick="inputformaddlectuer()" >+</button>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="removeinputformaddlectuer()">Hủy </button>
-                        <button form="add_form" type="submit" class="btn btn-primary" name="btn-form" value="add">Cập nhât</button>
-                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button form="addtextbook" type="submit" class="btn btn-primary" name="btn-form" value="add${" "}${subjectlecturer.getSubjectID()}">
+                    Submit
+                </button>
             </div>
         </div>
     </div>
-</section>
-
-
-<!-- Profile Section End -->
-
-<!-- Profile Function Section Begin -->
+</div>
 
 <c:import url="/footer.jsp"/>
 

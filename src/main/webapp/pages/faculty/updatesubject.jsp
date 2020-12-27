@@ -50,7 +50,7 @@
     <div class="col-lg-6">
         <c:choose>
             <c:when test="${status==null}">
-                <div></div>
+
             </c:when>
             <c:when test="${status.contains(\"thành công\")}">
                 <h5 class="alert alert-info" role="alert"><c:out value="${status}"/></h5>

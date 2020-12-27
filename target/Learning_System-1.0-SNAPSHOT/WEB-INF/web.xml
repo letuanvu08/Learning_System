@@ -147,6 +147,22 @@
         <servlet-name>listclasslecturer</servlet-name>
         <url-pattern>/lecturer/listclasslecturer</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>listClassOfSubjectLecturer</servlet-name>
+        <servlet-class>com.Learning.lecturer.listClassOfSubjectLecturerControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listClassOfSubjectLecturer</servlet-name>
+        <url-pattern>/lecturer/listClassOfSubjectLecturer</url-pattern>
+    </servlet-mapping>
+<servlet>
+        <servlet-name>RelateInformationFacultyControler</servlet-name>
+        <servlet-class>com.Learning.faculty.RelateInformationFacultyControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RelateInformationFacultyControler</servlet-name>
+        <url-pattern>/lecturer/RelateInformationFaculty</url-pattern>
+    </servlet-mapping>
 <servlet>
         <servlet-name>relatedinformation</servlet-name>
         <servlet-class>com.Learning.lecturer.relatedinformationControler</servlet-class>

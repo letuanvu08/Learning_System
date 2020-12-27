@@ -2,7 +2,6 @@ package com.Learning.Student;
 
 import com.Learning.common.dao.student.studentDao;
 import com.Learning.common.model.student.Student;
-import com.Learning.common.model.student.SubjectAttend;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Learning.common.dao.student.*;
 import com.Learning.common.model.student.*;
 @WebServlet(name = "ListSubclassAttended")
 public class ListSubclassAttendedControler extends HttpServlet {

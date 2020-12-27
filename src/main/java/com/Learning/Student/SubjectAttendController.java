@@ -20,7 +20,7 @@ public class SubjectAttendController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            List<SubjectAttend> list= new ArrayList<>();
+            List<Subject> list= new ArrayList<>();
             HttpSession session =request.getSession();
             String userID=(String) session.getAttribute("userID");
 

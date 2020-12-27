@@ -77,10 +77,17 @@
                     <div class="box">
                         <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
                         <h4 class="title"><a href="listclasslecturer">Danh sách lớp học phụ trách</a></h4>
-                        <p class="description">Xem danh sách lớp học của mỗi môn học do mình phụ trách ở một học kỳ </p>
+                        <p class="description">Xem danh sách lớp học do mình phụ trách ở một học kỳ </p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+                <div class="box">
+                    <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
+                    <h4 class="title"><a href="listClassOfSubjectLecturer">Danh sách lớp của môn học phụ trách</a></h4>
+                    <p class="description">Xem danh sách lớp học của mỗi môn học do mình phụ trách ở một học kỳ </p>
+                </div>
+            </div>
+                <div class="col-md-6 col-lg-5  wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
                         <h4 class="title"><a href="relatedinformation">Các Thống kê liên quan</a></h4>

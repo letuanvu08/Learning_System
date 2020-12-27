@@ -106,7 +106,7 @@
                 <div class="col-md-6 col-lg-5  wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
                     <div class="box">
                         <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
-                        <h4 class="title"><a href="NoCreditStudent">Thống kê các thông tin liên quan</a></h4>
+                        <h4 class="title"><a href="RelateInformationFaculty">Thống kê các thông tin liên quan</a></h4>
                         <p class="description">Xem tổng số lớp được mở ở một học kỳ, Xem tổng số sinh viên đăng ký ở một học kỳ,</p>
                     </div>
                 </div>

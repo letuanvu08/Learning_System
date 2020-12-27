@@ -1,24 +1,24 @@
-package com.Learning.common.model.student;
+package com.Learning.common.model.lecturer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectAttend {
+public class SubjectLecturer {
     private String  SubjectID;
     private String SubjectName;
     private int NoCreadits;
-    private List<String > listTexbook;
+    private List<TextBook > listTexbook;
 
-    public SubjectAttend(){listTexbook=new ArrayList<>();
+    public SubjectLecturer(){listTexbook=new ArrayList<>();
     }
-    public void addTexBook(String Book){
+    public void addTexBook(TextBook Book){
         listTexbook.add(Book);
     }
-    public List<String> getListTexbook() {
+    public List<TextBook> getListTexbook() {
         return listTexbook;
     }
 
-    public void setListTexbook(List<String> listTexbook) {
+    public void setListTexbook(List<TextBook> listTexbook) {
         this.listTexbook = listTexbook;
     }
 

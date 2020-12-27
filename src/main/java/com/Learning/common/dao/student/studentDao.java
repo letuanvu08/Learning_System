@@ -2,12 +2,9 @@ package com.Learning.common.dao.student;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
-import java.util.Map;
 
 import com.Learning.common.model.lecturer.Lecturer;
 import com.Learning.common.model.student.*;
-
-import javax.lang.model.type.NullType;
 
 public class studentDao {
     final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching1";
@@ -121,14 +118,14 @@ public class studentDao {
         }
        return student;
     }
-    public static int checkContain(List<SubjectAttend> list, String CID){
-        for (SubjectAttend subjectAttend:list) {
-            if(subjectAttend.getSubjectID().equals(CID))return list.indexOf(subjectAttend);
+    public static int checkContain(List<Subject> list, String CID){
+        for (Subject subject :list) {
+            if(subject.getSubjectID().equals(CID))return list.indexOf(subject);
         }
         return -1;
     }
-    public static List<SubjectAttend> getListSubjectAttend(String studentID,int semester){
-        List<SubjectAttend> list = new ArrayList<>();
+    public static List<Subject> getListSubjectAttend(String studentID, int semester){
+        List<Subject> list = new ArrayList<>();
 
         Connection conn=getConnection();
 
@@ -145,12 +142,12 @@ public class studentDao {
                 if(index!=-1)
                     list.get(index).addTexBook(TName);
                 else {
-                SubjectAttend subjectAttend=new SubjectAttend();
-                subjectAttend.setSubjectID(res.getString("CID"));
-                subjectAttend.setSubjectName(res.getString("CName"));
-                subjectAttend.setNoCreadits(res.getInt("NoCredits"));
-                subjectAttend.addTexBook(TName);
-                list.add(subjectAttend);
+                Subject subject =new Subject();
+                subject.setSubjectID(res.getString("CID"));
+                subject.setSubjectName(res.getString("CName"));
+                subject.setNoCreadits(res.getInt("NoCredits"));
+                subject.addTexBook(TName);
+                list.add(subject);
                 }
             }
         } catch (SQLException throwables) {
