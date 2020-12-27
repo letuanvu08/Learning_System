@@ -95,6 +95,9 @@
     <servlet-mapping>
         <servlet-name>changepassword</servlet-name>
         <url-pattern>/student/changepassword</url-pattern>
+        <url-pattern>/lecturer/changepassword</url-pattern>
+        <url-pattern>/faculty/changepassword</url-pattern>
+        <url-pattern>/aaoemployee/changepassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>changepassword</servlet-name>

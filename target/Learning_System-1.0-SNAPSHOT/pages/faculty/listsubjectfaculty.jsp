@@ -60,7 +60,10 @@
                 <div class="col-lg-10">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table
+                            <fieldset>
+                                <legend class="text-success"><b>Danh sách các môn học và giáo trinh:</b></legend>
+
+                                <table
                                     class="table table-striped"
                                     id="dataTable"
                                     width="100%"
@@ -93,6 +96,7 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            </fieldset>
                         </div>
                     </div>
                 </div>

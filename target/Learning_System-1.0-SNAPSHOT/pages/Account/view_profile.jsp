@@ -161,6 +161,7 @@
                     </li>
 
                 </ul>
+<<<<<<< HEAD
             </div> --%>
             <!-- End General info -->
             <!-- View paid orders -->
@@ -232,61 +233,10 @@
 <%--                                                        <c:out value="Tình trạng hoàn thành : đã xảy ra lỗi" />--%>
 <%--                                                    </c:otherwise>--%>
 <%--                                                </c:choose>--%>
+=======
+            </div>
+>>>>>>> f45d5e05f6c62e95dc5df354826044e157f0588e
 
-<%--											</span>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                            </table>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </c:forEach>--%>
-<%--            </div>--%>
-            <!-- End View paid orders -->
-            <!-- Recharge -->
-<%--            <div class="profile__featured__general col-lg-6 mix recharge">--%>
-<%--                <div class="checkout__form">--%>
-<%--                    <h4>Nhập thông tin thẻ nạp</h4>--%>
-<%--                    <form action="${pageContext.request.contextPath }/customer/rechargeController">--%>
-<%--                        <div class="row">--%>
-<%--                            <div class="col-lg-12">--%>
-<%--                                <div class="checkout__input">--%>
-
-<%--                                    <select class="form-control" name="cardType" id="cardType" required>--%>
-<%--                                        <option value="" selected disabled>--Chọn loại thẻ--</option>--%>
-<%--                                        <option value="SCFS">Thẻ nạp Smart Food Court</option>--%>
-<%--                                    </select>--%>
-
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="row">--%>
-<%--                            <div class="col-lg-12">--%>
-<%--                                <div class="checkout__input">--%>
-<%--                                    <p>Số seri<span>*</span></p>--%>
-<%--                                    <input type="text" required name="serialNumber" id="serialNumber">--%>
-<%--                                    <small id="serialHelpInline1" class="form-text text-muted">--%>
-<%--                                        Cào nhẹ phần tráng bạc để biết mã số seri. Số seri gồm 20 ký tự gồm số và chữ viết hoa.--%>
-<%--                                    </small>--%>
-<%--                                    <small id="serialHelpInline2" class="form-text text-muted">--%>
-<%--                                        Mua thẻ nạp Smart Food Court tại các điểm giao dịch và căn tin của trường.--%>
-<%--                                    </small>--%>
-<%--                                    <small id="serialHelpInline3" class="form-text text-muted">--%>
-<%--                                        Không mua thẻ có dấu hiệu bị cào xướt hay rách nát.--%>
-<%--                                    </small>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="row">--%>
-<%--                            <div class="col-lg-12">--%>
-<%--                                <div class="rechare__submit">--%>
-<%--                                    <button type="submit" class="site-btn">Nạp tiền</button>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </form>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-            <!-- End Recharge -->
         </div>
     </div>
 </section>

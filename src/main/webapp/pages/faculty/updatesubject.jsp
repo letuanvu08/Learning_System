@@ -79,92 +79,102 @@
 <div class="container-fluid ">
     <section class="section bg-light">
         <div class="row justify-content-center profile__options__filter">
-            <div class="col-lg-10">
-        <form action="updateSubject" method="post">
-            <table id="user_list" class="table table-striped"
+            <div class="col-lg-10" style="padding: 30px">
+                <form action="updateSubject" method="post">
+                    <fieldset>
+                        <legend class="text-success"><b>Danh sách các môn hoc đang mở:</b></legend>
 
-                <thead>
-                <tr class="table-primary">
-                    <th>Mã Môn học</th>
-                    <th>Tên Môn học</th>
-                    <th>Số tín chỉ</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${listsubject}" var="subject">
-                    <c:choose>
-                        <c:when test="${subject.getStatus()==0}">
-                            <tr>
-                                <td>
-                                    <c:out value="${subject.getSubjectID()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${subject.getSubjectName()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${subject.getNocredit()}"/>
-                                </td>
-                                <td>
-                                    <input style="display:none" name="valueopen"
-                                           value="">
-                                    <button type="submit" name="btn-form" class="site-btn"
-                                            value="open ${subject.getSubjectID()}">
-                                        Mở
-                                    </button>
-                                </td>
+                        <table id="user_list" class="table table-striped">
+
+                            <thead>
+                            <tr class="table-primary">
+                                <th>Mã Môn học</th>
+                                <th>Tên Môn học</th>
+                                <th>Số tín chỉ</th>
+                                <th></th>
                             </tr>
-                        </c:when>
-                    </c:choose>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${listsubject}" var="subject">
+                                <c:choose>
+                                    <c:when test="${subject.getStatus()==0}">
+                                        <tr>
+                                            <td>
+                                                <c:out value="${subject.getSubjectID()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subject.getSubjectName()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${subject.getNocredit()}"/>
+                                            </td>
+                                            <td>
+                                                <input style="display:none" name="valueopen"
+                                                       value="">
+                                                <button type="submit" name="btn-form" class="site-btn"
+                                                        value="open ${subject.getSubjectID()}">
+                                                    Mở
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </c:when>
+                                </c:choose>
 
-                </c:forEach>
+                            </c:forEach>
 
-                </tbody>
-            </table>
-        </form>
+                            </tbody>
+                        </table>
+                    </fieldset>
+
+                </form>
             </div>
             <div class="clearfix"></div>
-            <div class="col-lg-10">
-        <form action="updateSubject" method="post">
-            <table id="user_list" class="table table-striped">
-                <thead>
-                <tr class="table-primary">
-                    <th>Mã Môn học</th>
-                    <th>Tên Môn học</th>
-                    <th>Số tín chỉ</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${listsubject}" var="subject">
-                    <c:choose>
-                        <c:when test="${subject.getStatus()==1}">
-                            <tr>
-                                <td>
-                                    <c:out value="${subject.getSubjectID()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${subject.getSubjectName()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${subject.getNocredit()}"/>
-                                </td>
-                                <td>
-                                    <button type="submit" name="btn-form" class="site-btn btn-danger"
-                                            value="close ${subject.getSubjectID()}">
-                                        Đóng
-                                    </button>
-                                </td>
-                            </tr>
-                        </c:when>
-                    </c:choose>
-                </c:forEach>
-                </tbody>
-            </table>
-        </form>
+            <div class="col-lg-10" style="padding: 30px">
+                <form action="updateSubject" method="post">
+                    <fieldset>
+                        <legend class="text-success"><b>Danh sách các môn hoc đang đóng:</b></legend>
+
+                        <table id="user_list" class="table table-striped">
+                        <thead>
+                        <tr class="table-primary">
+                            <th>Mã Môn học</th>
+                            <th>Tên Môn học</th>
+                            <th>Số tín chỉ</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${listsubject}" var="subject">
+                            <c:choose>
+                                <c:when test="${subject.getStatus()==1}">
+                                    <tr>
+                                        <td>
+                                            <c:out value="${subject.getSubjectID()}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${subject.getSubjectName()}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${subject.getNocredit()}"/>
+                                        </td>
+                                        <td>
+                                            <button type="submit" name="btn-form" class="site-btn btn-danger"
+                                                    value="close ${subject.getSubjectID()}">
+                                                Đóng
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                    </fieldset>
+
+                </form>
             </div>
         </div>
-    </div>
+</div>
 </section>
 
 
@@ -172,7 +182,7 @@
 
 
 <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalTitle"
-     aria-hidden="true">oi
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

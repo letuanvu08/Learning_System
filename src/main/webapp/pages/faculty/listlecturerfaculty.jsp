@@ -39,27 +39,17 @@
     <c:param name="title" value="DANH SÁCH GIẢNG VIÊN"/>
 </c:import>
 
-
-<!-- Breadcrumb Section Begin -->
-
-<!-- Breadcrumb Section End -->
-<%--<div class="row">--%>
-<%--    <div class="d-flex justify-content-center">--%>
-<%--        <h3 class="header__logo">TEXT BOOK DÙNG CHO MÔN HỌC ĐÃ ĐĂNG KÝ.</h3>--%>
-<%--    </div>--%>
-<%--</div>--%>
-<!-- Profile Section Begin -->
 <div class="container-fluid ">
     <section class="section bg-light">
 
         <div class="card mb-4">
-            <!--<div class="card-header">
-              <i class="fas fa-table mr-1"></i>
-              DataTable Example
-            </div>-->
+
             <div class="card-body">
                 <div class="table-responsive">
-                    <table
+                    <fieldset>
+                        <legend class="text-success"><b>Danh sách giảng viên:</b></legend>
+
+                        <table
                             class="table table-striped"
                             id="dataTable"
                             width="100%"
@@ -89,6 +79,7 @@
                         </c:forEach>
                         </tbody>
                     </table>
+                    </fieldset>
                 </div>
             </div>
         </div>

@@ -494,7 +494,7 @@ BEGIN
 
 END\\
 DELIMITER ;
-
+call xem_top_mon_hoc_nhieu_gv_phu_trach('191')
 DROP PROCEDURE IF EXISTS xem_tb_sv_dk_mon_hoc;
 -- Xem số sinh viên đăng ký trung bình trong 3 năm gần nhất cho một môn học ở một học kỳ.
 DELIMITER \\
@@ -661,13 +661,15 @@ DROP PROCEDURE IF EXISTS xem_so_lop_pt_gan_day;
 DELIMITER \\
 CREATE PROCEDURE xem_so_lop_pt_gan_day(LID_IN CHAR(6))
 BEGIN
-    SELECT CSemester AS CUR_SEMESTER, COUNT(SID) AS CLASS_NUM
+    SELECT CYEAR,CSemester AS CUR_SEMESTER, COUNT(SID) AS CLASS_NUM
     FROM SUBCLASS_INFO
     WHERE CYear BETWEEN (YEAR(CURDATE()) - 3) AND (YEAR(CURDATE()))
       AND SCLID = LID_IN
-    GROUP BY CSemester;
+    GROUP BY CSemester,CYEAR
+    limit 3;
 END \\
 DELIMITER ;
+
 
 -- Xem 5 lớp học có số sinh viên cao nhất mà giảng viên từng phụ trách.
 DROP PROCEDURE IF EXISTS xem_top_5_lop_sv_cao_nhat_pt;
@@ -687,7 +689,6 @@ BEGIN
     LIMIT 5;
 END \\
 DELIMITER ;
-
 -- Xem 5 học kỳ có số lớp nhiều nhất mà giảng viên từng phụ trách.
 DROP PROCEDURE IF EXISTS xem_top_5_hk_lop_nhieu_nhat_pt;
 DELIMITER \\
@@ -696,12 +697,11 @@ BEGIN
     SELECT CYEAR, CSEMESTER, COUNT(*) AS CLASS_NUMBER
     FROM SubClass
     WHERE (CYEAR, CSEMESTER, SCID, SID) IN (SELECT WYEAR, WSEMESTER, WCID, WSID FROM `Week` A WHERE A.WLID = LID_IN)
-    GROUP BY CSEMESTER
-    ORDER BY COUNT(*)
+    GROUP BY CSEMESTER,CYEAR
+    ORDER BY COUNT(*) DESC
     LIMIT 5;
 END \\
 DELIMITER ;
-
 
 -- Đăng ký môn học ở học kỳ được đăng ký.
 DROP PROCEDURE IF EXISTS dang_ky;
@@ -1145,7 +1145,6 @@ BEGIN
 END\\
 DELIMITER ;
 use Learning_Teaching1;
-
 DROP PROCEDURE IF EXISTS GET_STUDENT;
 DELIMITER \\
 CREATE PROCEDURE GET_STUDENT(memberID char(9)

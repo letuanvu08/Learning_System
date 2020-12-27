@@ -22,7 +22,6 @@ public class ChangePassword extends HttpServlet {
 		if (user == null || !user.getpassword().equals(password)) return false;
 		return true;
 	}
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		RequestDispatcher req=request.getRequestDispatcher("/pages/changepassword.jsp");
@@ -34,11 +33,12 @@ public class ChangePassword extends HttpServlet {
 		String userID = (String) session.getAttribute("userID");
 		User user = UserDao.getUserFromUserID(userID);
 		String req = request.getParameter("btn");
+		System.out.println(user.getpassword());
+		System.out.println(user.getUsername());
 		switch(req) {
 		case "xacnhan":
 			String oldpassword = request.getParameter("oldpassword");
 			String newpassword = request.getParameter("newpassword");
-			
 			if (!verify(user.getUsername(), oldpassword, user)) {
 				request.setAttribute("error", 1);
 				RequestDispatcher rd=request.getRequestDispatcher("/pages/changepassword.jsp");
@@ -51,9 +51,12 @@ public class ChangePassword extends HttpServlet {
 				rd.forward(request, response);
 				return;
 			}
+
 			UserDao.changePasswordFromUsername(user.getAccountName(),newpassword);	
+
 			RequestDispatcher rd = request.getRequestDispatcher("/"+user.getUserType().toString()+"/main");
 			rd.forward(request, response);
+
 			return;
 		case "huybo":
 

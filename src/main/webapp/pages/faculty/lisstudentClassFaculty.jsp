@@ -59,7 +59,10 @@
             </div>-->
             <div class="card-body">
                 <div class="table-responsive">
-                    <table
+                    <fieldset>
+                        <legend class="text-success"><b>Danh sách sinh viên:</b></legend>
+
+                        <table
                             class="table table-striped"
                             id="dataTable"
                             width="100%"
@@ -90,6 +93,7 @@
                         </c:forEach>
                         </tbody>
                     </table>
+                    </fieldset>
                 </div>
             </div>
         </div>

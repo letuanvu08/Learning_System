@@ -3,10 +3,12 @@ package com.Learning.common.dao.lecturer;
 import com.Learning.common.model.lecturer.Lecturer;
 import com.Learning.common.model.lecturer.SubjectLecturer;
 import com.Learning.common.model.lecturer.TextBook;
+import com.Learning.common.model.lecturer.TopClassLecturer;
 import com.Learning.common.model.student.Subject;
 import com.Learning.common.model.student.subclass;
 
 import java.sql.*;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,9 @@ public class lecturerDao {
     final private static String PROCEDURE_xem_ds_lop_mon_hoc_pt = "call xem_ds_lop_mon_hoc_pt(?,?)";
     final private static String PROCEDURE_xem_ds_lop_pt = "call xem_ds_lop_pt(?,?)";
     final private static String PROCEDURE_xem_ds_sv_pt = "call xem_ds_sv_pt(?,?)";
+    final private static String PROCEDURE_xem_so_lop_pt_gan_day = "call xem_so_lop_pt_gan_day(?)";
+    final private static String PROCEDURE_xem_top_5_lop_sv_cao_nhat_pt= "call xem_top_5_lop_sv_cao_nhat_pt(?)";
+    final private static String PROCEDURE_xem_xem_top_5_hk_lop_nhieu_nhat_pt= "call xem_top_5_hk_lop_nhieu_nhat_pt(?)";
 
     private static Connection getConnection() {
         Connection conn = null;
@@ -116,6 +121,48 @@ public class lecturerDao {
         return list;
     }
 
+    public static List<List<Integer>> getTopFiveSemesterOfLecturer(String lecturerID) {
+        List<List<Integer>> list=new ArrayList<>();
+        Connection conn = getConnection();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PROCEDURE_xem_xem_top_5_hk_lop_nhieu_nhat_pt);
+            preparedStatement.setString(1, lecturerID);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                List<Integer> element=new ArrayList<>();
+                element.add(res.getInt("CYEAR"));
+                element.add(res.getInt("CSEMESTER"));
+                element.add(res.getInt("CLASS_NUMBER"));
+                list.add(element);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    public static List<List<Integer>> getThreeSemesternearly(String lecturerID) {
+       List<List<Integer>> list=new ArrayList<>();
+        Connection conn = getConnection();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PROCEDURE_xem_so_lop_pt_gan_day);
+            preparedStatement.setString(1, lecturerID);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                List<Integer> element=new ArrayList<>();
+                element.add(res.getInt("CYEAR"));
+                element.add(res.getInt("CUR_SEMESTER"));
+                element.add(res.getInt("CLASS_NUM"));
+                list.add(element);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
     public static SubjectLecturer getSubjectChargeLecturer(String lecturerID, String subjectID) {
         SubjectLecturer subjectLecturer = new SubjectLecturer();
 
@@ -155,6 +202,42 @@ public class lecturerDao {
         }
         return subjectLecturer;
     }
+
+    public static List<TopClassLecturer> getTop5SubclassOfLectuer(String lectuerID) {
+        List<TopClassLecturer> list = new ArrayList<>();
+
+        Connection conn = getConnection();
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(PROCEDURE_xem_top_5_lop_sv_cao_nhat_pt);
+            preparedStatement.setString(1, lectuerID);
+            //This line is for debug purpose only
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                TopClassLecturer subclass = new TopClassLecturer();
+                subclass.setSubJectName(res.getString("CNAME"));
+                subclass.setClassId(res.getString("CID"));
+                subclass.setSubClassId(res.getString("SID"));
+                subclass.setSemester(res.getInt("CSEMESTER"));
+                subclass.setYear(res.getInt("CYEAR"));
+                subclass.setNumberStudent(res.getInt("STUDENT_NUMBER"));
+                list.add(subclass);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return list;
+    }
+
+
+
+
+
+
+
+
 
     public static List<subclass> getListSubclassOfLectuer(String semester, String lectuerID) {
         List<subclass> list = new ArrayList<>();
