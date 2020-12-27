@@ -51,9 +51,11 @@ public class Attend extends HttpServlet {
         String userID=(String)session.getAttribute("userID");
         Student student=studentDao.getProfile(userID);
         List<subclass> list=studentDao.getListSubclassInSemester(student.getSemester());
+
         request.setAttribute("listSubclass",list);
         List<subclass> listClassAttend;
         listClassAttend=studentDao.getListSubclassAttended(student.getStudentID(),student.getSemester());
+        System.out.println(listClassAttend.size());
         request.setAttribute("listattended",listClassAttend);
         RequestDispatcher req=request.getRequestDispatcher("/pages/student/attend.jsp");
         req.forward(request,response);

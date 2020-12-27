@@ -202,7 +202,7 @@ public class studentDao {
             //This line is for debug purpose only
             ResultSet res=preparedStatement.executeQuery();
             while (res.next()){
-                while (res.next()) {
+
                     subclass subclass = new subclass();
                     subclass.setSubJectName(res.getString("CNAME"));
                     subclass.setClassId(res.getString("CID"));
@@ -226,7 +226,7 @@ public class studentDao {
                     } else {
                         list.get(check).addlecturer(Wlecturer);
                     }
-                }
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

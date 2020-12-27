@@ -97,19 +97,17 @@
 
                         <div class="profile__featured__general  col-lg-12 mix general">
                             <form action="attend" method="post">
-                                <div class="shoping__cart__table">
-                                    <table id="user_list">
+                                    <table class="table table-striped" id="user_list">
                                         <thead>
-                                        <tr>
+                                        <tr class="table-primary">
 
-                                            <th>Mã Môn học</th>
-                                            <th>Mã lớp học</th>
-                                            <th>Tên Môn học</th>
-                                            <th>Số tín chỉ</th>
+                                            <th scope="col">Mã Môn học</th>
+                                            <th scope="col">Mã lớp học</th>
+                                            <th scope="col">Tên Môn học</th>
+                                            <th scope="col">Số tín chỉ</th>
 
                                             <th></th>
                                             <%--                            class="hidden_column"--%>
-                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -141,7 +139,6 @@
 
                                         </tbody>
                                     </table>
-                                </div>
 
                             </form>
                         </div>
@@ -150,10 +147,10 @@
 
                     <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
                         <form action="attend" method="post">
-                            <div class="shoping__cart__table">
-                                <table id="user_list">
+                            <div class="card-body">
+                                <table class="table table-striped" id="user_list">
                                     <thead>
-                                    <tr>
+                                    <tr class="table-primary">
                                         <th>Mã Môn học</th>
                                         <th>Mã lớp hoc</th>
                                         <th>Tên Môn học</th>
@@ -161,7 +158,6 @@
 
                                         <th></th>
                                         <%--                            class="hidden_column"--%>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -193,8 +189,8 @@
 
                                     </tbody>
                                 </table>
-                            </div>
 
+                            </div>
                         </form>
                     </div>
                 </div>

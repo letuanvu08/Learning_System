@@ -24,7 +24,6 @@ public class listclasslecturerControler extends HttpServlet {
         String values = request.getParameter("btn-form");
         String[] listvalues=values.split(" ");
         List<Student> liststudent= facultyDao.getListStudentFaculty(listvalues[1],listvalues[2],listvalues[3],listvalues[4]);
-        System.out.println(values);
         request.setAttribute("liststudent",liststudent);
         RequestDispatcher req = request.getRequestDispatcher("/pages/lecturer/liststudentlecturer.jsp");
         req.forward(request, response);

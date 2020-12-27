@@ -58,7 +58,7 @@
               DataTable Example
             </div>-->
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table table-striped">
                     <table
                             class="table table-bordered"
                             id="dataTable"
@@ -66,7 +66,7 @@
                             cellspacing="0"
                     >
                         <thead>
-                        <tr>
+                        <tr class="table-primary">
                             <th>STT</th>
                             <th>MÃ SỐ SINH VIÊN</th>
                             <th>HỌ VÀ TÊN</th>

@@ -42,46 +42,48 @@
 <div class="container-fluid ">
     <section class="section bg-light">
         <form action="listclasslecturer" method="post">
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table
-                            class="table table-bordered"
-                            id="dataTable"
-                            width="100%"
-                            cellspacing="0"
-                    >
-                        <thead>
-                        <tr>
-                            <th>Mã môn học </th>
-                            <th>Tên Môn học</th>
-                            <th>Mã lớp học</th>
-                            <th>Giảng viên chính</th>
-                            <th></th>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="table table-striped">
+                        <table
+                                class="table table-bordered"
+                                id="dataTable"
+                                width="100%"
+                                cellspacing="0"
+                        >
+                            <thead>
+                            <tr class="table-primary">
+                                <th>Mã môn học</th>
+                                <th>Tên Môn học</th>
+                                <th>Mã lớp học</th>
+                                <th>Giảng viên chính</th>
+                                <th></th>
 
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <c:forEach items="${listsubclass}" var="sublass">
-
-                            <tr>
-                                <td><c:out value="${sublass.getClassId()}"/></td>
-                                <td><c:out value="${sublass.getSubJectName()}"/></td>
-                                <td><c:out value="${sublass.getSubClassId()}"/></td>
-                                <td><c:out value="${sublass.getLecture()}"/></td>
-                                <td>
-                                <button type="submit" name="btn-form"
-                                        class="site-btn" value="detail${" "}${sublass.getYear()}${" "}${sublass.getSemester()}${" "}${sublass.getClassId()}${" "}${sublass.getSubClassId()}">DS sinh viên
-                                </button>
-                                </td>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody>
+                            <c:forEach items="${listsubclass}" var="sublass">
+
+                                <tr>
+                                    <td><c:out value="${sublass.getClassId()}"/></td>
+                                    <td><c:out value="${sublass.getSubJectName()}"/></td>
+                                    <td><c:out value="${sublass.getSubClassId()}"/></td>
+                                    <td><c:out value="${sublass.getLecture()}"/></td>
+                                    <td>
+                                        <button type="submit" name="btn-form"
+                                                class="site-btn"
+                                                value="detail${" "}${sublass.getYear()}${" "}${sublass.getSemester()}${" "}${sublass.getClassId()}${" "}${sublass.getSubClassId()}">
+                                            DS sinh viên
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
         </form>
     </section>
 

@@ -110,17 +110,17 @@
                     <p id="account_add_prompt" style="display:none">Tạo lớp học mới</p>
                     <p id="account_edit_prompt" style="display:none">Chỉnh sửa lớp học</p>
                     <form action="updateclassController" method="post">
-                        <div class="shoping__cart__table">
-                            <table id="user_list">
+
+                            <table id="user_list" class="table table-striped">
                                 <thead>
-                                <tr>
+                                <tr class="table-primary">
                                     <th></th>
                                     <th>Năm học</th>
                                     <th>Học kỳ</th>
                                     <th>Mã môn học</th>
                                     <th>Mã lớp học</th>
                                     <th>Tên môn học</th>
-
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -165,7 +165,6 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                        </div>
 
                         <div id="account_main_buttons" class="account__management__btns">
                             <button type="button" id="account_btn_remove" onclick="accountConfirmationForm()"

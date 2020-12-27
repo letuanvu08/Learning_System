@@ -79,10 +79,9 @@
                         <div class="col-lg-12  text-center">
                             <div class="card mb-2 justify-content-center">
                                 <form action="updateclassController" method="post">
-                                    <div class="shoping__cart__table">
-                                        <table id="user_list">
+                                        <table id="user_list" class="table table-striped">
                                             <thead>
-                                            <tr>
+                                            <tr class="table-primary">
                                                 <th>Mã số sinh viên</th>
                                                 <th>Học và tên</th>
                                                 <th>Email</th>
@@ -113,7 +112,7 @@
                                             </c:forEach>
                                             </tbody>
                                         </table>
-                                    </div>
+
                                 </form>
                             </div>
                         </div>
@@ -126,10 +125,10 @@
                         <div class="card mb-2 justify-content-center">
 
                             <form action="updateclassController" method="post">
-                                <div class="shoping__cart__table">
-                                    <table>
+
+                                    <table class="table table-striped">
                                         <thead>
-                                        <tr>
+                                        <tr class="table-primary">
                                             <th>Mã số Nhân viên</th>
                                             <th>Họ và tên</th>
                                             <th>Email</th>
@@ -158,7 +157,7 @@
                                         </c:forEach>
                                         </tbody>
                                     </table>
-                                </div>
+
                             </form>
                         </div>
                     </div>

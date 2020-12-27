@@ -60,13 +60,13 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table
-                            class="table table-bordered"
+                            class="table table-striped"
                             id="dataTable"
                             width="100%"
                             cellspacing="0"
                     >
                         <thead>
-                        <tr>
+                        <tr class="table-primary">
                             <th>STT</th>
                             <th>MÃ SỐ SINH VIÊN</th>
                             <th>HỌ VÀ TÊN</th>

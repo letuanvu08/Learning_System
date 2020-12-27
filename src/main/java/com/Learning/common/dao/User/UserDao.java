@@ -109,9 +109,6 @@ public class UserDao {
 				String username=res.getString("Fname")+" "+res.getString("Lname");
 				String userType = res.getString("TYPEUSER");
 				String email = res.getString("Email");
-				System.out.println(userType);
-				System.out.println(username);
-				System.out.println(email);
 
 				for (UserType iterator: UserType.values()) {
 					//This line is for debug purpose only

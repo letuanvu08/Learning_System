@@ -125,11 +125,10 @@
                 <div class="col-lg-12">
                     <p id="account_prompt" style="display:none">Danh sách lớp học của sinh viên</p>
                     <form action="updateclassController" method="post">
-                        <div class="shoping__cart__table">
 
-                            <table id="user_list">
+                            <table id="user_list" class="table table-striped">
                                 <thead>
-                                <tr>
+                                <tr class="table-primary">
                                     <th></th>
                                     <th>Năm học</th>
                                     <th>Học kỳ</th>
@@ -171,7 +170,6 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                        </div>
                     </form>
                 </div>
                     </c:otherwise>
@@ -215,11 +213,10 @@
                 <div class="col-lg-12">
                     <p id="account_prompt" style="display:none">Danh sách lớp học của Giảng viên</p>
                     <form action="updateclassController" method="post">
-                        <div class="shoping__cart__table">
 
-                            <table id="user_list">
+                            <table id="user_list"  class="table table-striped">
                                 <thead>
-                                <tr>
+                                <tr class="table-primary">
 
                                     <th>Mã môn học</th>
                                     <th>Mã lớp học</th>
@@ -243,7 +240,7 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                        </div>
+
                     </form>
                 </div>
                     </c:otherwise>

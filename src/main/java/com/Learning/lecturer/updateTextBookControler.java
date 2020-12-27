@@ -23,7 +23,7 @@ public class updateTextBookControler extends HttpServlet {
         String userID = (String) session.getAttribute("userID");
         Employee employee = UserDao.getEmployeeByID(userID);
         String values = request.getParameter("btn-form");
-        System.out.println(values);
+
         String[] listValues = values.split(" ");
         RequestDispatcher req;
         String dispatcher="/pages/lecturer/updateTextBook.jsp";

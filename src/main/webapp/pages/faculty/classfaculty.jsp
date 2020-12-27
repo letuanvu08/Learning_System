@@ -124,11 +124,11 @@
                     <c:otherwise>
                         <div class="col-lg-12">
                             <form action="classFacultyControler" method="post">
-                                <div class="shoping__cart__table">
 
-                                    <table id="user_list">
+
+                                    <table id="user_list" class="table table-striped">
                                         <thead>
-                                        <tr>
+                                        <tr class="table-primary">
                                             <th>Học kỳ</th>
                                             <th>Mã Môn học</th>
                                             <th>Tên Môn học</th>
@@ -180,11 +180,10 @@
             <div class="profile__featured__general  col-lg-12 mix general">
                         <div class="col-lg-12">
                             <form action="classFacultyControler" method="post">
-                                <div class="shoping__cart__table">
 
-                                    <table id="user_list">
+                                    <table id="user_list" class="table table-striped">
                                         <thead>
-                                        <tr>
+                                        <tr class="table-primary">
                                             <th>Học kỳ</th>
                                             <th>Mã Môn học</th>
                                             <th>Tên Môn học</th>
@@ -228,7 +227,6 @@
                                         </c:forEach>
                                         </tbody>
                                     </table>
-                                </div>
                             </form>
                         </div>
             </div>

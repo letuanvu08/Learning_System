@@ -97,84 +97,10 @@
                         <p id="account_prompt" style="display:none">Remove these subject?</p>
                         <div class="profile__featured__general  col-lg-12 mix general">
                             <form action="updateSubject" method="post">
-                                <div class="shoping__cart__table">
-                                    <table id="user_list">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Mã Môn học</th>
-                                            <th>Tên Môn học</th>
-                                            <th>Số tín chỉ</th>
-                                            <%--                            class="hidden_column"--%>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach items="${listsubject}" var="subject">
-                                            <c:choose>
-                                                <c:when test="${subject.getStatus()==0}">
-                                                    <tr>
-                                                        <td>
-                                                            <input type="checkbox" name="userlist"
-                                                                   value="${entry.getClassId()}${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getSubClassId()}">
-                                                        </td>
-                                                        <td>
-                                                            <c:out value="${subject.getSubjectID()}"/>
-                                                        </td>
-                                                        <td>
-                                                            <c:out value="${subject.getSubjectName()}"/>
-                                                        </td>
-                                                        <td>
-                                                            <c:out value="${subject.getNocredit()}"/>
-                                                        </td>
-                                                        <td>
-                                                            <input style="display:none" name="valueopen"
-                                                                   value="">
-                                                            <button type="submit" name="btn-form" class="site-btn"
-                                                                    value="open ${subject.getSubjectID()}">
-                                                                Mở
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </c:when>
-                                            </c:choose>
-
-                                        </c:forEach>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div id="account_main_buttons" class="account__management__btns">
-                                    <button type="button" onclick="accountConfirmationForm()"
-                                            class="btn btn-danger">Xóa
-                                    </button>
-                                </div>
-
-                                <table id="account_remove_buttons" style="display:none">
-                                    <tr>
-                                        <td>
-                                            <button type="submit" class="site-btn" name="btn-form" id="vendor_btn_yes"
-                                                    value="remove" style="color:black">Yes
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="site-btn" name="btn" id="vendor_btn_no"
-                                                    style="color:black" onclick="accountConfirmationForm()">No
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-
-                            </form>
-                        </div>
-
-                    </div>
-                    <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
-                        <form action="updateSubject" method="post">
-                            <div class="shoping__cart__table">
-                                <table id="user_list">
+                                <table id="user_list" class="table table-striped">
                                     <thead>
-                                    <tr>
+                                    <tr class="table-primary">
+                                        <th></th>
                                         <th>Mã Môn học</th>
                                         <th>Tên Môn học</th>
                                         <th>Số tín chỉ</th>
@@ -184,45 +110,114 @@
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${listsubject}" var="subject">
-                                    <c:choose>
-                                    <c:when test="${subject.getStatus()==1}">
-                                    <tr>
-
-                                        <td>
-                                            <c:out value="${subject.getSubjectID()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${subject.getSubjectName()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${subject.getNocredit()}"/>
-                                        </td>
-                                        <td>
-                                            <input style="display:none" name="valueclose"
-                                                   value="">
-                                            <button type="submit" name="btn-form" class="btn btn-danger"
-                                                    value="close ${subject.getSubjectID()}">
-                                                Đóng
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    </c:when>
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${subject.getStatus()==0}">
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" name="userlist"
+                                                               value="${entry.getClassId()}${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getSubClassId()}">
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subject.getSubjectID()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subject.getSubjectName()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subject.getNocredit()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <input style="display:none" name="valueopen"
+                                                               value="">
+                                                        <button type="submit" name="btn-form" class="site-btn"
+                                                                value="open ${subject.getSubjectID()}">
+                                                            Mở
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:when>
+                                        </c:choose>
 
                                     </c:forEach>
 
-
-                            </div>
-
-
-                        </form>
-
-
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
                     </div>
                 </div>
+
+                <div id="account_main_buttons" class="account__management__btns">
+                    <button type="button" onclick="accountConfirmationForm()"
+                            class="btn btn-danger">Xóa
+                    </button>
+                </div>
+
+                <table id="account_remove_buttons" style="display:none">
+                    <tr>
+                        <td>
+                            <button type="submit" class="site-btn" name="btn-form" id="vendor_btn_yes"
+                                    value="remove" style="color:black">Yes
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="site-btn" name="btn" id="vendor_btn_no"
+                                    style="color:black" onclick="accountConfirmationForm()">No
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+                </form>
             </div>
-        </section>
     </div>
+    <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
+        <form action="updateSubject" method="post">
+            <table id="user_list" class="table table-striped">
+                <thead>
+                <tr class="table-primary">
+                    <th>Mã Môn học</th>
+                    <th>Tên Môn học</th>
+                    <th>Số tín chỉ</th>
+                    <%--                            class="hidden_column"--%>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${listsubject}" var="subject">
+                <c:choose>
+                <c:when test="${subject.getStatus()==1}">
+                <tr>
+
+                    <td>
+                        <c:out value="${subject.getSubjectID()}"/>
+                    </td>
+                    <td>
+                        <c:out value="${subject.getSubjectName()}"/>
+                    </td>
+                    <td>
+                        <c:out value="${subject.getNocredit()}"/>
+                    </td>
+                    <td>
+                        <input style="display:none" name="valueclose"
+                               value="">
+                        <button type="submit" name="btn-form" class="btn btn-danger"
+                                value="close ${subject.getSubjectID()}">
+                            Đóng
+                        </button>
+                    </td>
+                </tr>
+                </c:when>
+                </c:choose>
+
+                </c:forEach>
+    </div>
+    </form>
+
+    </div>
+
+</section>
+</div>
 
 </section>
 
@@ -244,22 +239,22 @@
                 <form id="account_edit_form" action="updateclassController" method="post">
                     <input style="display:none" name="oldedit" id="oldedit" value="">
                     <div class="form-group">
-                        <label for="yearadd" class="col-form-label">Năm học: </label>
+                        <label for="yearedit" class="col-form-label">Năm học: </label>
                         <input class="form-control" type="text" id="yearedit" name="yearedit" minlength="3" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="yearadd" class="col-form-label">Học kỳ: </label>
+                        <label for="semesteredit" class="col-form-label">Học kỳ: </label>
                         <input class="form-control" type="text" id="semesteredit" name="semesteredit" minlength="3"
                                required>
                     </div>
                     <div class="form-group">
-                        <label for="yearadd" class="col-form-label">Mã môn học: </label>
+                        <label for="subjectedit" class="col-form-label">Mã môn học: </label>
                         <input class="form-control" type="text" id="subjectedit" name="subjectedit" minlength="3"
                                required>
                     </div>
                     <div class="form-group">
-                        <label for="yearadd" class="col-form-label">Mã lớp học: </label>
+                        <label for="subclassidedit" class="col-form-label">Mã lớp học: </label>
                         <input class="form-control" type="text" id="subclassidedit" name="subclassidedit" minlength="3"
                                required>
                     </div>

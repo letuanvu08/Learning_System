@@ -59,13 +59,13 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table
-                            class="table table-bordered"
+                            class="table table-striped"
                             id="dataTable"
                             width="100%"
                             cellspacing="0"
                     >
                         <thead>
-                        <tr>
+                        <tr class="table-primary">
                             <th>Mã môn học </th>
                             <th>Tên Môn học </th>
                             <th>Số tín chỉ </th>

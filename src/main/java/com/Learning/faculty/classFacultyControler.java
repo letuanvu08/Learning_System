@@ -37,7 +37,6 @@ public class classFacultyControler extends HttpServlet {
                 request.setAttribute("listclasslecturer",list);
                 request.setAttribute("lecturer_featured", "lecturer_featured");
                 request.setAttribute("listlecturer", "active");
-                System.out.println(list.size());
                 List<subclass> listget = facultyDao.getListSubclassInSemesterFaculty(year,semester,employee.getFacultyName());
                 request.setAttribute("listSubclass", listget);
                  req= request.getRequestDispatcher("/pages/faculty/classfaculty.jsp");

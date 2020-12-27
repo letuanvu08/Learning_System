@@ -992,7 +992,6 @@ BEGIN
       AND ASemester = VIEWSEMESTER;
 END\\
 DELIMITER ;
-
 -- Xem danh sách lớp học của mỗi môn học mà mình đăng ký có nhiều hơn 1 giảng viên phụ trách ở một học kỳ.
 DROP PROCEDURE IF EXISTS LIST_SUBCLASS_OF_SUBJECT_ATTEND_LEAST_1_LECTURE;
 DELIMITER \\

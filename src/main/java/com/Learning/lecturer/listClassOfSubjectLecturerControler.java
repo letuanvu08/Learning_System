@@ -35,10 +35,6 @@ public class listClassOfSubjectLecturerControler extends HttpServlet {
         Employee employee = UserDao.getEmployeeByID(userID);
         List<subclass> listsubclass = lecturerDao.getListSubclassOfSujectLectuer(semester,employee.getId());
 
-        System.out.println(employee.getId());
-        System.out.println(semester);
-
-        System.out.println(listsubclass.size());
         request.setAttribute("listsubclass", listsubclass);
         RequestDispatcher req = request.getRequestDispatcher("/pages/lecturer/listClassOfSubjectLecturer.jsp");
         req.forward(request, response);

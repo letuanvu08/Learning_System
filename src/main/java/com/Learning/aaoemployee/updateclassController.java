@@ -45,7 +45,6 @@ public class updateclassController extends HttpServlet {
                 String subjectidedit=(String) request.getParameter("subjectidedit");
                 String subclassidedit=(String) request.getParameter("subclassidedit");
                 String oldvalue=(String) request.getParameter("oldedit");
-                System.out.println(oldvalue);
                 String [] listOld=oldvalue.split(" ");
                 mess =aaoemployeeDao.updateClass(listOld[2],Integer.parseInt(listOld[0]),Integer.parseInt(listOld[1]),listOld[3],subjectidedit,yearedit,semesteridedit,subclassidedit);
                 if (mess.equals(""))mess="Chỉnh sửa Lớp học thành công!";

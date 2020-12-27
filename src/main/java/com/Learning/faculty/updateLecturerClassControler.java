@@ -28,8 +28,7 @@ public class updateLecturerClassControler extends HttpServlet {
         String[] list=values.split(" ");
         String lecturerID=request.getParameter("lectuerID");
         String[] listWlectuer=request.getParameterValues("lectuerIDW");
-        System.out.println(request.getParameter("lectuerIDW"));
-        System.out.println(request.getParameter("numberWeek"));
+
         String[] listnumber=request.getParameterValues("numberWeek");
         String mess="";
         if(listWlectuer!=null){

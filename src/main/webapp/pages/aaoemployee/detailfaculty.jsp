@@ -58,13 +58,13 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table
-                            class="table table-bordered"
+                            class="table table-striped"
                             id="dataTable"
                             width="100%"
                             cellspacing="0"
                     >
                         <thead>
-                        <tr>
+                        <tr class="table-primary">
                             <th>KHOA</th>
                             <th>SỐ MÔN HỌC ĐƯỢC MỞ</th>
                             <th>SỐ LỚP ĐƯỢC MỞ</th>

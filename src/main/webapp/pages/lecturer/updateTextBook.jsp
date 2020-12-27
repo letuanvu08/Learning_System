@@ -77,29 +77,28 @@
 </section>
 <c:choose>
     <c:when test="${listsubject!=null}">
-    <section class="profile__featured">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="featured__controls">
-                        <ul>
+        <section class="profile__featured">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="featured__controls">
+                            <ul>
 
-                            <li class="active" data-filter=".general">DANH SÁCH MÔN HOC PHỤ TRÁCH</li>
+                                <li class="active" data-filter=".general">DANH SÁCH MÔN HOC PHỤ TRÁCH</li>
 
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center profile__options__filter">
-                <div class="col-lg-12">
+                <div class="row justify-content-center profile__options__filter">
+                    <div class="col-lg-12">
 
-                    <div class="profile__featured__general  col-lg-12 mix general">
-                        <form action="updateTextBook" method="post">
-                            <div class="shoping__cart__table">
-                                <table id="user_list" class="align-content-lg-start">
+                        <div class="profile__featured__general  col-lg-12 mix general">
+                            <form action="updateTextBook" method="post">
+                                <table id="user_list" class="table table-striped">
                                     <thead>
-                                    <tr>
+                                    <tr class="table-primary">
                                         <th>Mã Môn học</th>
                                         <th>Tên Môn học</th>
                                         <th>Số tín chỉ</th>
@@ -135,16 +134,15 @@
 
                                     </tbody>
                                 </table>
-                            </div>
 
-                        </form>
+                            </form>
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
     </c:when>
     <c:when test="${subjectlecturer!=null}">
         <section class="profile__featured">
@@ -166,50 +164,51 @@
 
                         <div class="profile__featured__general  col-lg-12 mix general">
                             <form action="updateTextBook" method="post">
-                                <div class="shoping__cart__table">
-                                    <table id="user_list" class="align-content-lg-start">
-                                        <thead>
-                                        <tr>
 
-                                            <th>ISBM</th>
-                                            <th>TextBook</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:choose>
-                                            <c:when test="${subjectlecturer.getListTexbook().size()>0}">
+                                <table id="user_list" class="table table-striped">
+                                    <thead>
+                                    <tr class="table-primary">
 
-                                        <c:forEach items="${subjectlecturer.getListTexbook()}" var="textbook">
-                                            <tr>
-                                                <td>
-                                                    <c:out value="${textbook.getISBN()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${textbook.getTextBookName()}"/>
-                                                </td>
-                                                <td>
-                                                    <button type="submit" name="btn-form" class="site-btn btn-danger"
-                                                            value="remove${" "}${subjectlecturer.getSubjectID()}${" "}${textbook.getISBN()}">
-                                                        Xóa
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                            </c:when>
-                                        </c:choose>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        <th>ISBM</th>
+                                        <th>TextBook</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:choose>
+                                        <c:when test="${subjectlecturer.getListTexbook().size()>0}">
 
-                            </form>
+                                            <c:forEach items="${subjectlecturer.getListTexbook()}" var="textbook">
+                                                <tr>
+                                                    <td>
+                                                        <c:out value="${textbook.getISBN()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${textbook.getTextBookName()}"/>
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" name="btn-form"
+                                                                class="site-btn btn-danger"
+                                                                value="remove${" "}${subjectlecturer.getSubjectID()}${" "}${textbook.getISBN()}">
+                                                            Xóa
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </c:when>
+                                    </c:choose>
+                                    </tbody>
+                                </table>
                         </div>
-                        <button type="button" name="btn-form" class="site-btn" data-toggle="modal"
-                                data-target="#addTextbookModal">
-                            Thêm TextBook
-                        </button>
-                    </div>
 
+                        </form>
+                    </div>
+                    <button type="button" name="btn-form" class="site-btn" data-toggle="modal"
+                            data-target="#addTextbookModal">
+                        Thêm TextBook
+                    </button>
                 </div>
+
+            </div>
 
             </div>
         </section>
@@ -236,7 +235,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                <button form="addtextbook" type="submit" class="btn btn-primary" name="btn-form" value="add${" "}${subjectlecturer.getSubjectID()}">
+                <button form="addtextbook" type="submit" class="btn btn-primary" name="btn-form"
+                        value="add${" "}${subjectlecturer.getSubjectID()}">
                     Submit
                 </button>
             </div>

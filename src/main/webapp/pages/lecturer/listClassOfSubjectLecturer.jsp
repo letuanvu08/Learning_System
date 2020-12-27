@@ -44,7 +44,7 @@
         <form action="listClassOfSubjectLecturer" method="post">
         <div class="card mb-4">
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table table-striped">
                     <table
                             class="table table-bordered"
                             id="dataTable"
@@ -52,7 +52,7 @@
                             cellspacing="0"
                     >
                         <thead>
-                        <tr>
+                        <tr class="table-primary">
                             <th>Mã môn học </th>
                             <th>Tên Môn học</th>
                             <th>Mã lớp học</th>

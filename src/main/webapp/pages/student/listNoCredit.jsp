@@ -60,7 +60,7 @@
                           DataTable Example
                         </div>-->
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table table-striped">
                                 <table
                                         class="table table-bordered"
                                         id="dataTable"
@@ -68,7 +68,7 @@
                                         cellspacing="0"
                                 >
                                     <thead>
-                                    <tr>
+                                    <tr class="table-primary">
                                         <th>Semester</th>
                                         <th>Số tín chỉ</th>
 
@@ -88,12 +88,12 @@
 
                                     </tbody>
                                 </table>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <h4>Tổng số tín chỉ:</h4>
-                                        <h4>${sum}</h4>
-                                    </li>
-                                </ul>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4>Tổng số tín chỉ:</h4>
+                                            <h4>${sum}</h4>
+                                        </li>
+                                    </ul>
                             </div>
                         </div>
                     </div>
