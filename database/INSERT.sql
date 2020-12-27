@@ -678,14 +678,34 @@ VALUES ('Le Nam','Viet Nam');
 
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('1111111','Nen tang ngon ngu lap trinh','Wiliam Nguyen');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('CO3005','1111111');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('CO3005','1111111');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('2222222','Thiet ke phan mem','Mango Tran');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('CO2015','2222222');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('CO2015','2222222');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('3333333','Kien truc may tinh','Le Viet');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('CO2008','3333333');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('CO2008','3333333');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('4444444','nhap mon cong nghe','Tran Quan');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('CO2020','4444444');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('CO2020','4444444');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('5555555','He dieu hanh','Nguyen Tung');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('CO3006','5555555');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('CO3006','5555555');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('6666666','Cau truc roi rac trong toan hoc','Dien Bao');
 
@@ -716,16 +736,40 @@ VALUES ('6666666',2017);
 
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('7777777','Hoa dai cuong','Wiliam Nguyen');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('HO2016','7777777');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('HO2016','7777777');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('8888888','Che tao cong nghe moi','Mango Tran');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('CK3007','8888888');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('CK3007','8888888');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('9999999','Ky thuat cau duong hien dai','Le Viet');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('XD2017','9999999');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('XD2017','9999999');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('1212121','Suc ben vat lieu','Tran Quan');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('VL2010','1212121');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('VL2010','1212121');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('1313131','Giai tich mach','Nguyen Tung');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('DO2011','1313131');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('DO2011','1313131');
 INSERT INTO Textbook(ISBN, TName, TPName)
 VALUES ('1414141','Kien thuc co ban ve ky thuat det','Dien Bao');
+INSERT INTO `Use` (UCID, UISBN)
+VALUES ('DM2011','1414141');
+insert into MainlyUse(MCID, MISBD)
+VALUES ('DM2011','1414141');
 
 INSERT INTO Category(CISBN, CategoryName)
 values ('7777777','hoa hoc');
@@ -882,6 +926,54 @@ INSERT INTO Phone(MOEID, PhoneNumber)
 VALUES ('000000022','0919523722');
 INSERT INTO Phone(MOEID, PhoneNumber)
 VALUES ('000000023','0819523566');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000024','0914523753');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000025','0914989771');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000026','0919529823');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000027','0818612342');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000028','0987985817');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000029','0919887874');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000030','0919529871');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000031','0621561651');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000032','0789523872');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000033','0952128789');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000034','0998913612');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000035','0887121222');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000036','0911111232');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000037','0922526464');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000038','0919118989');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000039','0819566618');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000040','0917655615');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000041','0914528821');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000042','0681590898');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000043','0998926234');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000043','0919993341');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000044','0914123001');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000044','0222523722');
+INSERT INTO Phone(MOEID, PhoneNumber)
+VALUES ('000000044','0811523566');
 #INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
 #VALUES ('1810730',181,0);
 #INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
@@ -917,6 +1009,7 @@ insert into Account values ('000000025','aaoemployee6','12345');
 insert into Account values ('000000026','aaoemployee7','12345');
 insert into Account values ('000000027','aaoemployee8','12345');
 insert into Account values ('000000028','aaoemployee9','12345');
+insert into Account values ('000000099','aaoemployee10','12345');
 insert into Account values ('000000009','lecturer1','12345');
 insert into Account values ('000000010','lecturer2','12345');
 insert into Account values ('000000011','lecturer3','12345');
@@ -929,6 +1022,7 @@ insert into Account values ('000000034','lecturer9','12345');
 insert into Account values ('000000035','lecturer10','12345');
 insert into Account values ('000000036','lecturer11','12345');
 
+
 insert into Account values ('000000012','faculty1','12345');
 insert into Account values ('000000037','faculty2','12345');
 insert into Account values ('000000038','faculty3','12345');
@@ -938,3 +1032,4 @@ insert into Account values ('000000041','faculty6','12345');
 insert into Account values ('000000042','faculty7','12345');
 insert into Account values ('000000043','faculty8','12345');
 insert into Account values ('000000044','faculty9','12345');
+insert into Account values ('000000098','faculty10','12345');
