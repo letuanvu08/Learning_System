@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -70,7 +70,7 @@
                 <div class="featured__controls">
                     <ul>
                         <li class="active" data-filter=".general">Thông tin chung</li>
-                      <%--     <li data-filter=".paid-orders">Thông tin Sinh Viên</li> --%>
+                        <%--     <li data-filter=".paid-orders">Thông tin Sinh Viên</li> --%>
                     </ul>
                 </div>
             </div>
@@ -97,155 +97,17 @@
             				</span>
                     </li>
 
-
-                    <li ><a href="changepassword" class = "site-btn">Đổi mật khẩu</a></li>
+                    <li><a href="changepassword" class="site-btn">Đổi mật khẩu</a></li>
                 </ul>
             </div>
-           <%--    <div class="profile__featured__general col-lg-6 mix paid-orders">
-                <ul class="list-unstyled">
-                    <li>
-                        <h4>Loại tài khoản</h4>
-                        <span>${user.userType.toString()}</span>
-                    </li>
-                    <li>
-                        <h4>Mã số Sinh Viên</h4>
-                        <span>
-            					<c:choose>
-                                    <c:when test="${null == student}">
-                                        Chưa có thông tin
-                                    </c:when>
-                                    <c:otherwise>
-                                        ${student.getStudentID()}
-                                    </c:otherwise>
-                                </c:choose>
-            				</span>
-                    </li>
-                    <li>
-                        <h4>khóa</h4>
-                        <span>
-            					<c:choose>
-                                    <c:when test="${null == student}">
-                                        Chưa có thông tin
-                                    </c:when>
-                                    <c:otherwise>
-                                        ${student.getYearofadmission()}
-                                    </c:otherwise>
-                                </c:choose>
-            				</span>
-                    </li>
-                    <li>
-                        <h4>Khoa</h4>
-                        <span>
-            					<c:choose>
-                                    <c:when test="${null == student}">
-                                        Chưa có thông tin
-                                    </c:when>
-                                    <c:otherwise>
-                                        ${student.getFSName()}
-                                    </c:otherwise>
-                                </c:choose>
-            				</span>
-                    </li>
-                    <li>
-                        <h4>Tinh Trạng</h4>
-                        <span>
-            					<c:choose>
-                                    <c:when test="${null == student}">
-                                        Chưa có thông tin
-                                    </c:when>
-                                    <c:otherwise>
-                                        ${student.getStatus()}
-                                    </c:otherwise>
-                                </c:choose>
-            				</span>
-                    </li>
-
-                </ul>
-<<<<<<< HEAD
-            </div> --%>
-            <!-- End General info -->
-            <!-- View paid orders -->
-<%--            <div class="profile__featured__general col-lg-6 mix paid-orders">--%>
-<%--                <c:forEach items = "${PaidOrders}" var="order">--%>
-<%--                    <div class="col-lg-12">--%>
-<%--                        <div class="order__table">--%>
-<%--                            <table>--%>
-<%--                                <tr>--%>
-<%--                                    <td colspan=4>--%>
-<%--                                        <div class="shoping__cart__table">--%>
-<%--                                            <table>--%>
-<%--                                                <thead>--%>
-<%--                                                <tr>--%>
-<%--                                                    <th class="shoping__product">Tên món ăn</th>--%>
-<%--                                                    <th>Đơn giá</th>--%>
-<%--                                                    <th>Số lượng</th>--%>
-<%--                                                    <th>Tổng cộng</th>--%>
-<%--                                                    <th></th>--%>
-<%--                                                </tr>--%>
-<%--                                                </thead>--%>
-<%--                                                <tbody>--%>
-<%--                                                <c:forEach items = "${order.orderEntries}" var="entry" varStatus="loop">--%>
-<%--                                                    <tr class="shoping__cart__list">--%>
-<%--                                                        <td class="shoping__cart__item">--%>
-<%--                                                            <h5 class="item-title">${entry.meal.name}</h5>--%>
-<%--                                                        </td>--%>
-<%--                                                        <td class="shoping__cart__price">--%>
-<%--                                                            <span id="item-price">${entry.meal.price}</span>--%>
-<%--                                                        </td>--%>
-<%--                                                        <td class="shoping__cart__quantity">--%>
-<%--                                                            <div class="quantity">--%>
-<%--                                                                <span id="item-quantity-rm">${entry.quantity}</span>--%>
-<%--                                                            </div>--%>
-<%--                                                        </td>--%>
-<%--                                                        <td class="shoping__cart__total">--%>
-<%--                                                            <span id="item-total-price-rm">${entry.meal.price*entry.quantity }</span>&#8363;--%>
-<%--                                                        </td>--%>
-<%--                                                    </tr>--%>
-<%--                                                </c:forEach>--%>
-<%--                                                </tbody>--%>
-<%--                                            </table>--%>
-<%--                                        </div>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                                <tr>--%>
-<%--                                    <td>--%>
-<%--											<span id="purchase__timestamp">--%>
-<%--												<c:out value="Thời gian chờ đợi : ${order.eta} (phút)" />--%>
-<%--											</span>--%>
-<%--                                    </td>--%>
-<%--                                    <td>--%>
-<%--											<span id="total__order__price">--%>
-<%--												<c:out value="Tổng đơn hàng : ${order.price}" />&#8363;--%>
-<%--											</span>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                                <tr>--%>
-<%--                                    <td>--%>
-<%--											<span id="order__status">--%>
-<%--												<c:choose>--%>
-<%--                                                    <c:when test="${order.isDone == 0}">--%>
-<%--                                                        <c:out value="Tình trạng hoàn thành : đã hoàn thành" />--%>
-<%--                                                    </c:when>--%>
-<%--                                                    <c:when test="${order.isDone == 1}">--%>
-<%--                                                        <c:out value="Tình trạng hoàn thành : chưa hoàn thành" />--%>
-<%--                                                    </c:when>--%>
-<%--                                                    <c:otherwise>--%>
-<%--                                                        <c:out value="Tình trạng hoàn thành : đã xảy ra lỗi" />--%>
-<%--                                                    </c:otherwise>--%>
-<%--                                                </c:choose>--%>
-=======
-            </div>
->>>>>>> f45d5e05f6c62e95dc5df354826044e157f0588e
-
         </div>
     </div>
 </section>
 
 
-
 <!-- Profile Function Section End -->
 
-<c:import url="/footer.jsp" />
+<c:import url="/footer.jsp"/>
 
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>

@@ -99,18 +99,6 @@
         <url-pattern>/faculty/changepassword</url-pattern>
         <url-pattern>/aaoemployee/changepassword</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>changepassword</servlet-name>
-        <url-pattern>/lecturer/changepassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>changepassword</servlet-name>
-        <url-pattern>/faculty/changepassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>changepassword</servlet-name>
-        <url-pattern>/aaoemployee/changepassword</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>profileservlet</servlet-name>
         <servlet-class>com.Learning.profile.ProfileController</servlet-class>
@@ -188,7 +176,7 @@
     </servlet-mapping>
 <servlet>
         <servlet-name>liststudentlecturer</servlet-name>
-        <servlet-class>com.Learning.lecturer.liststudentlecturerControler</servlet-class>
+        <servlet-class>com.Learning.lecturer.listclasslecturerControler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>liststudentlecturer</servlet-name>
