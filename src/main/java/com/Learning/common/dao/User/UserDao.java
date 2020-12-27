@@ -12,8 +12,8 @@ public class UserDao {
 	final private static String mysqlURL="jdbc:mysql://localhost:3306/";
 	final private static String mysqlUsrName="root";
 
-	// final private static String mysqlPass="soni1382000duy";
-	final private static String mysqlPass="0974706833vu";
+	final private static String mysqlPass="soni1382000duy";
+	//final private static String mysqlPass="0974706833vu";
 	//final private static String mysqlPass="8pJ-:G&b}aPUP9*6";
 	private static String getDatabaseNameAccount() {
 		String databaseName="LEARNING_TEACHING_ACCOUNT";
@@ -29,7 +29,7 @@ public class UserDao {
 	private static final String SELECT_USER_BY_USER_NAME = "call GET_ACCOUNT_NAME(?)";
 	private static final String GET_TYPE_ACCOUNT_ID = "call GET_TYPE_ACCOUNT_ID(?)";
 
-	private static final String UPDATE_USER_PASS_BY_USER_NAME = "UPDATE Account set PASSWORD=? where USERNAME=?";
+	private static final String UPDATE_USER_PASS_BY_USER_NAME = "call CHANGE_PASSWORD_ACCOUNT(?,?)";
 	private static final String GET_EMPLOYEE="call  GET_EMPLOYEE(?)";
 	//Same as insert User
 	//Same as selectUserByUserName
@@ -141,12 +141,14 @@ public class UserDao {
 			ResultSet res=preparedStatement.executeQuery();
 			
 			while (res.next()) {
-				String  iduser = res.getString("USERID");
+				String iduser = res.getString("USERID");
 				String password = res.getString("PASSWORD");
+				String accountName = res.getString("USERNAME");
 				getInForAccount(id,user);
 				System.out.println(user.getUserType());
 				user.setUserID(iduser);
 				user.setpassword(password);
+				user.setAccountName(accountName);
 			}
 		 
 		} catch (SQLException e) {
@@ -185,24 +187,16 @@ public class UserDao {
 	
 
 	//Update user password through user name
-	public static boolean updateUserPassword(String newPassword, String userName) {
-		boolean isUpdated = false;
-		//Simple handle exception
-		if (newPassword =="") return isUpdated;
-		Connection conn=getConnection(getDatabaseNameAccount());
-		try {
-			PreparedStatement preparedStatement=conn.prepareStatement(UPDATE_USER_PASS_BY_USER_NAME);
-
-			preparedStatement.setString(1, newPassword);
-			preparedStatement.setString(2, userName);
-
-			isUpdated=preparedStatement.executeUpdate()>0;
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return isUpdated;
+	public static void updateUserPassword(String newPassword, String userName) {
+		 Connection conn=getConnection(getDatabaseNameAccount());
+	        try {
+	            PreparedStatement preparedStatement=conn.prepareStatement(UPDATE_USER_PASS_BY_USER_NAME);
+	            preparedStatement.setString(1, userName);
+				preparedStatement.setString(2, newPassword);
+	            //This line is for debug purpose only
+				preparedStatement.execute();
+	        } catch (SQLException throwables) {
+	        }
 	}
 
 

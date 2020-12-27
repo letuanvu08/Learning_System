@@ -19,7 +19,7 @@ public class User {
 		this.password = user.password;
 		this.email = user.email;
 		this.phone=user.phone;
-
+		this.AccountName=user.AccountName;
 	}
 	
 	public String getUserID() {

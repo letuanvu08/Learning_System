@@ -47,15 +47,11 @@ public class ChangePassword extends HttpServlet {
 			}
 			else if (oldpassword.equals(newpassword)) {
 				request.setAttribute("error", 2);
-
 				RequestDispatcher rd=request.getRequestDispatcher("/pages/changepassword.jsp");
 				rd.forward(request, response);
-
 				return;
 			}
-
-			UserDao.changePasswordFromUsername(user.getAccountName(),newpassword);
-
+			UserDao.changePasswordFromUsername(user.getAccountName(),newpassword);	
 			RequestDispatcher rd = request.getRequestDispatcher("/"+user.getUserType().toString()+"/main");
 			rd.forward(request, response);
 			return;
