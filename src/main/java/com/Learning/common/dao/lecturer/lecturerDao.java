@@ -14,8 +14,8 @@ public class lecturerDao {
 
     final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching1";
     final private static String mysqlUsrName = "root";
-    //final private static String mysqlPass = "0974706833vu";
-    final private static String mysqlPass="soni1382000duy";
+    final private static String mysqlPass = "0974706833vu";
+//    final private static String mysqlPass="soni1382000duy";
 
     final private static String PROCEDURE_xem_ds_mon_hoc_textbook_pt = "call xem_ds_mon_hoc_textbook_pt(?)";
     final private static String PROCEDURE_xem_textbook_mon_hoc_pt = "call xem_textbook_mon_hoc_pt(?,?)";
@@ -179,14 +179,11 @@ public class lecturerDao {
                     subclass.setLecture(lecturer);
                 list.add(subclass);
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return list;
     }
-
     public static List<subclass> getListSubclassOfSujectLectuer(String semester, String lectuerID) {
         List<subclass> list = new ArrayList<>();
 
@@ -210,11 +207,9 @@ public class lecturerDao {
                     subclass.setLecture(lecturer);
                 list.add(subclass);
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return list;
     }
 

@@ -12,7 +12,8 @@ import java.util.List;
 public class aaoemployeeDao {
     final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching1";
     final private static String mysqlUsrName="root";
-    final private static String mysqlPass="soni1382000duy";
+//    final private static String mysqlPass="soni1382000duy";
+    final private static String mysqlPass="0974706833vu";
 
     private static final String PROCEDURE_XEM_DANH_SACH_SV="call xem_ds_sv_dk_1_lop(?,?,?,?)";
     private static final String PROCEDURE_XEM_DANH_SACH_GV="call xem_ds_gv_cua_1_lop(?,?,?,?)";

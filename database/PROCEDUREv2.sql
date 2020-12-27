@@ -514,6 +514,8 @@ BEGIN
 END\\
 DELIMITER ;
 
+
+
 -- Cập nhật giáo trình chính cho môn học do mình phụ trách.
 DROP PROCEDURE IF EXISTS them_textbook_chinh;
 DELIMITER \\

@@ -12,8 +12,8 @@ public class UserDao {
 	final private static String mysqlURL="jdbc:mysql://localhost:3306/";
 	final private static String mysqlUsrName="root";
 
-	final private static String mysqlPass="soni1382000duy";
-	//final private static String mysqlPass="0974706833vu";
+//	final private static String mysqlPass="soni1382000duy";
+	final private static String mysqlPass="0974706833vu";
 	//final private static String mysqlPass="8pJ-:G&b}aPUP9*6";
 	private static String getDatabaseNameAccount() {
 		String databaseName="LEARNING_TEACHING_ACCOUNT";
