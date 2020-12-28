@@ -14,7 +14,7 @@ public class facultyDao {
     final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching";
     final private static String mysqlUsrName = "faculty";
     final private static String mysqlPass = "faculty";
-//    final private static String mysqlPass="soni1382000duy";
+
     private static final String PROCEDURE_XEM_DANH_SACH_SV = "call xem_ds_sv_dk_1_lop(?,?,?,?)";//
     private static final String PROCEDURE_xem_ds_mon_hoc = "call xem_ds_mon_hoc(?)";//
     private static final String PROCEDURE_UPDATE_SUBJECT_STATUS = "call UPDATE_SUBJECT_STATUS(?,?)";//
