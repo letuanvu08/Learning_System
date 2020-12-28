@@ -11,21 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class facultyDao {
-    final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching1";
-    final private static String mysqlUsrName = "root";
-    final private static String mysqlPass = "0974706833vu";
+    final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching";
+    final private static String mysqlUsrName = "faculty";
+    final private static String mysqlPass = "faculty";
 //    final private static String mysqlPass="soni1382000duy";
-    private static final String PROCEDURE_XEM_DANH_SACH_SV = "call xem_ds_sv_dk_1_lop(?,?,?,?)";
-    private static final String PROCEDURE_xem_ds_mon_hoc = "call xem_ds_mon_hoc(?)";
-    private static final String PROCEDURE_UPDATE_SUBJECT_STATUS = "call UPDATE_SUBJECT_STATUS(?,?)";
-    private static final String PROCEDURE_them_mon_hoc = "call them_mon_hoc(?,?,?,?,?,?)";
-    private static final String PROCEDURE_UPDATE_LECTURER_CLASS = "call UPDATE_LECTURER_CLASS(?,?,?,?,?)";
-    private static final String PRODCEDURE_LIST_SUBCLASS_SEMESTER_FACULTY = "call LIST_SUBCLASS_SEMESTER_FACULTY(?,?,?)";
-    private static final String PRODCEDURE_LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY = "call LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY(?,?,?,?)";
-    private static final String PRODCEDURE_xem_ds_sv_dk_1_lop = "call xem_ds_sv_dk_1_lop(?,?,?,?)";
-    private static final String PRODCEDURE_xem_ds_giang_vien = "call xem_ds_giang_vien(?)";
-    private static final String PRODCEDURE_xem_giao_trinh_mon_hoc_khoa = "call xem_giao_trinh_mon_hoc_khoa(?)";
-    private static final String PRODCEDURE_them_gv_phu_trach = "call them_gv_phu_trach(?,?,?,?,?,?)";
+    private static final String PROCEDURE_XEM_DANH_SACH_SV = "call xem_ds_sv_dk_1_lop(?,?,?,?)";//
+    private static final String PROCEDURE_xem_ds_mon_hoc = "call xem_ds_mon_hoc(?)";//
+    private static final String PROCEDURE_UPDATE_SUBJECT_STATUS = "call UPDATE_SUBJECT_STATUS(?,?)";//
+    private static final String PROCEDURE_them_mon_hoc = "call them_mon_hoc(?,?,?,?,?,?)";//
+    private static final String PROCEDURE_UPDATE_LECTURER_CLASS = "call UPDATE_LECTURER_CLASS(?,?,?,?,?)";//
+    private static final String PRODCEDURE_LIST_SUBCLASS_SEMESTER_FACULTY = "call LIST_SUBCLASS_SEMESTER_FACULTY(?,?,?)";//
+    private static final String PRODCEDURE_LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY = "call LIST_CLASS_OF_LECTURER_SEMESTER_FACULTY(?,?,?,?)";//
+    private static final String PRODCEDURE_xem_ds_sv_dk_1_lop = "call xem_ds_sv_dk_1_lop(?,?,?,?)";//
+    private static final String PRODCEDURE_xem_ds_giang_vien = "call xem_ds_giang_vien(?)";//
+    private static final String PRODCEDURE_xem_giao_trinh_mon_hoc_khoa = "call xem_giao_trinh_mon_hoc_khoa(?)";//
+    private static final String PRODCEDURE_them_gv_phu_trach = "call them_gv_phu_trach(?,?,?,?,?,?)";//
     private static Connection getConnection() {
         Connection conn = null;
         try {

@@ -10,17 +10,17 @@ import com.Learning.common.model.user.UserType;
 
 public class UserDao {
 	final private static String mysqlURL="jdbc:mysql://localhost:3306/";
-	final private static String mysqlUsrName="root";
+	final private static String mysqlUsrName="Author";
 
 //	final private static String mysqlPass="soni1382000duy";
-	final private static String mysqlPass="0974706833vu";
+	final private static String mysqlPass="Authorizer";
 	//final private static String mysqlPass="8pJ-:G&b}aPUP9*6";
 	private static String getDatabaseNameAccount() {
 		String databaseName="LEARNING_TEACHING_ACCOUNT";
 		return databaseName;
 	}
 	private static String getDatabaseNameLearning() {
-		String databaseName="Learning_Teaching1";
+		String databaseName="Learning_Teaching";
 		return databaseName;
 	}
 	//The queries
@@ -29,7 +29,7 @@ public class UserDao {
 	private static final String SELECT_USER_BY_USER_NAME = "call GET_ACCOUNT_NAME(?)";
 	private static final String GET_TYPE_ACCOUNT_ID = "call GET_TYPE_ACCOUNT_ID(?)";
 
-	private static final String UPDATE_USER_PASS_BY_USER_NAME = "call CHANGE_PASSWORD_ACCOUNT(?,?)";
+	private static final String UPDATE_USER_PASS_BY_USER_NAME = "call CHANGE_PASSWORD_ACCOUNT(?,?,?)";
 	private static final String GET_EMPLOYEE="call  GET_EMPLOYEE(?)";
 	//Same as insert User
 	//Same as selectUserByUserName
@@ -64,9 +64,9 @@ public class UserDao {
 		return employee;
 	}
 
-	public static void changePasswordFromUsername(String username,String newpassword) {
+	public static String  changePasswordFromUsername(String username,String oldpassword,String newpassword) {
         //UserData.getInstance().changePasswordFromUsername(username,newpassword);
-		updateUserPassword(username, newpassword);
+		return updateUserPassword(username,oldpassword, newpassword);
 	}
 
 	
@@ -190,22 +190,22 @@ public class UserDao {
 	
 
 	//Update user password through user name
-	public static boolean updateUserPassword(String userName, String newPassword) {
-		boolean isUpdated = false;
+	public static String  updateUserPassword(String userName,String Old_password, String newPassword) {
+		String mess="";
 		//Simple handle exception
-		if (newPassword =="") return isUpdated;
 		Connection conn=getConnection(getDatabaseNameAccount());
 		try {
 			PreparedStatement preparedStatement=conn.prepareStatement(UPDATE_USER_PASS_BY_USER_NAME);
 			preparedStatement.setString(1, userName);
-			preparedStatement.setString(2, newPassword);
-			isUpdated=preparedStatement.executeUpdate()>0;
+			preparedStatement.setString(2, Old_password);
+			preparedStatement.setString(3, newPassword);
+			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			mess=e.getMessage();
 		}
-		return isUpdated;
+		return mess;
 	}
 
 

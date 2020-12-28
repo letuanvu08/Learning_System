@@ -29,47 +29,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo/favicon.ico">
 </head>
 <body>
-<!--
-<div class="form-window">
 
-    <div class="form-content animated fadeInUp">
-
-        <div class="form-title">
-            <h1>Đổi Mật Khẩu</h1>
-        </div>
-        <form action="changepassword" id="login_form" method="post">
-
-            <div class="form-group">
-                <label class="control-label" for="oldpassword">Mật khẩu cũ</label>
-                <input class="form-control" type="password" id="oldpassword" name="oldpassword" minlength="4" maxlength="20" required>
-                <small id="passwordHelpInline" class="form-text text-muted">
-                    Mật khẩu của bạn phải dài từ 4-20 kí tự.
-                </small>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="newpassword">Mật khẩu mới</label>
-                <input class="form-control" type="password" id="newpassword" name="newpassword" minlength="4" maxlength="20" required>
-                <small id="passwordHelpInline" class="form-text text-muted">
-                    Mật khẩu của bạn phải dài từ 4-20 kí tự.
-                </small>
-            </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-theme btn-lg">Xác nhận</button>
-            </div>
-
-        </form>
-        <div class="other-opts">
-            <a id="cancel" href="./view_profileJSP">
-                <span>Hủy bỏ</span>
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
--->
-<!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>
 </div>
@@ -101,21 +61,18 @@
             </div>
 
             <c:choose>
-                <c:when test="${error == 1}">
-                    <h5 class="form-error">Mật khẩu cũ không chính xác</h5>
-                </c:when>
-
-                <c:when test="${error == 2}">
-                    <h5 class="form-error">Mật khẩu cũ và mật khẩu mới trùng nhau</h5>
+                <c:when test="${error!=Null}">
+                    <h5 class="form-error">${error}</h5>
                 </c:when>
             </c:choose>
+
 
             <div class="form-group text-center">
                 <button type="submit" name="btn" value="xacnhan" class="site-btn">Xác nhận</button>
             </div>
 
         </form>
-        <form action="changepassword" id="change_password_form" method="post">
+        <form action="profileservlet" id="change_password_form" method="post">
             <div class="form-group text-center">
                 <button type="submit" name="btn" value="huybo" class="site-btn">Hủy bỏ</button>
             </div>

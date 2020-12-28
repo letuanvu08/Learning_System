@@ -1,4 +1,4 @@
-USE Learning_Teaching1;
+USE Learning_Teaching;
 
 DROP VIEW IF EXISTS LECTURER_INFO;
 CREATE VIEW LECTURER_INFO AS
@@ -494,7 +494,6 @@ BEGIN
 
 END\\
 DELIMITER ;
-call xem_top_mon_hoc_nhieu_gv_phu_trach('191')
 DROP PROCEDURE IF EXISTS xem_tb_sv_dk_mon_hoc;
 -- Xem số sinh viên đăng ký trung bình trong 3 năm gần nhất cho một môn học ở một học kỳ.
 DELIMITER \\
@@ -585,7 +584,8 @@ BEGIN
         where LID=lecturerID and CSemester=semester;
 END \\
 DELIMITER ;
-call xem_ds_lop_mon_hoc_pt('201','000003');
+
+
 DROP PROCEDURE IF EXISTS xem_ds_lop_pt;
 DELIMITER \\
 CREATE PROCEDURE xem_ds_lop_pt( CSemester_IN CHAR(3),lecturerID char(6))
@@ -704,39 +704,6 @@ END \\
 DELIMITER ;
 
 -- Đăng ký môn học ở học kỳ được đăng ký.
-DROP PROCEDURE IF EXISTS dang_ky;
-DELIMITER \\
-CREATE PROCEDURE dang_ky(DKYEAR YEAR,
-                         DKSEMESTER CHAR(3),
-                         DKCID CHAR(6),
-                         DKSID CHAR(3),
-                         DKStudentID CHAR(7))
-BEGIN
-    IF EXISTS(SELECT *
-              FROM Student
-                       JOIN Status S on Student.StudentID = S.SSID
-              WHERE DKStudentID = StudentID
-                AND SemesterStatus = DKSEMESTER
-                AND LearningStatus = 0)
-    THEN
-        IF EXISTS(SELECT *
-                  FROM SubClass SC
-                  WHERE CSemester = DKSEMESTER
-                    AND DKCID = SC.SCID
-                    AND DKSID = SC.SID)
-        THEN
-            INSERT INTO Attend(ayear, asemester, acid, asid, aStudentid)
-            VALUES (DKYEAR, DKSEMESTER, DKCID, DKSID, DKStudentID);
-        ELSE
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'SUBCLASS UNAVAILABLE';
-        end if;
-    ELSE
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Student IS NOT PERMIT Attend SUBCLASS';
-
-    end if;
-
-end\\
-DELIMITER ;
 
 
 -- XEM DANH SACH MON HOC ĐÃ DK
@@ -1106,6 +1073,28 @@ END\\
 DELIMITER ;
 
 
+
+DROP PROCEDURE IF EXISTS Delete_Attend;
+DELIMITER \\
+CREATE PROCEDURE Delete_Attend(_ayear year,
+                               _ASemester CHAR(3),
+                               _ACID char(6),
+                               _ASID char(3),
+                               _AStudentID char(6))
+BEGIN
+    delete from Attend
+    where  AYear=_ayear AND ASemester=_ASemester and ACID=_ACID and ASID=_ASID AND AStudentID=_AStudentID;
+
+END\\
+DELIMITER ;
+
+
+
+
+
+
+
+
 DROP PROCEDURE IF EXISTS GET_TYPE_ACCOUNT_ID;
 DELIMITER \\
 CREATE PROCEDURE GET_TYPE_ACCOUNT_ID(iduser NVARCHAR(100)
@@ -1144,7 +1133,7 @@ BEGIN
 
 END\\
 DELIMITER ;
-use Learning_Teaching1;
+
 DROP PROCEDURE IF EXISTS GET_STUDENT;
 DELIMITER \\
 CREATE PROCEDURE GET_STUDENT(memberID char(9)

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/database/DCL.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/database/DCL_ACCOUNT.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/database/DDL.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/database/DDL_ACCOUNT.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/database/INSERT.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/database/INSERT_ACCOUNT.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/database/PROCEDURE_ACCOUNT.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/database/PROCEDUREv2.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/database/TRIGGER.sql" dialect="MySQL" />
   </component>
 </project>

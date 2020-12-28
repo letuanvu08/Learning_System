@@ -10,21 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class aaoemployeeDao {
-    final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching1";
-    final private static String mysqlUsrName="root";
+    final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching";
+    final private static String mysqlUsrName="trainingbureau";
 //    final private static String mysqlPass="soni1382000duy";
-    final private static String mysqlPass="0974706833vu";
-
-    private static final String PROCEDURE_XEM_DANH_SACH_SV="call xem_ds_sv_dk_1_lop(?,?,?,?)";
-    private static final String PROCEDURE_XEM_DANH_SACH_GV="call xem_ds_gv_cua_1_lop(?,?,?,?)";
-    private static final String PROCEDURE_THEM_LOP="call them_lop(?,?,?,?)";
-    private static final String PROCEDURE_XOA_LOP="call xoa_lop(?,?,?,?)";
-    private static final String PROCEDURE_cap_nhat_lop="call cap_nhat_lop(?,?,?,?,?,?,?,?)";
-    private static final String PROCEDURE_xem_ds_lop_cua_1_sv="call xem_ds_lop_cua_1_sv(?,?,?)";
-    private static final String PROCEDURE_xem_ds_lop_cua_1_gv="call xem_ds_lop_cua_1_gv(?,?)";
-    private static final String PROCEDURE_xem_tong_mon_hoc="call xem_tong_mon_hoc(?)";
-    private static final String PROCEDURE_xem_tong_lop ="call xem_tong_lop(?)";
-    private static final String PROCEDURE_xem_tong_sv_dk ="call xem_tong_sv_dk (?)";
+    final private static String mysqlPass="trainingbureau";
+    private static final String PRODCEDURE_LIST_SUBJECT_SEMESTER ="Call LIST_SUBJECT_SEMESTER(?)";//
+    private static final String PROCEDURE_XEM_DANH_SACH_SV="call xem_ds_sv_dk_1_lop(?,?,?,?)";//
+    private static final String PROCEDURE_XEM_DANH_SACH_GV="call xem_ds_gv_cua_1_lop(?,?,?,?)";//
+    private static final String PROCEDURE_THEM_LOP="call them_lop(?,?,?,?)";//
+    private static final String PROCEDURE_XOA_LOP="call xoa_lop(?,?,?,?)";//
+    private static final String PROCEDURE_cap_nhat_lop="call cap_nhat_lop(?,?,?,?,?,?,?,?)";//
+    private static final String PROCEDURE_xem_ds_lop_cua_1_sv="call xem_ds_lop_cua_1_sv(?,?,?)";//
+    private static final String PROCEDURE_xem_ds_lop_cua_1_gv="call xem_ds_lop_cua_1_gv(?,?)";//
+    private static final String PROCEDURE_xem_tong_mon_hoc="call xem_tong_mon_hoc(?)";//
+    private static final String PROCEDURE_xem_tong_lop ="call xem_tong_lop(?)";//
+    private static final String PROCEDURE_xem_tong_sv_dk ="call xem_tong_sv_dk (?)";//
 
     private static Connection getConnection() {
         Connection conn=null;
@@ -78,6 +78,37 @@ public class aaoemployeeDao {
         }
         return list;
     }
+    public static List<subclass> getListSubclassInSemester(String  semester){
+        List<subclass> list = new ArrayList<>();
+
+        Connection conn=getConnection();
+
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(PRODCEDURE_LIST_SUBJECT_SEMESTER);
+            preparedStatement.setString(1,semester);
+            //This line is for debug purpose only
+            ResultSet res=preparedStatement.executeQuery();
+            while (res.next()){
+                subclass subclass=new subclass();
+                subclass.setSubJectName(res.getString("CNAME"));
+                subclass.setClassId(res.getString("SCID"));
+                subclass.setSubClassId(res.getString("SID"));
+                subclass.setNoCreadits(res.getInt("NoCredits"));
+                subclass.setYear(res.getInt("CYear"));
+                subclass.setSemester(res.getInt("CSemester"));
+                list.add(subclass);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return list;
+    }
+
+
+
+
+
     private static List<Facultydetail> getSumSubject(int semester){
         Connection conn=getConnection();
         List<Facultydetail> list=new ArrayList<>();

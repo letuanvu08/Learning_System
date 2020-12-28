@@ -5,7 +5,7 @@ create table Account
 (
     USERID   char(9)      not null,
     USERNAME NVARCHAR(100) not null,
-    PASSWORD NVARCHAR(100) not null,
+    PASSWORD VARCHAR(100) not null,
     primary key (USERID, USERNAME),
     constraint USERNAME
         unique (USERNAME)

@@ -1,7 +1,7 @@
-drop schema  if exists Learning_Teaching1;
-CREATE SCHEMA Learning_Teaching1;
+drop schema  if exists Learning_Teaching;
+CREATE SCHEMA Learning_Teaching;
 
-USE Learning_Teaching1;
+USE Learning_Teaching;
 
 CREATE TABLE MemberOfEducationUnit(
     ID CHAR(9),

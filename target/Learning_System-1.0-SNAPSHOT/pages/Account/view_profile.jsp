@@ -43,6 +43,25 @@
 <!-- Breadcrumb Section End -->
 
 <!-- Profile Section Begin -->
+<div class="row" id="notifice">
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6">
+        <c:choose>
+            <c:when test="${error==null}">
+            </c:when>
+            <c:otherwise>
+                <h5 class="alert alert-info" role="alert"><c:out value="${error}"/></h5>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</div>
+
+<script>
+    setTimeout(() => {
+        var elem = document.getElementById("notifice");
+        elem.remove();
+    }, 5000);
+</script>
 <section class="profile">
     <div class="container">
         <div class="profile__title">

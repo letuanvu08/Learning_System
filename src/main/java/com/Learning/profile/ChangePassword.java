@@ -15,57 +15,33 @@ import com.Learning.common.model.user.User;
 
 @WebServlet("/changepassword")
 public class ChangePassword extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	private boolean verify(String username, String password, User user) {	
+    private static final long serialVersionUID = 1L;
 
-		if (user == null || !user.getpassword().equals(password)) return false;
-		return true;
-	}
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher req=request.getRequestDispatcher("/pages/changepassword.jsp");
-		req.forward(request,response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+     
+        RequestDispatcher req = request.getRequestDispatcher("/pages/changepassword.jsp");
+            req.forward(request, response);
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String userID = (String) session.getAttribute("userID");
-		User user = UserDao.getUserFromUserID(userID);
-		String req = request.getParameter("btn");
-		System.out.println(user.getpassword());
-		System.out.println(user.getUsername());
-		switch(req) {
-		case "xacnhan":
-			String oldpassword = request.getParameter("oldpassword");
-			String newpassword = request.getParameter("newpassword");
-			if (!verify(user.getUsername(), oldpassword, user)) {
-				request.setAttribute("error", 1);
-				RequestDispatcher rd=request.getRequestDispatcher("/pages/changepassword.jsp");
-				rd.forward(request, response);
-				return;
-			}
-			else if (oldpassword.equals(newpassword)) {
-				request.setAttribute("error", 2);
-				RequestDispatcher rd=request.getRequestDispatcher("/pages/changepassword.jsp");
-				rd.forward(request, response);
-				return;
-			}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String userID = (String) session.getAttribute("userID");
+        User user = UserDao.getUserFromUserID(userID);
+        System.out.println(user.getpassword());
+        System.out.println(user.getUsername());
 
-			UserDao.changePasswordFromUsername(user.getAccountName(),newpassword);	
-
-			RequestDispatcher rd = request.getRequestDispatcher("/"+user.getUserType().toString()+"/main");
-			rd.forward(request, response);
-
-			return;
-		case "huybo":
-
-			RequestDispatcher rd1 = request.getRequestDispatcher("/"+user.getUserType().toString()+"/main");
-			rd1.forward(request, response);
-			return;
-		}
-		
-		
-	}
+        String oldpassword = request.getParameter("oldpassword");
+        String newpassword = request.getParameter("newpassword");
+        String mess = UserDao.changePasswordFromUsername(user.getAccountName(),oldpassword, newpassword);
+        if (!mess.equals("")) {
+            request.setAttribute("error", mess);
+            RequestDispatcher rd = request.getRequestDispatcher("/pages/changepassword.jsp");
+            rd.forward(request, response);
+        } else {
+            request.setAttribute("error", "Đổi mât khẩu thành công!");
+            RequestDispatcher reqs = request.getRequestDispatcher("/" + user.getUserType().toString() + "/profile");
+            reqs.forward(request, response);
+        }
+    }
 
 }

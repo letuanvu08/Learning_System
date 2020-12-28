@@ -14,21 +14,21 @@ import java.util.List;
 
 public class lecturerDao {
 
-    final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching1";
-    final private static String mysqlUsrName = "root";
-    final private static String mysqlPass = "0974706833vu";
+    final private static String mysqlURL = "jdbc:mysql://localhost:3306/Learning_Teaching";
+    final private static String mysqlUsrName = "lecturer";
+    final private static String mysqlPass = "lecturer";
 //    final private static String mysqlPass="soni1382000duy";
 
-    final private static String PROCEDURE_xem_ds_mon_hoc_textbook_pt = "call xem_ds_mon_hoc_textbook_pt(?)";
-    final private static String PROCEDURE_xem_textbook_mon_hoc_pt = "call xem_textbook_mon_hoc_pt(?,?)";
-    final private static String PROCEDURE_them_textbook_chinh = "call them_textbook_chinh(?,?)";
-    final private static String PROCEDURE_xoa_textbook_theo_ma_mh = "call xoa_textbook_theo_ma_mh(?,?)";
-    final private static String PROCEDURE_xem_ds_lop_mon_hoc_pt = "call xem_ds_lop_mon_hoc_pt(?,?)";
-    final private static String PROCEDURE_xem_ds_lop_pt = "call xem_ds_lop_pt(?,?)";
-    final private static String PROCEDURE_xem_ds_sv_pt = "call xem_ds_sv_pt(?,?)";
-    final private static String PROCEDURE_xem_so_lop_pt_gan_day = "call xem_so_lop_pt_gan_day(?)";
-    final private static String PROCEDURE_xem_top_5_lop_sv_cao_nhat_pt= "call xem_top_5_lop_sv_cao_nhat_pt(?)";
-    final private static String PROCEDURE_xem_xem_top_5_hk_lop_nhieu_nhat_pt= "call xem_top_5_hk_lop_nhieu_nhat_pt(?)";
+    final private static String PROCEDURE_xem_ds_mon_hoc_textbook_pt = "call xem_ds_mon_hoc_textbook_pt(?)";//
+    final private static String PROCEDURE_xem_textbook_mon_hoc_pt = "call xem_textbook_mon_hoc_pt(?,?)";//
+    final private static String PROCEDURE_them_textbook_chinh = "call them_textbook_chinh(?,?)";//
+    final private static String PROCEDURE_xoa_textbook_theo_ma_mh = "call xoa_textbook_theo_ma_mh(?,?)";//
+    final private static String PROCEDURE_xem_ds_lop_mon_hoc_pt = "call xem_ds_lop_mon_hoc_pt(?,?)";//
+    final private static String PROCEDURE_xem_ds_lop_pt = "call xem_ds_lop_pt(?,?)";//
+    final private static String PROCEDURE_xem_ds_sv_pt = "call xem_ds_sv_pt(?,?)";//
+    final private static String PROCEDURE_xem_so_lop_pt_gan_day = "call xem_so_lop_pt_gan_day(?)";//
+    final private static String PROCEDURE_xem_top_5_lop_sv_cao_nhat_pt= "call xem_top_5_lop_sv_cao_nhat_pt(?)";//
+    final private static String PROCEDURE_xem_xem_top_5_hk_lop_nhieu_nhat_pt= "call xem_top_5_hk_lop_nhieu_nhat_pt(?)";//
 
     private static Connection getConnection() {
         Connection conn = null;

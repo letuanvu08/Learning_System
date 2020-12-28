@@ -1,4 +1,4 @@
-use Learning_Teaching1;
+use Learning_Teaching;
 
 INSERT INTO MemberOfEducationUnit(ID, Gender, Fname, Lname, DOB, Email)
     VALUE ('000000001','M','Le','Vu','2000-11-20','letuanvu@gmail.com');
@@ -983,53 +983,3 @@ VALUES ('000000044','0811523566');
 #INSERT INTO Status(SSID, SemesterStatus, LearningStatus)
 #VALUES ('1814812','201',0);
 
-use LEARNING_TEACHING_ACCOUNT;
-insert into Account values ('000000001','student1','12345');
-insert into Account values ('000000002','student2','12345');
-insert into Account values ('000000003','student3','12345');
-insert into Account values ('000000004','student4','12345');
-insert into Account values ('000000005','student5','12345');
-insert into Account values ('000000006','student6','12345');
-insert into Account values ('000000007','student7','12345');
-insert into Account values ('000000013','student8','12345');
-insert into Account values ('000000014','student9','12345');
-insert into Account values ('000000015','student10','12345');
-insert into Account values ('000000016','student11','12345');
-insert into Account values ('000000017','student12','12345');
-insert into Account values ('000000018','student13','12345');
-insert into Account values ('000000019','student14','12345');
-insert into Account values ('000000020','student15','12345');
-insert into Account values ('000000003','student16','12345');
-insert into Account values ('000000008','aaoemployee1','12345');
-insert into Account values ('000000021','aaoemployee2','12345');
-insert into Account values ('000000022','aaoemployee3','12345');
-insert into Account values ('000000023','aaoemployee4','12345');
-insert into Account values ('000000024','aaoemployee5','12345');
-insert into Account values ('000000025','aaoemployee6','12345');
-insert into Account values ('000000026','aaoemployee7','12345');
-insert into Account values ('000000027','aaoemployee8','12345');
-insert into Account values ('000000028','aaoemployee9','12345');
-insert into Account values ('000000099','aaoemployee10','12345');
-insert into Account values ('000000009','lecturer1','12345');
-insert into Account values ('000000010','lecturer2','12345');
-insert into Account values ('000000011','lecturer3','12345');
-insert into Account values ('000000029','lecturer4','12345');
-insert into Account values ('000000030','lecturer5','12345');
-insert into Account values ('000000031','lecturer6','12345');
-insert into Account values ('000000032','lecturer7','12345');
-insert into Account values ('000000033','lecturer8','12345');
-insert into Account values ('000000034','lecturer9','12345');
-insert into Account values ('000000035','lecturer10','12345');
-insert into Account values ('000000036','lecturer11','12345');
-
-
-insert into Account values ('000000012','faculty1','12345');
-insert into Account values ('000000037','faculty2','12345');
-insert into Account values ('000000038','faculty3','12345');
-insert into Account values ('000000039','faculty4','12345');
-insert into Account values ('000000040','faculty5','12345');
-insert into Account values ('000000041','faculty6','12345');
-insert into Account values ('000000042','faculty7','12345');
-insert into Account values ('000000043','faculty8','12345');
-insert into Account values ('000000044','faculty9','12345');
-insert into Account values ('000000098','faculty10','12345');

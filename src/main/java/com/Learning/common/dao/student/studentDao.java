@@ -7,18 +7,18 @@ import com.Learning.common.model.lecturer.Lecturer;
 import com.Learning.common.model.student.*;
 
 public class studentDao {
-    final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching1";
-    final private static String mysqlUsrName="root";
-    final private static String mysqlPass="0974706833vu";
+    final private static String mysqlURL="jdbc:mysql://localhost:3306/Learning_Teaching";
+    final private static String mysqlUsrName="student";
+    final private static String mysqlPass="student";
 //    final private static String mysqlPass="soni1382000duy";
-    private static final String PRODCEDURE_LIST_SUBJECT_SEMESTER ="Call LIST_SUBJECT_SEMESTER(?)";
+    private static final String PRODCEDURE_LIST_SUBJECT_SEMESTER ="Call LIST_SUBJECT_SEMESTER(?)";//
     private static final String PRODCEDURE_SUBJECT_SEMESTER_BY_CID ="Call SUBJECT_SEMESTER_BY_CID(?,?)";
-    private static final String PRODCEDURE_LIST_SUBJECT_ATTEND ="Call LIST_SUBJECT_ATTEND(?,?)";
-    private static final String PRODCEDURE_LIST_SUBCLASS_ATTEND ="Call LIST_SUBCLASS_ATTEND(?,?)";
-    private static final String PRODCEDURE_SUM_No_Registered_Credits_ALL_SEMESTER ="Call SUM_No_Registered_Credits_ALL_SEMESTER(?)";
-    private static final String PRODCEDURE_DANGKY="Call DANGKY(?,?,?,?,?)";
-    private static final String PROFILE ="call GET_STUDENT(?)";
-    private static final String DELETE_ATTEND ="delete from Attend where  AYear=? AND ASemester=? and ACID=? and ASID=?  AND AStudentID=?";
+    private static final String PRODCEDURE_LIST_SUBJECT_ATTEND ="Call LIST_SUBJECT_ATTEND(?,?)";//
+    private static final String PRODCEDURE_LIST_SUBCLASS_ATTEND ="Call LIST_SUBCLASS_ATTEND(?,?)";//
+    private static final String PRODCEDURE_SUM_No_Registered_Credits_ALL_SEMESTER ="Call SUM_No_Registered_Credits_ALL_SEMESTER(?)";//
+    private static final String PRODCEDURE_DANGKY="Call DANGKY(?,?,?,?,?)";//
+    private static final String PROFILE ="call GET_STUDENT(?)";//
+    private static final String DELETE_ATTEND ="Delete_Attend(?,?,?,?,?)";//
     private static Connection getConnection() {
         Connection conn=null;
         try {

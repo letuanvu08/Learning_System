@@ -25,9 +25,9 @@ public class updateclassController extends HttpServlet {
         switch (listbtn[0]) {
             case "find":
                 if(!request.getParameter("semesterfind").equals("")) {
-                    semester = Integer.parseInt(request.getParameter("semesterfind"));
+                    semester = request.getParameter("semesterfind");
                 }
-                list = studentDao.getListSubclassInSemester(semester);
+                list = aaoemployeeDao.getListSubclassInSemester(semester);
                 request.setAttribute("listclass", list);
 
                 req = request.getRequestDispatcher("/pages/aaoemployee/updateclass.jsp");
@@ -49,7 +49,7 @@ public class updateclassController extends HttpServlet {
                 mess =aaoemployeeDao.updateClass(listOld[2],listOld[0],listOld[1],listOld[3],subjectidedit,yearedit,semesteridedit,subclassidedit);
                 if (mess.equals(""))mess="Chỉnh sửa Lớp học thành công!";
                 request.setAttribute("status",mess);
-                list = studentDao.getListSubclassInSemester(semester);
+                list = aaoemployeeDao.getListSubclassInSemester(semester);
                 request.setAttribute("listclass", list);
                 req = request.getRequestDispatcher("/pages/aaoemployee/updateclass.jsp");
                 req.forward(request, response);
@@ -63,7 +63,7 @@ public class updateclassController extends HttpServlet {
                          mess =aaoemployeeDao.addClass(subjectid,yearadd,semesterid,subclassid);
                         if (mess.equals(""))mess="Thêm Lớp học thành công!";
                         request.setAttribute("status",mess);
-                        list = studentDao.getListSubclassInSemester(semester);
+                        list = aaoemployeeDao.getListSubclassInSemester(semester);
                         request.setAttribute("listclass", list);
                          req = request.getRequestDispatcher("/pages/aaoemployee/updateclass.jsp");
                         req.forward(request, response);
@@ -76,7 +76,7 @@ public class updateclassController extends HttpServlet {
                 }
                 if (mess.equals(""))mess="Xoá Lớp học thành công!";
                 request.setAttribute("status",mess);
-                list = studentDao.getListSubclassInSemester(semester);
+                list = aaoemployeeDao.getListSubclassInSemester(semester);
                 request.setAttribute("listclass", list);
                 req = request.getRequestDispatcher("/pages/aaoemployee/updateclass.jsp");
                 req.forward(request, response);
@@ -86,11 +86,11 @@ public class updateclassController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<subclass> list = studentDao.getListSubclassInSemester(semester);
+        List<subclass> list = aaoemployeeDao.getListSubclassInSemester(semester);
         request.setAttribute("listclass", list);
         RequestDispatcher res = request.getRequestDispatcher("/aaoemployee/updateclass");
         res.forward(request, response);
     }
 
-    private static int semester = 201;
+    private static String  semester = "201";
 }
