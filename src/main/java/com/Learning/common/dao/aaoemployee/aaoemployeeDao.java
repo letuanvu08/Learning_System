@@ -188,6 +188,8 @@ public class aaoemployeeDao {
             ResultSet res = preparedStatement.executeQuery();
             while (res.next()){
                 subclass subclass =new subclass();
+                subclass.setYear(res.getInt("CYear"));
+                subclass.setSemester(res.getInt("CSemester"));
                 subclass.setSubJectName(res.getString("CNAME"));
                 subclass.setClassId(res.getString("SCID"));
                 subclass.setSubClassId(res.getString("SID"));
@@ -254,7 +256,7 @@ public class aaoemployeeDao {
         }
         return mess;
     }
-    public static String  updateClass(String SubjectID, String  year, String  semester, String subclassID,String newSubjectID, int newyear, int newsemester, String newsubclassID){
+    public static String  updateClass( String  year, String  semester,String SubjectID, String subclassID, String  newyear, String  newsemester,String newSubjectID,  String newsubclassID){
         Connection conn=getConnection();
         String mess="";
         try {
@@ -264,8 +266,8 @@ public class aaoemployeeDao {
             preparedStatement.setString(3,semester);
             preparedStatement.setString(4,subclassID);
             preparedStatement.setString(5,newSubjectID);
-            preparedStatement.setInt(6,newyear);
-            preparedStatement.setInt(7,newsemester);
+            preparedStatement.setString(6,newyear);
+            preparedStatement.setString(7,newsemester);
             preparedStatement.setString(8,newsubclassID);
             //This line is for debug purpose only
             preparedStatement.execute();

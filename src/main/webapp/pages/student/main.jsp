@@ -88,13 +88,13 @@
                         <p class="description">Xem danh sách tất cả các lớp học của nhưng môn mà đã đăng ký ở học kỳ hiện tại</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-                    <div class="box">
-                        <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
-                        <h4 class="title"><a href="NoCreditStudent">Tổng số tín chỉ.</a></h4>
-                        <p class="description">xem tổng số tín chỉ tích luỹ ở mỗi kì và tổng số tín chỉ đã tích lũy</p>
-                    </div>
-                </div>
+<%--                <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">--%>
+<%--                    <div class="box">--%>
+<%--                        <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>--%>
+<%--                        <h4 class="title"><a href="NoCreditStudent">Tổng số tín chỉ.</a></h4>--%>
+<%--                        <p class="description">xem tổng số tín chỉ tích luỹ ở mỗi kì và tổng số tín chỉ đã tích lũy</p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
 
 

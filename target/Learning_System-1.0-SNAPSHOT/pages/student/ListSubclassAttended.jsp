@@ -47,56 +47,64 @@
 <%--    </div>--%>
 <%--</div>--%>
 <!-- Profile Section Begin -->
+
 <div class="container-fluid ">
-    <section class="section bg-light">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-11">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-9">
+            <section class="section bg-light">
+
                 <div class="card mb-4">
                     <!--<div class="card-header">
                       <i class="fas fa-table mr-1"></i>
                       DataTable Example
                     </div>-->
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table
-                                    class="table table-striped"
-                            >
-                                <thead>
-                                <tr class="table-primary">
-                                    <th>Mã môn học</th>
-                                    <th>Tên Môn học</th>
-                                    <th>Mã lớp học</th>
-                                    <th>Giảng viên chính</th>
-                                    <th>Giảng viên phụ</th>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-lg-10">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table
+                                            class="table table-striped"
+                                    >
+                                        <thead>
+                                        <tr class="table-primary">
+                                            <th>Mã môn học</th>
+                                            <th>Tên Môn học</th>
+                                            <th>Mã lớp học</th>
+                                            <th>Giảng viên chính</th>
+                                            <th>Giảng viên phụ</th>
 
 
-                                </tr>
-                                </thead>
+                                        </tr>
+                                        </thead>
 
-                                <tbody>
-                                <c:forEach items="${listsubclass}" var="sublass">
+                                        <tbody>
+                                        <c:forEach items="${listsubclass}" var="sublass">
 
-                                    <tr>
-                                        <td><c:out value="${sublass.getClassId()}"/></td>
-                                        <td><c:out value="${sublass.getSubJectName()}"/></td>
-                                        <td><c:out value="${sublass.getSubClassId()}"/></td>
-                                        <td><c:out value="${sublass.getLecture()}"/></td>
-                                        <td>
-                                            <c:forEach items="${sublass.getListlectuer()}" var="lecturer">
-                                                <c:out value="${lecturer.getName()}"/><p/>
-                                                <hr/>
-                                            </c:forEach>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                                            <tr>
+                                                <td><c:out value="${sublass.getClassId()}"/></td>
+                                                <td><c:out value="${sublass.getSubJectName()}"/></td>
+                                                <td><c:out value="${sublass.getSubClassId()}"/></td>
+                                                <td><c:out value="${sublass.getLecture()}"/></td>
+                                                <td>
+                                                    <c:forEach items="${sublass.getListlectuer()}" var="lecturer">
+                                                        <c:out value="${lecturer.getName()}"/><p/>
+                                                        <hr/>
+                                                    </c:forEach>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            </section>
         </div>
-    </section>
+    </div>
+
 </div>
 
 

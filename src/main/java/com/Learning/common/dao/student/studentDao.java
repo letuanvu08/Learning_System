@@ -18,7 +18,7 @@ public class studentDao {
     private static final String PRODCEDURE_SUM_No_Registered_Credits_ALL_SEMESTER ="Call SUM_No_Registered_Credits_ALL_SEMESTER(?)";//
     private static final String PRODCEDURE_DANGKY="Call DANGKY(?,?,?,?,?)";//
     private static final String PROFILE ="call GET_STUDENT(?)";//
-    private static final String DELETE_ATTEND ="Delete_Attend(?,?,?,?,?)";//
+    private static final String DELETE_ATTEND ="call Delete_Attend(?,?,?,?,?)";//
     private static Connection getConnection() {
         Connection conn=null;
         try {

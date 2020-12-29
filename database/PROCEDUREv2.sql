@@ -142,7 +142,7 @@ Begin
               FROM SubClass
               WHERE old_Namhoc = SubClass.CYear
                 AND old_Hocky = SubClass.CSemester
-                AND new_MaSoMH = SubClass.SCID
+                AND old_MaSoMH = SubClass.SCID
                 AND old_MaSoNhomLop = SubClass.SID)
     THEN
         UPDATE SubClass
@@ -154,18 +154,20 @@ Begin
           and (CSemester = old_Hocky)
           and (SCID = old_MaSoMH)
           and (SID = old_MaSoNhomLop);
+        Else
+        SIGNAL SQLSTATE '45000'  Set Message_Text ='CLASS IS NOT AVAILABLE!';
     END IF;
 end //
 DELIMITER ;
-
+SELECT * FROM  SubClass WHERE SCID='CK3007' AND CYear=2020 AND CSemester='201' AND SID='L01';
 -- Xem danh sách lớp đã được đăng ký bởi một sinh viên ở một học kỳ.    
-DROP PROCEDURE IF EXISTS xem_ds_lop_cua_1_sv;
+DROP PROCEDURE IF EXISTS xem_ds_lop_cua_1_svxem_ds_lop_cua_1_sv;
 DELIMITER //
 Create PROCEDURE xem_ds_lop_cua_1_sv(MSSV CHAR(7),
                                      Namhoc YEAR,
                                      Hocky CHAR(3))
 BEGIN
-    SELECT CName, SID, SCID, Fname, Lname
+    SELECT CName, SID, SCID, Fname, Lname,CYear,CSemester
     FROM SubClass
              JOIN Subject ON SubClass.SCID = Subject.CID
              left outer join LECTURER_INFO on LID = SCLID,
@@ -174,8 +176,10 @@ BEGIN
     WHERE AStudentID = MSSV
       and AYear = Namhoc
       AND ASemester = Hocky
+      and SubClass.CYear=Namhoc
       AND ACID = CID
-    group by CName, SID, SCID, Fname, Lname;
+        and ASID=SubClass.SID
+    group by CName, SID, SCID, Fname, Lname,CYear,CSemester;
 END
 //
 DELIMITER ;
@@ -858,7 +862,7 @@ BEGIN
     limit 3;
 end\\
 DELIMITER ;
-
+use Learning_Teaching;
 DROP PROCEDURE IF EXISTS DANGKY;
 DELIMITER \\
 CREATE PROCEDURE DANGKY(DKYEAR YEAR,
@@ -874,7 +878,7 @@ BEGIN
                 AND SemesterStatus = DKSEMESTER
                 AND LearningStatus = 0)
     THEN
-        IF EXISTS(SELECT *
+        IF   EXISTS(SELECT *
                   FROM SubClass SC
                   WHERE CSemester = DKSEMESTER
                     AND DKCID = SC.SCID
@@ -882,9 +886,11 @@ BEGIN
         then
             IF not EXISTS(SELECT *
                           from Class
-                                   join Attend on ACID = Class.CCID
+                                   join Attend on ACID = Class.CCID and
+                                    ASemester=Class.Semester and AYear=Class.Year
                           where CCID = DKCID
-                            and Year = DKYEAR
+                            and AYear = DKYEAR
+                            and AStudentID=DKSTUDENTID
                             and ASemester = DKSEMESTER)
             THEN
                 INSERT INTO Attend(ayear, asemester, acid, asid, astudentid)
@@ -1080,15 +1086,14 @@ CREATE PROCEDURE Delete_Attend(_ayear year,
                                _ASemester CHAR(3),
                                _ACID char(6),
                                _ASID char(3),
-                               _AStudentID char(6))
+                               _AStudentID char(7))
 BEGIN
     delete from Attend
     where  AYear=_ayear AND ASemester=_ASemester and ACID=_ACID and ASID=_ASID AND AStudentID=_AStudentID;
 
 END\\
 DELIMITER ;
-
-
+c
 
 
 

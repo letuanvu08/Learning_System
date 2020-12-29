@@ -24,6 +24,7 @@ public class Attend extends HttpServlet {
         String subclass_class = request.getParameter("btn_dk");
         System.out.println(subclass_class);
         String[] subid = subclass_class.split(" ");
+        System.out.println(student.getStudentID());
         String check;
         if (subid[0].equals("xoa")) {
             check = studentDao.DeleteAttend(student, subid[1], subid[2], Integer.parseInt(subid[3]));

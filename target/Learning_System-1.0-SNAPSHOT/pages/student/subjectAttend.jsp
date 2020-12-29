@@ -48,54 +48,54 @@
 <%--    </div>--%>
 <%--</div>--%>
 <!-- Profile Section Begin -->
+
 <div class="container-fluid ">
-    <section class="section bg-light">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-8">
+            <section class="section bg-light">
 
-        <div class="card mb-4">
-            <!--<div class="card-header">
-              <i class="fas fa-table mr-1"></i>
-              DataTable Example
-            </div>-->
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table
-                            class="table table-striped"
-                    >
-                        <thead>
-                        <tr class="table-primary">
-                            <th>Mã môn học </th>
-                            <th>Tên Môn học </th>
-                            <th>Số tín chỉ </th>
-                            <th>Texboook</th>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table
+                                    class="table table-striped"
+                            >
+                                <thead>
+                                <tr class="table-primary">
+                                    <th>Mã môn học</th>
+                                    <th>Tên Môn học</th>
+                                    <th>Số tín chỉ</th>
+                                    <th>Texboook</th>
 
-                        </tr>
-                        </thead>
+                                </tr>
+                                </thead>
 
-                        <tbody>
-                        <c:forEach items="${listsubject}" var="subcject">
+                                <tbody>
+                                <c:forEach items="${listsubject}" var="subcject">
 
-                        <tr>
-                            <td><c:out value="${subcject.getSubjectID()}"/></td>
-                            <td><c:out value="${subcject.getSubjectName()}"/></td>
-                            <td><c:out value="${subcject.getNoCreadits()}"/></td>
+                                    <tr>
+                                        <td><c:out value="${subcject.getSubjectID()}"/></td>
+                                        <td><c:out value="${subcject.getSubjectName()}"/></td>
+                                        <td><c:out value="${subcject.getNoCreadits()}"/></td>
 
-                            <td>
-                                <c:forEach items="${subcject.getListTexbook()}" var="textBook">
-                                <c:out value="${textBook}"/><p/>
-                                    <hr/>
+                                        <td>
+                                            <c:forEach items="${subcject.getListTexbook()}" var="textBook">
+                                                <c:out value="${textBook}"/><p/>
+                                                <hr/>
+                                            </c:forEach>
+                                        </td>
+
+                                    </tr>
                                 </c:forEach>
-                            </td>
-
-                        </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+            </section>
         </div>
-</section>
-
-
+    </div>
 </div>
 
 

@@ -82,7 +82,7 @@
             <div class="col-lg-10" style="padding: 30px">
                 <form action="updateSubject" method="post">
                     <fieldset>
-                        <legend class="text-success"><b>Danh sách các môn hoc đang mở:</b></legend>
+                        <legend class="text-success"><b>Danh sách các môn hoc đang đóng:</b></legend>
 
                         <table id="user_list" class="table table-striped">
 
@@ -132,7 +132,7 @@
             <div class="col-lg-10" style="padding: 30px">
                 <form action="updateSubject" method="post">
                     <fieldset>
-                        <legend class="text-success"><b>Danh sách các môn hoc đang đóng:</b></legend>
+                        <legend class="text-success"><b>Danh sách các môn hoc đang mở:</b></legend>
 
                         <table id="user_list" class="table table-striped">
                         <thead>

@@ -310,5 +310,14 @@
         <url-pattern>/lecturer/*</url-pattern>
         <url-pattern>/faculty/*</url-pattern>
     </filter-mapping>
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>Learning_System</web-resource-name>-->
+<!--            <url-pattern>/LearningSystem/*</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <user-data-constraint>-->
+<!--            <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+<!--        </user-data-constraint>-->
+<!--    </security-constraint>-->
 
 </web-app>

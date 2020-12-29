@@ -40,13 +40,17 @@ public class updateclassController extends HttpServlet {
                 req.forward(request,response);
                 break;
             case "edit":
-                int yearedit=Integer.parseInt(request.getParameter("yearedit"));
-                int semesteridedit=Integer.parseInt(request.getParameter("semesteredit"));
-                String subjectidedit=(String) request.getParameter("subjectidedit");
+                String  yearedit=request.getParameter("yearedit");
+                String  semesteridedit=request.getParameter("semesteredit");
+                String subjectidedit=(String) request.getParameter("subjectedit");
                 String subclassidedit=(String) request.getParameter("subclassidedit");
                 String oldvalue=(String) request.getParameter("oldedit");
                 String [] listOld=oldvalue.split(" ");
-                mess =aaoemployeeDao.updateClass(listOld[2],listOld[0],listOld[1],listOld[3],subjectidedit,yearedit,semesteridedit,subclassidedit);
+                System.out.println("edit");
+                System.out.println(yearedit);
+                System.out.println(oldvalue);
+                System.out.println(subclassidedit);
+                mess =aaoemployeeDao.updateClass(listOld[0],listOld[1],listOld[2],listOld[3],yearedit,semesteridedit,subjectidedit,subclassidedit);
                 if (mess.equals(""))mess="Chỉnh sửa Lớp học thành công!";
                 request.setAttribute("status",mess);
                 list = aaoemployeeDao.getListSubclassInSemester(semester);

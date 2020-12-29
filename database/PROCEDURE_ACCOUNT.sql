@@ -4,7 +4,7 @@ DROP PROCEDURE IF EXISTS GET_ACCOUNT_ID;
 DELIMITER \\
 CREATE PROCEDURE GET_ACCOUNT_ID(id char(9))
 BEGIN
-    select USERID,USERNAME,DES_DECRYPT(PASSWORD,'database') as PASSWORD from Account where Account.USERID=id;
+    select USERID,USERNAME,AES_DECRYPT(PASSWORD,'database') as PASSWORD from Account where Account.USERID=id;
 
 END\\
 DELIMITER ;
@@ -40,3 +40,7 @@ BEGIN
  SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Account is not Available!';
     END IF;
 END\\
+
+
+select *
+from Account;

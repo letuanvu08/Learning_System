@@ -165,7 +165,7 @@
                     </div>
                 </div>
             </div>
-            <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
+                <div class="profile__featured__general ${lecturer_featured} col-lg-12 mix lecturer">
 
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-5 profile__name">

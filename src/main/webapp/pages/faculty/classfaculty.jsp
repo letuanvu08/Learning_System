@@ -106,12 +106,73 @@
                         </form>
                     </div>
                 </div>
+
                 <c:choose>
-                <c:when test="${listclasslecturer==null}">
-                </c:when>
-                <c:otherwise>
+                    <c:when test="${listclasslecturer==null}">
+                    </c:when>
+                    <c:otherwise>
+                        <div class="row justify-content-center profile__options__filter">
+                            <div class="col-lg-11">
+                                <form action="classFacultyControler" method="post">
+
+                                    <table id="user_list" class="table table-striped">
+                                        <thead>
+                                        <tr class="table-primary">
+                                            <th>Học kỳ</th>
+                                            <th>Mã Môn học</th>
+                                            <th>Tên Môn học</th>
+                                            <th>Mã lớp học</th>
+                                            <th>Giảng Viên</th>
+                                            <th>Giảng Viên phụ</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${listclasslecturer}" var="entry" varStatus="loop">
+                                            <tr>
+
+                                                <td>
+                                                    <c:out value="${entry.getSemester()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${entry.getClassId()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${entry.getSubClassId()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${entry.getSubJectName()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${entry.getLecture()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:forEach items="${entry.getListlectuer()}" var="lecturer">
+                                                        <p><c:out value="${lecturer.getName()}"/></p>
+                                                    </c:forEach>
+                                                </td>
+                                                <td>
+                                                    <button type="submit" name="btn-form"
+                                                            class="site-btn"
+                                                            value="detail${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
+                                                        DS sinh viên
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+
+
+            <div class="profile__featured__general  col-lg-12 mix general">
                 <div class="row justify-content-center profile__options__filter">
-                    <div class="col-lg-11">
+                    <div class="col-lg-12">
                         <form action="classFacultyControler" method="post">
 
                             <table id="user_list" class="table table-striped">
@@ -127,7 +188,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listclasslecturer}" var="entry" varStatus="loop">
+                                <c:forEach items="${listSubclass}" var="entry" varStatus="loop">
                                     <tr>
 
                                         <td>
@@ -157,6 +218,7 @@
                                                 DS sinh viên
                                             </button>
                                         </td>
+
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -165,67 +227,7 @@
                     </div>
                 </div>
             </div>
-            </c:otherwise>
-            </c:choose>
         </div>
-        <div class="profile__featured__general  col-lg-12 mix general">
-            <div class="row justify-content-center profile__options__filter">
-                <div class="col-lg-12">
-                <form action="classFacultyControler" method="post">
-
-                    <table id="user_list" class="table table-striped">
-                        <thead>
-                        <tr class="table-primary">
-                            <th>Học kỳ</th>
-                            <th>Mã Môn học</th>
-                            <th>Tên Môn học</th>
-                            <th>Mã lớp học</th>
-                            <th>Giảng Viên</th>
-                            <th>Giảng Viên phụ</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${listSubclass}" var="entry" varStatus="loop">
-                            <tr>
-
-                                <td>
-                                    <c:out value="${entry.getSemester()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${entry.getClassId()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${entry.getSubClassId()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${entry.getSubJectName()}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${entry.getLecture()}"/>
-                                </td>
-                                <td>
-                                    <c:forEach items="${entry.getListlectuer()}" var="lecturer">
-                                        <p><c:out value="${lecturer.getName()}"/></p>
-                                    </c:forEach>
-                                </td>
-                                <td>
-                                    <button type="submit" name="btn-form"
-                                            class="site-btn"
-                                            value="detail${" "}${entry.getYear()}${" "}${entry.getSemester()}${" "}${entry.getClassId()}${" "}${entry.getSubClassId()}">
-                                        DS sinh viên
-                                    </button>
-                                </td>
-
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 </section>
 
