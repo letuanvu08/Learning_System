@@ -1,5 +1,6 @@
 #Class Diagram of Database
 ![alt text](https://github.com/letuanvu08/Learning_System/tree/master/Image%20Web/Database.png?raw=true)
+![alt text](https://github.com/letuanvu08/Learning_System/blob/master/Image%20Web/Database.png)
 #Use Case Diagram
 ![Screenshot](Image Web/Use Case Diagram.png)
 #Implementation Diagram
